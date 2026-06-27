@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex&rsquo;s Recipes &mdash; a small kitchen notebook</title>
+  <meta name="description" content="A hand-kept collection of Alex's favourite recipes: weeknight dinners, slow weekend bakes, and the sauces worth keeping." />
+  <meta name="color-scheme" content="light dark" />
+
+  <!-- Display + body type, with robust system fallbacks if the CDN is blocked -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --paper:    #fbf6ec;
+      --paper-2:  #f4ecdd;
+      --ink:      #2c2722;
+      --ink-soft: #5d544a;
+      --tomato:   #c2502f;
+      --tomato-d: #a23f22;
+      --olive:    #6b7a4f;
+      --line:     #e2d6c1;
+      --card:     #fffdf8;
+      --shadow:   0 1px 0 rgba(0,0,0,.02), 0 12px 30px -18px rgba(76,54,30,.55);
+
+      --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans:  "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --paper:    #1c1916;
+        --paper-2:  #221e1a;
+        --ink:      #f0e7d8;
+        --ink-soft: #b8ab97;
+        --tomato:   #e7754f;
+        --tomato-d: #f08a66;
+        --olive:    #a8b785;
+        --line:     #3a332b;
+        --card:     #24201b;
+        --shadow:   0 1px 0 rgba(0,0,0,.2), 0 16px 34px -20px rgba(0,0,0,.8);
+      }
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    body {
+      margin: 0;
+      font-family: var(--sans);
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    .wrap { width: min(960px, 100% - 2.5rem); margin-inline: auto; }
+
+    a { color: var(--tomato-d); text-underline-offset: 3px; }
+    a:focus-visible,
+    button:focus-visible { outline: 3px solid var(--olive); outline-offset: 2px; border-radius: 4px; }
+
+    /* ---------- Top bar ---------- */
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--line);
+    }
+    .topbar .wrap {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; padding-block: .7rem; min-height: 56px;
+    }
+    .brand {
+      font-family: var(--serif);
+      font-weight: 600; font-size: 1.15rem; letter-spacing: .2px;
+      text-decoration: none; color: var(--ink);
+      display: inline-flex; align-items: center; gap: .55rem;
+    }
+    .brand .dot { width: .7rem; height: .7rem; border-radius: 50%; background: var(--tomato); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tomato) 22%, transparent); }
+    .nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
+    .nav a { color: var(--ink-soft); text-decoration: none; font-size: .92rem; font-weight: 500; }
+    .nav a:hover { color: var(--tomato-d); }
+    @media (max-width: 620px) { .nav { display: none; } }
+
+    /* ---------- Hero ---------- */
+    .hero { padding: clamp(3rem, 8vw, 6rem) 0 2.5rem; }
+    .eyebrow {
+      text-transform: uppercase; letter-spacing: .22em;
+      font-size: .72rem; font-weight: 600; color: var(--olive);
+      margin: 0 0 1rem;
+    }
+    .hero h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(2.6rem, 7vw, 4.6rem);
+      line-height: 1.02;
+      letter-spacing: -.01em;
+      margin: 0 0 1rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--tomato); }
+    .lede { font-size: clamp(1.05rem, 2.4vw, 1.3rem); color: var(--ink-soft); max-width: 46ch; margin: 0 0 1.8rem; }
+    .stats { display: flex; flex-wrap: wrap; gap: 1.8rem; padding: 1.2rem 0 0; border-top: 1px dashed var(--line); }
+    .stat b { font-family: var(--serif); display: block; font-size: 1.6rem; color: var(--ink); line-height: 1; }
+    .stat span { font-size: .82rem; color: var(--ink-soft); }
+
+    /* ---------- Recipe index ---------- */
+    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0 1.4rem; }
+    .section-head h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 4vw, 2.1rem); margin: 0; }
+    .section-head .hint { color: var(--ink-soft); font-size: .9rem; }
+
+    .index-grid {
+      display: grid; gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      margin: 0 0 4rem; padding: 0; list-style: none;
+    }
+    .index-card {
+      display: block; text-decoration: none; color: inherit;
+      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+      padding: 1.2rem 1.2rem 1.1rem; box-shadow: var(--shadow);
+      transition: transform .18s ease, border-color .18s ease;
+    }
+    .index-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--tomato) 45%, var(--line)); }
+    @media (prefers-reduced-motion: reduce) { .index-card:hover { transform: none; } }
+    .index-card .tag { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--olive); font-weight: 600; }
+    .index-card h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; margin: .35rem 0 .4rem; }
+    .index-card p { margin: 0; color: var(--ink-soft); font-size: .9rem; }
+
+    /* ---------- Recipes ---------- */
+    .recipe { padding-top: 1rem; margin-bottom: 4rem; scroll-margin-top: 80px; }
+    .recipe > hr { border: none; border-top: 1px solid var(--line); margin: 0 0 2rem; }
+    .recipe .kicker { color: var(--olive); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .72rem; margin: 0 0 .5rem; }
+    .recipe h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 5vw, 2.6rem); margin: 0 0 .6rem; line-height: 1.05; }
+    .recipe .blurb { color: var(--ink-soft); max-width: 60ch; margin: 0 0 1.3rem; }
+
+    .meta { display: flex; flex-wrap: wrap; gap: .55rem; margin: 0 0 1.8rem; padding: 0; list-style: none; }
+    .meta li {
+      font-size: .8rem; font-weight: 500; color: var(--ink-soft);
+      background: var(--paper-2); border: 1px solid var(--line);
+      padding: .3rem .7rem; border-radius: 999px;
+    }
+    .meta li b { color: var(--ink); font-weight: 600; }
+
+    .recipe-body { display: grid; gap: 2.2rem; grid-template-columns: 1fr; }
+    @media (min-width: 760px) { .recipe-body { grid-template-columns: 0.85fr 1.15fr; } }
+
+    .panel h4 { font-family: var(--serif); font-size: 1.1rem; margin: 0 0 .8rem; padding-bottom: .4rem; border-bottom: 2px solid var(--tomato); display: inline-block; }
+    .ingredients { list-style: none; margin: 0; padding: 0; }
+    .ingredients li { display: flex; gap: .6rem; padding: .42rem 0; border-bottom: 1px dotted var(--line); font-size: .95rem; }
+    .ingredients li::before { content: "•"; color: var(--tomato); font-weight: 700; }
+    .ingredients .amt { color: var(--ink-soft); }
+
+    .steps { counter-reset: step; list-style: none; margin: 0; padding: 0; }
+    .steps li { position: relative; padding: 0 0 1.1rem 2.6rem; }
+    .steps li::before {
+      counter-increment: step; content: counter(step);
+      position: absolute; left: 0; top: -.1rem;
+      width: 1.8rem; height: 1.8rem; border-radius: 50%;
+      background: var(--tomato); color: #fff;
+      font-family: var(--serif); font-weight: 600; font-size: .95rem;
+      display: grid; place-items: center;
+    }
+    .steps li:last-child { padding-bottom: 0; }
+
+    .note { margin-top: 1.4rem; background: var(--paper-2); border-left: 3px solid var(--olive); padding: .9rem 1.1rem; border-radius: 0 10px 10px 0; font-size: .9rem; color: var(--ink-soft); }
+    .note b { color: var(--ink); }
+
+    .toplink { display: inline-block; margin-top: 1.6rem; font-size: .85rem; color: var(--ink-soft); text-decoration: none; }
+    .toplink:hover { color: var(--tomato-d); }
+
+    /* ---------- Footer ---------- */
+    footer { border-top: 1px solid var(--line); background: var(--paper-2); padding: 2.5rem 0 3rem; margin-top: 2rem; }
+    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
+    footer p { margin: 0; color: var(--ink-soft); font-size: .88rem; }
+    footer .brand { font-size: 1rem; }
+
+    /* ---------- Print ---------- */
+    @media print {
+      .topbar, .toplink, .index-grid, .hero .stats { display: none !important; }
+      body { background: #fff; color: #000; }
+      .recipe { page-break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap">
+      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Alex&rsquo;s Recipes</a>
+      <nav class="nav" aria-label="Recipes">
+        <a href="#shakshuka">Shakshuka</a>
+        <a href="#carbonara">Carbonara</a>
+        <a href="#dal">Tarka Dal</a>
+        <a href="#cookies">Cookies</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <p class="eyebrow">A small kitchen notebook</p>
+        <h1>Food worth<br /><em>cooking twice.</em></h1>
+        <p class="lede">A hand-kept collection of the recipes I actually come back to &mdash; weeknight dinners, slow weekend bakes, and the sauces worth keeping. No life stories, just the good part.</p>
+        <div class="stats">
+          <div class="stat"><b>4</b><span>recipes &amp; counting</span></div>
+          <div class="stat"><b>30&nbsp;min</b><span>median weeknight</span></div>
+          <div class="stat"><b>100%</b><span>cooked in my kitchen</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="wrap" aria-labelledby="index-title">
+      <div class="section-head">
+        <h2 id="index-title">The collection</h2>
+        <span class="hint">Tap a card to jump to the recipe</span>
+      </div>
+      <ul class="index-grid">
+        <li>
+          <a class="index-card" href="#shakshuka">
+            <span class="tag">Brunch</span>
+            <h3>Weekend Shakshuka</h3>
+            <p>Eggs poached in a smoky, garlicky tomato sauce. One pan, big payoff.</p>
+          </a>
+        </li>
+        <li>
+          <a class="index-card" href="#carbonara">
+            <span class="tag">Dinner &middot; 20 min</span>
+            <h3>Proper Carbonara</h3>
+            <p>No cream, ever. Just eggs, pecorino, guanciale and good timing.</p>
+          </a>
+        </li>
+        <li>
+          <a class="index-card" href="#dal">
+            <span class="tag">Vegetarian</span>
+            <h3>Tarka Dal</h3>
+            <p>Soft red lentils finished with a sizzling cumin-and-garlic tarka.</p>
+          </a>
+        </li>
+        <li>
+          <a class="index-card" href="#cookies">
+            <span class="tag">Bake</span>
+            <h3>Brown Butter Cookies</h3>
+            <p>Crisp edges, chewy middle, and the nuttiness of browned butter.</p>
+          </a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- ===== Shakshuka ===== -->
+    <article class="recipe wrap" id="shakshuka">
+      <hr />
+      <p class="kicker">Brunch &middot; Serves 2&ndash;3</p>
+      <h2>Weekend Shakshuka</h2>
+      <p class="blurb">Eggs gently poached in a spiced tomato and pepper sauce. The kind of thing you make once and then make every Sunday. Eat it straight from the pan with bread for scooping.</p>
+      <ul class="meta">
+        <li><b>Prep</b> 10 min</li>
+        <li><b>Cook</b> 25 min</li>
+        <li><b>Serves</b> 2&ndash;3</li>
+        <li><b>One</b> pan</li>
+      </ul>
+      <div class="recipe-body">
+        <div class="panel">
+          <h4>Ingredients</h4>
+          <ul class="ingredients">
+            <li><span class="amt">2 tbsp</span> olive oil</li>
+            <li><span class="amt">1</span> onion, finely sliced</li>
+            <li><span class="amt">1</span> red pepper, sliced</li>
+            <li><span class="amt">3</span> garlic cloves, sliced</li>
+            <li><span class="amt">1 tsp</span> ground cumin</li>
+            <li><span class="amt">1 tsp</span> sweet paprika</li>
+            <li><span class="amt">&frac14; tsp</span> chilli flakes</li>
+            <li><span class="amt">1 &times; 400g</span> tin chopped tomatoes</li>
+            <li><span class="amt">4</span> eggs</li>
+            <li><span class="amt">to serve</span> feta, parsley, crusty bread</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Method</h4>
+          <ol class="steps">
+            <li>Warm the oil in a wide frying pan over medium heat. Add the onion and pepper with a pinch of salt and cook gently for 8&ndash;10 minutes until soft and sweet.</li>
+            <li>Stir in the garlic, cumin, paprika and chilli flakes. Cook for 1 minute until fragrant.</li>
+            <li>Pour in the tomatoes, half-fill the tin with water and add that too. Simmer for 10 minutes until thickened, seasoning to taste.</li>
+            <li>Make four wells in the sauce and crack an egg into each. Cover and cook 5&ndash;7 minutes, until the whites are set but the yolks still wobble.</li>
+            <li>Scatter over crumbled feta and parsley. Serve straight from the pan with bread.</li>
+          </ol>
+          <p class="note"><b>Make it yours:</b> a spoonful of harissa stirred into the sauce takes it somewhere smokier; a handful of spinach wilted in before the eggs makes it greener.</p>
+        </div>
+      </div>
+      <a class="toplink" href="#top">&uarr; Back to top</a>
+    </article>
+
+    <!-- ===== Carbonara ===== -->
+    <article class="recipe wrap" id="carbonara">
+      <hr />
+      <p class="kicker">Dinner &middot; Serves 2</p>
+      <h2>Proper Carbonara</h2>
+      <p class="blurb">The whole trick is heat control: the sauce is cooked by the residual warmth of the pasta, not the flame. Get that right and you get silk, not scrambled eggs. No cream goes anywhere near it.</p>
+      <ul class="meta">
+        <li><b>Prep</b> 5 min</li>
+        <li><b>Cook</b> 15 min</li>
+        <li><b>Serves</b> 2</li>
+        <li><b>No</b> cream</li>
+      </ul>
+      <div class="recipe-body">
+        <div class="panel">
+          <h4>Ingredients</h4>
+          <ul class="ingredients">
+            <li><span class="amt">200g</span> spaghetti or rigatoni</li>
+            <li><span class="amt">100g</span> guanciale (or pancetta), diced</li>
+            <li><span class="amt">3</span> egg yolks + 1 whole egg</li>
+            <li><span class="amt">50g</span> pecorino romano, finely grated</li>
+            <li><span class="amt">plenty</span> black pepper, freshly ground</li>
+            <li><span class="amt">to taste</span> salt (for the pasta water)</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Method</h4>
+          <ol class="steps">
+            <li>Bring a large pot of well-salted water to the boil and cook the pasta until just shy of al dente.</li>
+            <li>Meanwhile, fry the guanciale in a cold, dry pan brought up to medium heat until the fat renders and it crisps. Take off the heat.</li>
+            <li>Whisk the yolks, whole egg, pecorino and a heavy grind of pepper into a thick paste.</li>
+            <li>Reserve a mug of pasta water, then drain. Toss the hot pasta into the guanciale pan (off the heat).</li>
+            <li>Add a splash of pasta water to the egg mix to loosen it, then pour over the pasta, tossing hard. Add more water a little at a time until the sauce coats every strand glossily.</li>
+            <li>Serve at once with extra pecorino and pepper.</li>
+          </ol>
+          <p class="note"><b>The save:</b> if the pan is too hot when the egg goes in, it scrambles. Always off the heat &mdash; the pasta carries enough warmth to cook the sauce through.</p>
+        </div>
+      </div>
+      <a class="toplink" href="#top">&uarr; Back to top</a>
+    </article>
+
+    <!-- ===== Tarka Dal ===== -->
+    <article class="recipe wrap" id="dal">
+      <hr />
+      <p class="kicker">Vegetarian &middot; Serves 4</p>
+      <h2>Tarka Dal</h2>
+      <p class="blurb">Humble, cheap and deeply comforting. The lentils do their quiet thing while you make the <em>tarka</em> &mdash; the sizzling spiced oil poured over at the end that makes the whole dish sing.</p>
+      <ul class="meta">
+        <li><b>Prep</b> 10 min</li>
+        <li><b>Cook</b> 30 min</li>
+        <li><b>Serves</b> 4</li>
+        <li><b>Freezer</b> friendly</li>
+      </ul>
+      <div class="recipe-body">
+        <div class="panel">
+          <h4>Ingredients</h4>
+          <ul class="ingredients">
+            <li><span class="amt">250g</span> red lentils, rinsed</li>
+            <li><span class="amt">1 litre</span> water</li>
+            <li><span class="amt">1 tsp</span> ground turmeric</li>
+            <li><span class="amt">1</span> tomato, chopped</li>
+            <li><span class="amt">&mdash;</span> <em>For the tarka:</em></li>
+            <li><span class="amt">3 tbsp</span> ghee or oil</li>
+            <li><span class="amt">1 tsp</span> cumin seeds</li>
+            <li><span class="amt">4</span> garlic cloves, sliced</li>
+            <li><span class="amt">1</span> dried red chilli</li>
+            <li><span class="amt">pinch</span> asafoetida (optional)</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Method</h4>
+          <ol class="steps">
+            <li>Put the lentils, water and turmeric in a pot. Bring to the boil, skim off any froth, then simmer partly covered for 20&ndash;25 minutes, stirring now and then, until soft and porridge-like.</li>
+            <li>Stir in the chopped tomato and season generously with salt. Loosen with a little hot water if it&rsquo;s too thick.</li>
+            <li>For the tarka, heat the ghee in a small pan until shimmering. Add the cumin seeds and let them crackle for a few seconds.</li>
+            <li>Add the garlic, dried chilli and asafoetida. Fry until the garlic turns pale gold &mdash; watch it, it burns fast.</li>
+            <li>Pour the sizzling tarka over the dal (it will splutter). Stir half through, leave half on top. Serve with rice or flatbread.</li>
+          </ol>
+          <p class="note"><b>Tip:</b> the dal thickens as it sits, so keep that mug of hot water handy to bring it back to a spoonable consistency before serving.</p>
+        </div>
+      </div>
+      <a class="toplink" href="#top">&uarr; Back to top</a>
+    </article>
+
+    <!-- ===== Cookies ===== -->
+    <article class="recipe wrap" id="cookies">
+      <hr />
+      <p class="kicker">Bake &middot; Makes 12</p>
+      <h2>Brown Butter Cookies</h2>
+      <p class="blurb">Browning the butter is the only extra step, and it&rsquo;s the whole point: it gives these a toffee-ish, almost nutty depth. Crisp at the edge, chewy in the middle, better the next day.</p>
+      <ul class="meta">
+        <li><b>Prep</b> 20 min</li>
+        <li><b>Chill</b> 30 min</li>
+        <li><b>Bake</b> 11 min</li>
+        <li><b>Makes</b> 12</li>
+      </ul>
+      <div class="recipe-body">
+        <div class="panel">
+          <h4>Ingredients</h4>
+          <ul class="ingredients">
+            <li><span class="amt">170g</span> unsalted butter</li>
+            <li><span class="amt">150g</span> light brown sugar</li>
+            <li><span class="amt">75g</span> caster sugar</li>
+            <li><span class="amt">1</span> egg + 1 yolk</li>
+            <li><span class="amt">1 tsp</span> vanilla extract</li>
+            <li><span class="amt">220g</span> plain flour</li>
+            <li><span class="amt">&frac12; tsp</span> bicarbonate of soda</li>
+            <li><span class="amt">&frac12; tsp</span> fine salt</li>
+            <li><span class="amt">200g</span> dark chocolate, chopped</li>
+            <li><span class="amt">to finish</span> flaky sea salt</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <h4>Method</h4>
+          <ol class="steps">
+            <li>Melt the butter in a pan over medium heat, swirling, until it foams, smells nutty and the milk solids turn golden-brown. Pour into a bowl (scrape in the brown bits) and cool 10 minutes.</li>
+            <li>Whisk both sugars into the warm butter, then the egg, yolk and vanilla, until glossy and smooth.</li>
+            <li>Fold in the flour, bicarb and salt until just combined, then fold through the chopped chocolate. Chill the dough for 30 minutes.</li>
+            <li>Heat the oven to 180&deg;C (fan 160&deg;C). Roll the dough into 12 balls and space well apart on lined trays.</li>
+            <li>Bake for 10&ndash;12 minutes until the edges are set but the centres look slightly underdone. Finish with flaky salt and cool on the tray for 5 minutes to firm up.</li>
+          </ol>
+          <p class="note"><b>For neat rounds:</b> the second the cookies come out, swirl a round cookie cutter or glass around each one on the tray to nudge the edges into a perfect circle.</p>
+        </div>
+      </div>
+      <a class="toplink" href="#top">&uarr; Back to top</a>
+    </article>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Alex&rsquo;s Recipes</a>
+      <p>Made with butter, patience and plain HTML. &middot; Hosted on GitHub&nbsp;Pages.</p>
+    </div>
+  </footer>
+</body>
+</html>
