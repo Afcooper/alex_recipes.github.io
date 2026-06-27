@@ -1,431 +1,567 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Alex&rsquo;s Recipes &mdash; a small kitchen notebook</title>
-  <meta name="description" content="A hand-kept collection of Alex's favourite recipes: weeknight dinners, slow weekend bakes, and the sauces worth keeping." />
-  <meta name="color-scheme" content="light dark" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Recipe File</title>
+<style>
+  :root{
+    --bg:#F5F1E8;
+    --surface:#FFFCF6;
+    --ink:#221F18;
+    --soft:#6E6757;
+    --honey:#9C5A0A;
+    --honey-2:#E0A33A;
+    --honey-wash:#F6E8CE;
+    --line:#E6DFCE;
+    --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,"Times New Roman",serif;
+    --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    --mono:"SF Mono","JetBrains Mono","Roboto Mono",ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--bg);color:var(--ink);
+    font-family:var(--sans);font-size:17px;line-height:1.6;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  }
+  .page{max-width:880px;margin:0 auto;padding:clamp(1.5rem,4vw,3.5rem) clamp(1rem,4vw,2rem) 4rem}
 
-  <!-- Display + body type, with robust system fallbacks if the CDN is blocked -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  /* Masthead */
+  .masthead{text-align:center;margin-bottom:1.25rem}
+  .eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;color:var(--honey);margin:0 0 .6rem}
+  .wordmark{font-family:var(--serif);font-weight:600;font-size:clamp(2.4rem,6.5vw,3.7rem);line-height:1;letter-spacing:-.01em;margin:0}
+  .lede{color:var(--soft);font-size:.95rem;margin:.85rem auto 0;max-width:34rem}
+  .drizzle{display:block;width:min(340px,70%);height:auto;margin:1.1rem auto .2rem}
 
-  <style>
-    :root {
-      --paper:    #fbf6ec;
-      --paper-2:  #f4ecdd;
-      --ink:      #2c2722;
-      --ink-soft: #5d544a;
-      --tomato:   #c2502f;
-      --tomato-d: #a23f22;
-      --olive:    #6b7a4f;
-      --line:     #e2d6c1;
-      --card:     #fffdf8;
-      --shadow:   0 1px 0 rgba(0,0,0,.02), 0 12px 30px -18px rgba(76,54,30,.55);
+  /* Index */
+  .index{margin:1.5rem 0 2.5rem;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .index-row{display:flex;align-items:baseline;gap:1rem;padding:.7rem .25rem;text-decoration:none;color:inherit;border-bottom:1px solid var(--line)}
+  .index-row:last-child{border-bottom:0}
+  .index-row:hover .index-name{color:var(--honey)}
+  .index-no{font-family:var(--mono);font-size:.78rem;color:var(--honey);min-width:1.6em}
+  .index-name{font-family:var(--serif);font-size:1.18rem;font-weight:600;transition:color .15s ease}
+  .index-dots{flex:1;border-bottom:1px dotted var(--line);transform:translateY(-.25em);min-width:1rem}
+  .index-meta{font-family:var(--mono);font-size:.74rem;color:var(--soft);white-space:nowrap;letter-spacing:.02em}
+  .hint{display:block;text-align:center;font-size:.82rem;color:var(--soft);margin:.9rem 0 0}
+  .hint b{color:var(--honey);font-weight:600}
 
-      --serif: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
-      --sans:  "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    }
+  /* Card */
+  .card{
+    background:var(--surface);border:1px solid var(--line);border-radius:16px;
+    padding:clamp(1.25rem,3.5vw,2.25rem);margin:0 0 1.75rem;
+    box-shadow:0 1px 2px rgba(40,30,10,.04),0 10px 28px -22px rgba(60,40,10,.35);
+    scroll-margin-top:1.25rem;
+    opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease;
+  }
+  .card.in{opacity:1;transform:none}
+  .cat{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--honey);margin:0 0 .35rem}
+  .title{font-family:var(--serif);font-weight:600;font-size:clamp(1.55rem,3.6vw,2.1rem);line-height:1.1;margin:0}
+  .desc{font-family:var(--serif);font-style:italic;color:var(--soft);font-size:1.02rem;line-height:1.5;margin:.6rem 0 0;max-width:46ch}
 
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --paper:    #1c1916;
-        --paper-2:  #221e1a;
-        --ink:      #f0e7d8;
-        --ink-soft: #b8ab97;
-        --tomato:   #e7754f;
-        --tomato-d: #f08a66;
-        --olive:    #a8b785;
-        --line:     #3a332b;
-        --card:     #24201b;
-        --shadow:   0 1px 0 rgba(0,0,0,.2), 0 16px 34px -20px rgba(0,0,0,.8);
-      }
-    }
+  /* Meta row: servings + time */
+  .meta{display:flex;flex-wrap:wrap;align-items:center;gap:.65rem 1.1rem;margin:1.1rem 0 .25rem}
+  .servings{display:inline-flex;align-items:center;gap:.55rem}
+  .srvlabel{font-family:var(--mono);font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--soft)}
+  .srvgroup{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;background:var(--bg);overflow:hidden}
+  .srvbtn{appearance:none;border:0;background:transparent;color:var(--honey);font-size:1.15rem;line-height:1;width:2rem;height:1.95rem;cursor:pointer;font-family:var(--sans);transition:background .15s ease}
+  .srvbtn:hover{background:var(--honey-wash)}
+  .srvbtn:active{background:var(--honey-2)}
+  .srvcount{font-family:var(--mono);font-weight:600;font-size:.95rem;min-width:1.6em;text-align:center;color:var(--ink)}
+  .time{font-family:var(--mono);font-size:.74rem;color:var(--soft);letter-spacing:.02em}
 
-    * { box-sizing: border-box; }
+  /* Body grid */
+  .body{display:grid;grid-template-columns:15rem 1fr;gap:clamp(1.25rem,3vw,2.25rem);margin-top:1.5rem}
+  .col-h{font-family:var(--mono);font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);margin:0 0 .85rem;padding-bottom:.35rem;border-bottom:2px solid var(--honey);display:inline-block}
 
-    html { scroll-behavior: smooth; }
-    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  /* Ingredients */
+  .ings{list-style:none;margin:0;padding:0}
+  .ing{display:grid;grid-template-columns:5em 1fr;gap:.7rem;padding:.42rem 0;border-bottom:1px dashed var(--line);align-items:baseline}
+  .ing:last-child{border-bottom:0}
+  .amt{font-family:var(--mono);font-weight:600;font-size:.92rem;color:var(--honey);text-align:right;white-space:nowrap}
+  .ing-name{font-size:.96rem;line-height:1.4}
 
-    body {
-      margin: 0;
-      font-family: var(--sans);
-      color: var(--ink);
-      background: var(--paper);
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
+  /* Steps */
+  .steps{list-style:none;margin:0;padding:0;counter-reset:none}
+  .stepi{display:grid;grid-template-columns:1.7rem 1fr;gap:.85rem;padding:.55rem 0 .9rem}
+  .stepi+.stepi{border-top:1px solid var(--line)}
+  .num{width:1.7rem;height:1.7rem;border-radius:50%;background:var(--honey);color:var(--surface);font-family:var(--mono);font-weight:600;font-size:.82rem;display:flex;align-items:center;justify-content:center;margin-top:.1rem}
+  .stept{font-weight:600;font-size:.98rem;margin-bottom:.2rem}
+  .stepc{font-size:.96rem;line-height:1.55;color:#2c281f}
+  .ref .ramt{font-family:var(--mono);font-weight:600;color:var(--honey);white-space:nowrap}
 
-    .wrap { width: min(960px, 100% - 2.5rem); margin-inline: auto; }
+  /* Timer */
+  .timer{appearance:none;font-family:var(--mono);font-size:.74rem;letter-spacing:.02em;
+    margin-top:.55rem;padding:.28rem .6rem;border-radius:999px;border:1px solid var(--line);
+    background:var(--bg);color:var(--soft);cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;
+    transition:background .15s ease,color .15s ease,border-color .15s ease}
+  .timer:hover{border-color:var(--honey-2);color:var(--honey)}
+  .timer.running{background:var(--honey-wash);color:var(--honey);border-color:var(--honey-2)}
+  .timer.paused{color:var(--soft)}
+  .timer.done{background:var(--honey);color:var(--surface);border-color:var(--honey)}
+  .timer.static{cursor:default;background:transparent}
+  .timer.static:hover{border-color:var(--line);color:var(--soft)}
 
-    a { color: var(--tomato-d); text-underline-offset: 3px; }
-    a:focus-visible,
-    button:focus-visible { outline: 3px solid var(--olive); outline-offset: 2px; border-radius: 4px; }
+  /* Notes */
+  .notes{margin-top:1.5rem;background:var(--honey-wash);border-left:3px solid var(--honey);border-radius:0 10px 10px 0;padding:.95rem 1.1rem}
+  .notes-h{font-family:var(--mono);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--honey);margin:0 0 .45rem}
+  .notes p{margin:0 0 .6rem;font-size:.9rem;line-height:1.55;color:#3a3528}
+  .notes p:last-child{margin-bottom:0}
 
-    /* ---------- Top bar ---------- */
-    .topbar {
-      position: sticky; top: 0; z-index: 10;
-      background: color-mix(in srgb, var(--paper) 88%, transparent);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid var(--line);
-    }
-    .topbar .wrap {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; padding-block: .7rem; min-height: 56px;
-    }
-    .brand {
-      font-family: var(--serif);
-      font-weight: 600; font-size: 1.15rem; letter-spacing: .2px;
-      text-decoration: none; color: var(--ink);
-      display: inline-flex; align-items: center; gap: .55rem;
-    }
-    .brand .dot { width: .7rem; height: .7rem; border-radius: 50%; background: var(--tomato); box-shadow: 0 0 0 4px color-mix(in srgb, var(--tomato) 22%, transparent); }
-    .nav { display: flex; gap: 1.1rem; flex-wrap: wrap; }
-    .nav a { color: var(--ink-soft); text-decoration: none; font-size: .92rem; font-weight: 500; }
-    .nav a:hover { color: var(--tomato-d); }
-    @media (max-width: 620px) { .nav { display: none; } }
+  .amt.flash,.ramt.flash{animation:flash .5s ease}
+  @keyframes flash{from{background:var(--honey-2);color:#fff;border-radius:3px}to{background:transparent}}
 
-    /* ---------- Hero ---------- */
-    .hero { padding: clamp(3rem, 8vw, 6rem) 0 2.5rem; }
-    .eyebrow {
-      text-transform: uppercase; letter-spacing: .22em;
-      font-size: .72rem; font-weight: 600; color: var(--olive);
-      margin: 0 0 1rem;
-    }
-    .hero h1 {
-      font-family: var(--serif);
-      font-weight: 600;
-      font-size: clamp(2.6rem, 7vw, 4.6rem);
-      line-height: 1.02;
-      letter-spacing: -.01em;
-      margin: 0 0 1rem;
-    }
-    .hero h1 em { font-style: italic; color: var(--tomato); }
-    .lede { font-size: clamp(1.05rem, 2.4vw, 1.3rem); color: var(--ink-soft); max-width: 46ch; margin: 0 0 1.8rem; }
-    .stats { display: flex; flex-wrap: wrap; gap: 1.8rem; padding: 1.2rem 0 0; border-top: 1px dashed var(--line); }
-    .stat b { font-family: var(--serif); display: block; font-size: 1.6rem; color: var(--ink); line-height: 1; }
-    .stat span { font-size: .82rem; color: var(--ink-soft); }
+  .footer{text-align:center;color:var(--soft);font-size:.8rem;font-family:var(--mono);letter-spacing:.04em;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--line)}
 
-    /* ---------- Recipe index ---------- */
-    .section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin: 0 0 1.4rem; }
-    .section-head h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.6rem, 4vw, 2.1rem); margin: 0; }
-    .section-head .hint { color: var(--ink-soft); font-size: .9rem; }
+  :focus-visible{outline:2px solid var(--honey);outline-offset:2px;border-radius:4px}
 
-    .index-grid {
-      display: grid; gap: 1rem;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      margin: 0 0 4rem; padding: 0; list-style: none;
-    }
-    .index-card {
-      display: block; text-decoration: none; color: inherit;
-      background: var(--card); border: 1px solid var(--line); border-radius: 16px;
-      padding: 1.2rem 1.2rem 1.1rem; box-shadow: var(--shadow);
-      transition: transform .18s ease, border-color .18s ease;
-    }
-    .index-card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--tomato) 45%, var(--line)); }
-    @media (prefers-reduced-motion: reduce) { .index-card:hover { transform: none; } }
-    .index-card .tag { font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: var(--olive); font-weight: 600; }
-    .index-card h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 600; margin: .35rem 0 .4rem; }
-    .index-card p { margin: 0; color: var(--ink-soft); font-size: .9rem; }
-
-    /* ---------- Recipes ---------- */
-    .recipe { padding-top: 1rem; margin-bottom: 4rem; scroll-margin-top: 80px; }
-    .recipe > hr { border: none; border-top: 1px solid var(--line); margin: 0 0 2rem; }
-    .recipe .kicker { color: var(--olive); font-weight: 600; letter-spacing: .14em; text-transform: uppercase; font-size: .72rem; margin: 0 0 .5rem; }
-    .recipe h2 { font-family: var(--serif); font-weight: 600; font-size: clamp(1.8rem, 5vw, 2.6rem); margin: 0 0 .6rem; line-height: 1.05; }
-    .recipe .blurb { color: var(--ink-soft); max-width: 60ch; margin: 0 0 1.3rem; }
-
-    .meta { display: flex; flex-wrap: wrap; gap: .55rem; margin: 0 0 1.8rem; padding: 0; list-style: none; }
-    .meta li {
-      font-size: .8rem; font-weight: 500; color: var(--ink-soft);
-      background: var(--paper-2); border: 1px solid var(--line);
-      padding: .3rem .7rem; border-radius: 999px;
-    }
-    .meta li b { color: var(--ink); font-weight: 600; }
-
-    .recipe-body { display: grid; gap: 2.2rem; grid-template-columns: 1fr; }
-    @media (min-width: 760px) { .recipe-body { grid-template-columns: 0.85fr 1.15fr; } }
-
-    .panel h4 { font-family: var(--serif); font-size: 1.1rem; margin: 0 0 .8rem; padding-bottom: .4rem; border-bottom: 2px solid var(--tomato); display: inline-block; }
-    .ingredients { list-style: none; margin: 0; padding: 0; }
-    .ingredients li { display: flex; gap: .6rem; padding: .42rem 0; border-bottom: 1px dotted var(--line); font-size: .95rem; }
-    .ingredients li::before { content: "•"; color: var(--tomato); font-weight: 700; }
-    .ingredients .amt { color: var(--ink-soft); }
-
-    .steps { counter-reset: step; list-style: none; margin: 0; padding: 0; }
-    .steps li { position: relative; padding: 0 0 1.1rem 2.6rem; }
-    .steps li::before {
-      counter-increment: step; content: counter(step);
-      position: absolute; left: 0; top: -.1rem;
-      width: 1.8rem; height: 1.8rem; border-radius: 50%;
-      background: var(--tomato); color: #fff;
-      font-family: var(--serif); font-weight: 600; font-size: .95rem;
-      display: grid; place-items: center;
-    }
-    .steps li:last-child { padding-bottom: 0; }
-
-    .note { margin-top: 1.4rem; background: var(--paper-2); border-left: 3px solid var(--olive); padding: .9rem 1.1rem; border-radius: 0 10px 10px 0; font-size: .9rem; color: var(--ink-soft); }
-    .note b { color: var(--ink); }
-
-    .toplink { display: inline-block; margin-top: 1.6rem; font-size: .85rem; color: var(--ink-soft); text-decoration: none; }
-    .toplink:hover { color: var(--tomato-d); }
-
-    /* ---------- Footer ---------- */
-    footer { border-top: 1px solid var(--line); background: var(--paper-2); padding: 2.5rem 0 3rem; margin-top: 2rem; }
-    footer .wrap { display: flex; flex-wrap: wrap; gap: 1rem; align-items: center; justify-content: space-between; }
-    footer p { margin: 0; color: var(--ink-soft); font-size: .88rem; }
-    footer .brand { font-size: 1rem; }
-
-    /* ---------- Print ---------- */
-    @media print {
-      .topbar, .toplink, .index-grid, .hero .stats { display: none !important; }
-      body { background: #fff; color: #000; }
-      .recipe { page-break-inside: avoid; }
-    }
-  </style>
+  @media (max-width:720px){
+    .body{grid-template-columns:1fr;gap:1.5rem}
+    .ing{grid-template-columns:4.5em 1fr}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .card{opacity:1;transform:none;transition:none}
+    .amt.flash,.ramt.flash{animation:none}
+  }
+  @media print{
+    body{background:#fff;font-size:12px}
+    .page{padding:0;max-width:none}
+    .drizzle,.hint,.srvbtn,.footer{display:none}
+    .card{box-shadow:none;border:1px solid #ccc;break-inside:avoid;page-break-inside:avoid;opacity:1;transform:none}
+    .amt,.ramt,.num{color:#000 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .num{background:#eee !important}
+    .notes{background:#f6f6f6 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .srvgroup{border:0;background:transparent}
+    .timer{border:0;background:transparent}
+    a{text-decoration:none;color:inherit}
+  }
+</style>
 </head>
 <body>
-  <header class="topbar">
-    <div class="wrap">
-      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Alex&rsquo;s Recipes</a>
-      <nav class="nav" aria-label="Recipes">
-        <a href="#shakshuka">Shakshuka</a>
-        <a href="#carbonara">Carbonara</a>
-        <a href="#dal">Tarka Dal</a>
-        <a href="#cookies">Cookies</a>
-      </nav>
-    </div>
+<main class="page">
+  <header class="masthead">
+    <p class="eyebrow">Kitchen Collection</p>
+    <h1 class="wordmark">The Recipe File</h1>
+    <svg class="drizzle" viewBox="0 0 640 44" role="presentation" aria-hidden="true">
+      <path d="M6 24 C 70 2, 116 42, 178 22 S 286 2, 350 24 S 470 44, 540 20 C 580 8, 612 18, 634 26"
+            fill="none" stroke="var(--honey-2)" stroke-width="3.2" stroke-linecap="round"/>
+      <path d="M214 30 L214 40" stroke="var(--honey-2)" stroke-width="3.2" stroke-linecap="round"/>
+      <circle cx="214" cy="42" r="2.4" fill="var(--honey-2)"/>
+      <path d="M452 31 L452 39" stroke="var(--honey-2)" stroke-width="3.2" stroke-linecap="round"/>
+      <circle cx="452" cy="41" r="2.2" fill="var(--honey-2)"/>
+    </svg>
+    <p class="lede">Five recipes, written for clarity and kept in one place — adjust the servings on any card and every amount recalculates.</p>
   </header>
 
-  <main id="top">
-    <section class="hero">
-      <div class="wrap">
-        <p class="eyebrow">A small kitchen notebook</p>
-        <h1>Food worth<br /><em>cooking twice.</em></h1>
-        <p class="lede">A hand-kept collection of the recipes I actually come back to &mdash; weeknight dinners, slow weekend bakes, and the sauces worth keeping. No life stories, just the good part.</p>
-        <div class="stats">
-          <div class="stat"><b>4</b><span>recipes &amp; counting</span></div>
-          <div class="stat"><b>30&nbsp;min</b><span>median weeknight</span></div>
-          <div class="stat"><b>100%</b><span>cooked in my kitchen</span></div>
-        </div>
-      </div>
-    </section>
+  <nav class="index" id="index" aria-label="Recipe index"></nav>
 
-    <section class="wrap" aria-labelledby="index-title">
-      <div class="section-head">
-        <h2 id="index-title">The collection</h2>
-        <span class="hint">Tap a card to jump to the recipe</span>
-      </div>
-      <ul class="index-grid">
-        <li>
-          <a class="index-card" href="#shakshuka">
-            <span class="tag">Brunch</span>
-            <h3>Weekend Shakshuka</h3>
-            <p>Eggs poached in a smoky, garlicky tomato sauce. One pan, big payoff.</p>
-          </a>
-        </li>
-        <li>
-          <a class="index-card" href="#carbonara">
-            <span class="tag">Dinner &middot; 20 min</span>
-            <h3>Proper Carbonara</h3>
-            <p>No cream, ever. Just eggs, pecorino, guanciale and good timing.</p>
-          </a>
-        </li>
-        <li>
-          <a class="index-card" href="#dal">
-            <span class="tag">Vegetarian</span>
-            <h3>Tarka Dal</h3>
-            <p>Soft red lentils finished with a sizzling cumin-and-garlic tarka.</p>
-          </a>
-        </li>
-        <li>
-          <a class="index-card" href="#cookies">
-            <span class="tag">Bake</span>
-            <h3>Brown Butter Cookies</h3>
-            <p>Crisp edges, chewy middle, and the nuttiness of browned butter.</p>
-          </a>
-        </li>
-      </ul>
-    </section>
+  <section id="cards"></section>
 
-    <!-- ===== Shakshuka ===== -->
-    <article class="recipe wrap" id="shakshuka">
-      <hr />
-      <p class="kicker">Brunch &middot; Serves 2&ndash;3</p>
-      <h2>Weekend Shakshuka</h2>
-      <p class="blurb">Eggs gently poached in a spiced tomato and pepper sauce. The kind of thing you make once and then make every Sunday. Eat it straight from the pan with bread for scooping.</p>
-      <ul class="meta">
-        <li><b>Prep</b> 10 min</li>
-        <li><b>Cook</b> 25 min</li>
-        <li><b>Serves</b> 2&ndash;3</li>
-        <li><b>One</b> pan</li>
-      </ul>
-      <div class="recipe-body">
-        <div class="panel">
-          <h4>Ingredients</h4>
-          <ul class="ingredients">
-            <li><span class="amt">2 tbsp</span> olive oil</li>
-            <li><span class="amt">1</span> onion, finely sliced</li>
-            <li><span class="amt">1</span> red pepper, sliced</li>
-            <li><span class="amt">3</span> garlic cloves, sliced</li>
-            <li><span class="amt">1 tsp</span> ground cumin</li>
-            <li><span class="amt">1 tsp</span> sweet paprika</li>
-            <li><span class="amt">&frac14; tsp</span> chilli flakes</li>
-            <li><span class="amt">1 &times; 400g</span> tin chopped tomatoes</li>
-            <li><span class="amt">4</span> eggs</li>
-            <li><span class="amt">to serve</span> feta, parsley, crusty bread</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h4>Method</h4>
-          <ol class="steps">
-            <li>Warm the oil in a wide frying pan over medium heat. Add the onion and pepper with a pinch of salt and cook gently for 8&ndash;10 minutes until soft and sweet.</li>
-            <li>Stir in the garlic, cumin, paprika and chilli flakes. Cook for 1 minute until fragrant.</li>
-            <li>Pour in the tomatoes, half-fill the tin with water and add that too. Simmer for 10 minutes until thickened, seasoning to taste.</li>
-            <li>Make four wells in the sauce and crack an egg into each. Cover and cook 5&ndash;7 minutes, until the whites are set but the yolks still wobble.</li>
-            <li>Scatter over crumbled feta and parsley. Serve straight from the pan with bread.</li>
-          </ol>
-          <p class="note"><b>Make it yours:</b> a spoonful of harissa stirred into the sauce takes it somewhere smokier; a handful of spinach wilted in before the eggs makes it greener.</p>
-        </div>
-      </div>
-      <a class="toplink" href="#top">&uarr; Back to top</a>
-    </article>
+  <p class="footer">The Recipe File · five recipes · tap − / + to rescale</p>
+</main>
 
-    <!-- ===== Carbonara ===== -->
-    <article class="recipe wrap" id="carbonara">
-      <hr />
-      <p class="kicker">Dinner &middot; Serves 2</p>
-      <h2>Proper Carbonara</h2>
-      <p class="blurb">The whole trick is heat control: the sauce is cooked by the residual warmth of the pasta, not the flame. Get that right and you get silk, not scrambled eggs. No cream goes anywhere near it.</p>
-      <ul class="meta">
-        <li><b>Prep</b> 5 min</li>
-        <li><b>Cook</b> 15 min</li>
-        <li><b>Serves</b> 2</li>
-        <li><b>No</b> cream</li>
-      </ul>
-      <div class="recipe-body">
-        <div class="panel">
-          <h4>Ingredients</h4>
-          <ul class="ingredients">
-            <li><span class="amt">200g</span> spaghetti or rigatoni</li>
-            <li><span class="amt">100g</span> guanciale (or pancetta), diced</li>
-            <li><span class="amt">3</span> egg yolks + 1 whole egg</li>
-            <li><span class="amt">50g</span> pecorino romano, finely grated</li>
-            <li><span class="amt">plenty</span> black pepper, freshly ground</li>
-            <li><span class="amt">to taste</span> salt (for the pasta water)</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h4>Method</h4>
-          <ol class="steps">
-            <li>Bring a large pot of well-salted water to the boil and cook the pasta until just shy of al dente.</li>
-            <li>Meanwhile, fry the guanciale in a cold, dry pan brought up to medium heat until the fat renders and it crisps. Take off the heat.</li>
-            <li>Whisk the yolks, whole egg, pecorino and a heavy grind of pepper into a thick paste.</li>
-            <li>Reserve a mug of pasta water, then drain. Toss the hot pasta into the guanciale pan (off the heat).</li>
-            <li>Add a splash of pasta water to the egg mix to loosen it, then pour over the pasta, tossing hard. Add more water a little at a time until the sauce coats every strand glossily.</li>
-            <li>Serve at once with extra pecorino and pepper.</li>
-          </ol>
-          <p class="note"><b>The save:</b> if the pan is too hot when the egg goes in, it scrambles. Always off the heat &mdash; the pasta carries enough warmth to cook the sauce through.</p>
-        </div>
-      </div>
-      <a class="toplink" href="#top">&uarr; Back to top</a>
-    </article>
+<script type="application/json" id="recipe-data">
+[
+  {
+    "id":"compote","cat":"Sauce","title":"Blueberry Compote","time":"~20 min",
+    "servingsLabel":"Servings","baseServings":4,
+    "desc":"A quick five-ingredient berry sauce that turns jammy as it cools — perfect over pancakes, yogurt, French toast, or ice cream.",
+    "ingredients":[
+      {"id":"0001","amount":2,"unit":"cup","name":"fresh or frozen blueberries"},
+      {"id":"0002","amount":0.25,"unit":"cup","name":"maple syrup"},
+      {"id":"0003","amount":2,"unit":"tbsp","name":"water"},
+      {"id":"0004","amount":1,"unit":"tbsp","name":"fresh lemon juice"},
+      {"id":"0005","amount":0.5,"unit":"tsp","name":"vanilla extract"}
+    ],
+    "steps":[
+      {"title":"Simmer the base","timer":600,"content":"Add half the blueberries (about 1 cup) to a small saucepan with the {0002}, {0003}, {0004}, and {0005}. Bring to a simmer over medium heat and cook 10 minutes, stirring occasionally."},
+      {"title":"Add the rest of the berries","timer":480,"content":"Stir in the remaining blueberries and cook another 8 minutes, stirring occasionally, until the berries burst and the sauce looks glossy."},
+      {"title":"Cool to thicken","timer":300,"content":"Pull it off the heat. The compote keeps thickening into a jammy sauce as it cools, so give it a few minutes before serving."}
+    ],
+    "notes":"Keeps in the fridge up to 5 days and freezes well — try freezing it in an ice cube tray for single servings to drop on oatmeal or pancakes later.\n\nFor a thicker, brighter sauce, whisk in a pinch of cornstarch partway through and add a little lemon zest in the last few minutes."
+  },
+  {
+    "id":"green-beans","cat":"Side","title":"Charred Green Beans","time":"~25 min",
+    "servingsLabel":"Servings","baseServings":4,
+    "desc":"Blistered, smoky green beans cooked hard and fast in a screaming-hot cast iron pan.",
+    "ingredients":[
+      {"id":"0001","amount":1,"unit":"lb","name":"green beans"},
+      {"id":"0002","amount":1,"unit":"tbsp","name":"avocado oil (or olive oil)"},
+      {"id":"0003","amount":1,"unit":"tsp","name":"paprika"},
+      {"id":"0004","amount":1,"unit":"tsp","name":"onion powder"},
+      {"id":"0005","amount":1,"unit":"tsp","name":"garlic powder"},
+      {"id":"0006","amount":1,"unit":"tsp","name":"salt"},
+      {"id":"0007","amount":0.5,"unit":"tsp","name":"black pepper"}
+    ],
+    "steps":[
+      {"title":"Get the pan ripping hot","timer":240,"content":"Set a cast iron skillet over high heat and let it get properly hot, about 3–4 minutes. Add the {0002} and give it a few seconds to heat up."},
+      {"title":"Char the beans","timer":720,"content":"Add the {0001} in a single layer — make sure they're trimmed and patted dry so they char instead of steam. Cook 10–15 minutes, stirring only occasionally, until blistered and charred to your liking."},
+      {"title":"Season at the end","timer":240,"content":"In the last 3–5 minutes, sprinkle in the {0003}, {0004}, {0005}, {0006}, and {0007}. Toss to coat and let the spices toast against the hot beans, then pull from the heat."}
+    ],
+    "notes":"Dry beans are non-negotiable — any surface water steams them and kills the char.\n\nAvocado oil is the move here because it takes high heat without burning, unlike butter or olive oil. Want extra richness? Toss with a small knob of butter off the heat at the very end."
+  },
+  {
+    "id":"french-toast","cat":"Breakfast","title":"Custardy French Toast","time":"~30 min",
+    "servingsLabel":"Servings","baseServings":6,
+    "desc":"Thick challah or brioche soaked in vanilla-cinnamon custard and cooked low and slow in butter — crisp edges, custardy center.",
+    "ingredients":[
+      {"id":"0001","amount":1,"unit":null,"name":"loaf challah or brioche bread, thick-sliced"},
+      {"id":"0002","amount":2,"unit":"cup","name":"half-and-half or heavy cream"},
+      {"id":"0003","amount":4,"unit":null,"name":"large eggs"},
+      {"id":"0004","amount":0.25,"unit":"cup","name":"sugar"},
+      {"id":"0005","amount":2,"unit":"tsp","name":"vanilla extract"},
+      {"id":"0006","amount":0.5,"unit":"tsp","name":"cinnamon"},
+      {"id":"0007","amount":3,"unit":"tbsp","name":"salted butter, for the pan (plus more as needed)"}
+    ],
+    "steps":[
+      {"title":"Slice the bread","content":"Cut the {0001} into ~1-inch slices. Day-old or slightly stale is best — sturdier, and soaks up more custard without falling apart."},
+      {"title":"Make the custard","content":"Whisk the {0002}, {0003}, {0004}, {0005}, and {0006} until combined. For the smoothest custard with no streaks, blitz it with an immersion blender so the cinnamon fully blends in."},
+      {"title":"Soak the slices","timer":40,"content":"Dip each slice, soaking about 20 seconds per side, then let the excess drip off."},
+      {"title":"Cook low and slow","timer":300,"content":"Melt a generous amount of {0007} in a skillet over medium-low heat. Cook each slice 3–5 minutes per side until deeply golden — keep it low and slow so the custardy center cooks through before the outside over-browns. Drop to low if it's coloring too fast."},
+      {"title":"Check and serve","content":"Press the center gently: firm means done, jiggly means it needs longer. Serve right away with powdered sugar, a pat of butter, and real maple syrup."}
+    ],
+    "notes":"Cooking in batches? Hold finished slices in a 180°F oven so everything stays warm and crisp. Pairs perfectly with the blueberry compote above.\n\nThe bread is the star — sturdy challah or brioche makes all the difference."
+  },
+  {
+    "id":"fried-rice","cat":"Main","title":"Steak Fried Rice","time":"~25 min + marinate",
+    "servingsLabel":"Servings","baseServings":3,
+    "desc":"A fast one-pan dinner: seared marinated sirloin, day-old jasmine rice, and veggies in a savory soy-oyster sauce.",
+    "ingredients":[
+      {"id":"0001","amount":0.5,"unit":"lb","name":"sirloin steak"},
+      {"id":"0002","amount":2,"unit":"tbsp","name":"soy sauce"},
+      {"id":"0003","amount":2,"unit":"tbsp","name":"oyster sauce"},
+      {"id":"0004","amount":2,"unit":"tsp","name":"sesame oil"},
+      {"id":"0005","amount":0.5,"unit":"tsp","name":"white or black pepper"},
+      {"id":"0006","amount":1,"unit":"tbsp","name":"garlic, minced"},
+      {"id":"0007","amount":3,"unit":"tbsp","name":"onion, diced"},
+      {"id":"0008","amount":3,"unit":"cup","name":"cooked jasmine rice (preferably day-old)"},
+      {"id":"0009","amount":1,"unit":"cup","name":"frozen mixed vegetables (peas, corn, carrots)"},
+      {"id":"0010","amount":1,"unit":null,"name":"large egg"},
+      {"id":"0011","amount":2,"unit":"tbsp","name":"butter, for stir-frying"},
+      {"id":"0012","amount":2,"unit":null,"name":"scallions, sliced (for garnish)"}
+    ],
+    "steps":[
+      {"title":"Make the sauce","content":"Stir together the {0002}, {0003}, {0004}, and {0005} in a small bowl."},
+      {"title":"Marinate the steak","timer":1800,"content":"Cube the {0001} into 1-inch pieces; toss with half the sauce and set the rest aside. Marinate about 30 minutes if you have time."},
+      {"title":"Prep your station","content":"Mince the {0006}, dice the {0007}, and fluff the {0008} to break up clumps. Have everything within arm's reach — stir-frying moves fast."},
+      {"title":"Sear the steak","timer":240,"content":"Melt half the {0011} in a wok or large skillet over high heat. Sear the steak in a single layer 2–4 minutes, just shy of done (it goes back in later). Remove and set aside. Butter browns fast on high heat — keep it moving and lower the heat if it darkens too quickly."},
+      {"title":"Fry aromatics and rice","timer":120,"content":"Add the rest of the {0011}, then the {0006} and {0007}; stir 30–60 seconds until the onion is slightly golden. Add the {0008} and stir-fry 1–2 minutes."},
+      {"title":"Bring it together","timer":60,"content":"Add the {0009}, the reserved sauce, and the steak. Stir-fry about a minute to combine and heat through."},
+      {"title":"Scramble in the egg","timer":60,"content":"Push the rice aside, crack the {0010} into the gap, scramble it lightly, then pile the rice back over it for a few seconds before stirring it through. Cook about a minute more."},
+      {"title":"Garnish and serve","content":"Pull it off the heat promptly — don't overcook. Garnish with {0012} and serve hot."}
+    ],
+    "notes":"Day-old cold rice is the secret — it's drier and fries up with the right texture instead of going mushy. No leftovers? Cook a fresh batch, spread it out to cool and dry, or just fry it a little longer in the pan.\n\nCut the steak across the grain so it stays tender, and keep the pan hot and uncrowded (cook in two batches if you double it). The butter replaces the usual neutral oil and adds hibachi-style richness. Swap in chicken, shrimp, or tofu; add sriracha for heat."
+  },
+  {
+    "id":"pizza","cat":"Main","title":"Hot Honey Italian Sausage Pizza","time":"Overnight + ~45 min active",
+    "servingsLabel":"Pizzas","baseServings":2,
+    "desc":"King Arthur '00' Neapolitan dough topped with a quick seasoned tomato sauce, mozzarella and parmesan, Italian sausage, and a finishing drizzle of hot honey. Makes two 10–12\" pies.",
+    "ingredients":[
+      {"id":"0001","amount":2,"unit":"cup","name":"King Arthur '00' pizza flour"},
+      {"id":"0002","amount":0.125,"unit":"tsp","name":"instant or active dry yeast"},
+      {"id":"0003","amount":0.5,"unit":"tsp","name":"granulated sugar"},
+      {"id":"0004","amount":1.25,"unit":"tsp","name":"table salt"},
+      {"id":"0005","amount":0.75,"unit":"cup","name":"lukewarm water (105–115°F)"},
+      {"id":"0006","amount":1,"unit":"cup","name":"tomato sauce"},
+      {"id":"0007","amount":0.5,"unit":"tsp","name":"garlic powder"},
+      {"id":"0008","amount":0.5,"unit":"tsp","name":"onion powder"},
+      {"id":"0009","amount":0.25,"unit":"tsp","name":"salt (for the sauce)"},
+      {"id":"0010","amount":0.25,"unit":"tsp","name":"black pepper"},
+      {"id":"0011","amount":1,"unit":"tsp","name":"Italian seasoning"},
+      {"id":"0012","amount":2,"unit":"cup","name":"shredded mozzarella"},
+      {"id":"0013","amount":0.5,"unit":"cup","name":"grated parmesan"},
+      {"id":"0014","amount":0.5,"unit":"lb","name":"Italian sausage, casings removed"},
+      {"id":"0015","amount":2,"unit":"tbsp","name":"hot honey, for drizzling"}
+    ],
+    "steps":[
+      {"title":"Mix the dough (night before)","content":"The night before, whisk the {0001}, {0002}, {0003}, and {0004} in a medium bowl. Add the {0005} and stir until it comes together into a rough, shaggy dough."},
+      {"title":"Rise overnight (12–24 hrs)","timer":43200,"content":"Cover the bowl and let it rise at room temperature at least 12 hours and up to 24. It won't double — it'll just get a bit puffy."},
+      {"title":"Preheat the oven + stone","timer":1800,"content":"When you're ready to bake, set a baking steel or stone on a center rack and preheat the oven as hot as it goes (500–550°F) for at least 30 minutes. A fully preheated stone is what gives you a crisp bottom."},
+      {"title":"Divide and shape into balls","content":"Divide the dough in half (about 200g each). On a well-floured surface, stretch-and-fold each piece: grab both ends, pull apart, fold back over itself, and repeat on all four sides. Then tuck the edges under into a smooth ball, seam-side down."},
+      {"title":"Second rise (45–60 min)","timer":2700,"content":"Set each ball seam-side down in a floured bowl, cover, and let rise 45–60 minutes while the oven heats."},
+      {"title":"Make the sauce","content":"Stir together the {0006}, {0007}, {0008}, {0009}, {0010}, and {0011}. That's your pizza sauce — taste and adjust."},
+      {"title":"Prep the sausage","content":"Pinch the {0014} into small, thin pieces (about ½ inch) so they cook through in the short, hot bake — or brown it in a skillet first if you'd rather be sure."},
+      {"title":"Shape the crust","content":"Move one ball to a floured surface, seam-side down. Press the center with your fingertips, leaving the outer rim untouched (that's what puffs into the crust). Using your knuckles and gravity, stretch it into a 10–12\" round — if it fights you, rest it 5–10 minutes and try again. Transfer to a well-floured peel or a sheet of parchment."},
+      {"title":"Sauce and top","content":"Spread a thin layer of sauce over the crust, leaving a border. Scatter on the {0012} and {0013}, then top with the sausage pieces."},
+      {"title":"Bake hot and fast","timer":480,"content":"Slide the pizza onto the hot stone and bake 6–8 minutes, until the crust is golden and the cheese is bubbling. For extra char, finish under the top broiler 2–3 minutes — but only with at least 8\" between the stone and the broiler, and watch it closely."},
+      {"title":"Finish with hot honey","content":"Pull it out and immediately drizzle with {0015}. Cool a minute, then slice and serve. Reshape and top the second ball while the stone comes back up to temp, and repeat."}
+    ],
+    "notes":"Makes two 10–12\" pizzas — this is King Arthur's '00' dough straight off the bag, with your sauce, sausage, and hot-honey build. For best results, weigh the dough: 232g flour and 170g water.\n\nShort on time? Use the bag's faster method: bump the yeast to ½ tsp, rest the mixed dough 20–30 minutes (with one round of stretch-and-folds), then rise at room temperature about 8 hours instead of overnight.\n\nSalt note: 1¼ tsp in 2 cups of flour runs a touch salty — dial it back toward 1 tsp if you prefer. No pizza stone? A preheated upside-down baking sheet or cast iron skillet works; just give it the full 30-minute preheat. Hot honey: store-bought is easy, or warm honey with a pinch of chili flakes and let it steep."
+  }
+]
+</script>
 
-    <!-- ===== Tarka Dal ===== -->
-    <article class="recipe wrap" id="dal">
-      <hr />
-      <p class="kicker">Vegetarian &middot; Serves 4</p>
-      <h2>Tarka Dal</h2>
-      <p class="blurb">Humble, cheap and deeply comforting. The lentils do their quiet thing while you make the <em>tarka</em> &mdash; the sizzling spiced oil poured over at the end that makes the whole dish sing.</p>
-      <ul class="meta">
-        <li><b>Prep</b> 10 min</li>
-        <li><b>Cook</b> 30 min</li>
-        <li><b>Serves</b> 4</li>
-        <li><b>Freezer</b> friendly</li>
-      </ul>
-      <div class="recipe-body">
-        <div class="panel">
-          <h4>Ingredients</h4>
-          <ul class="ingredients">
-            <li><span class="amt">250g</span> red lentils, rinsed</li>
-            <li><span class="amt">1 litre</span> water</li>
-            <li><span class="amt">1 tsp</span> ground turmeric</li>
-            <li><span class="amt">1</span> tomato, chopped</li>
-            <li><span class="amt">&mdash;</span> <em>For the tarka:</em></li>
-            <li><span class="amt">3 tbsp</span> ghee or oil</li>
-            <li><span class="amt">1 tsp</span> cumin seeds</li>
-            <li><span class="amt">4</span> garlic cloves, sliced</li>
-            <li><span class="amt">1</span> dried red chilli</li>
-            <li><span class="amt">pinch</span> asafoetida (optional)</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h4>Method</h4>
-          <ol class="steps">
-            <li>Put the lentils, water and turmeric in a pot. Bring to the boil, skim off any froth, then simmer partly covered for 20&ndash;25 minutes, stirring now and then, until soft and porridge-like.</li>
-            <li>Stir in the chopped tomato and season generously with salt. Loosen with a little hot water if it&rsquo;s too thick.</li>
-            <li>For the tarka, heat the ghee in a small pan until shimmering. Add the cumin seeds and let them crackle for a few seconds.</li>
-            <li>Add the garlic, dried chilli and asafoetida. Fry until the garlic turns pale gold &mdash; watch it, it burns fast.</li>
-            <li>Pour the sizzling tarka over the dal (it will splutter). Stir half through, leave half on top. Serve with rice or flatbread.</li>
-          </ol>
-          <p class="note"><b>Tip:</b> the dal thickens as it sits, so keep that mug of hot water handy to bring it back to a spoonable consistency before serving.</p>
-        </div>
-      </div>
-      <a class="toplink" href="#top">&uarr; Back to top</a>
-    </article>
+<script>
+(function(){
+  "use strict";
+  var RM = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var data = JSON.parse(document.getElementById('recipe-data').textContent);
 
-    <!-- ===== Cookies ===== -->
-    <article class="recipe wrap" id="cookies">
-      <hr />
-      <p class="kicker">Bake &middot; Makes 12</p>
-      <h2>Brown Butter Cookies</h2>
-      <p class="blurb">Browning the butter is the only extra step, and it&rsquo;s the whole point: it gives these a toffee-ish, almost nutty depth. Crisp at the edge, chewy in the middle, better the next day.</p>
-      <ul class="meta">
-        <li><b>Prep</b> 20 min</li>
-        <li><b>Chill</b> 30 min</li>
-        <li><b>Bake</b> 11 min</li>
-        <li><b>Makes</b> 12</li>
-      </ul>
-      <div class="recipe-body">
-        <div class="panel">
-          <h4>Ingredients</h4>
-          <ul class="ingredients">
-            <li><span class="amt">170g</span> unsalted butter</li>
-            <li><span class="amt">150g</span> light brown sugar</li>
-            <li><span class="amt">75g</span> caster sugar</li>
-            <li><span class="amt">1</span> egg + 1 yolk</li>
-            <li><span class="amt">1 tsp</span> vanilla extract</li>
-            <li><span class="amt">220g</span> plain flour</li>
-            <li><span class="amt">&frac12; tsp</span> bicarbonate of soda</li>
-            <li><span class="amt">&frac12; tsp</span> fine salt</li>
-            <li><span class="amt">200g</span> dark chocolate, chopped</li>
-            <li><span class="amt">to finish</span> flaky sea salt</li>
-          </ul>
-        </div>
-        <div class="panel">
-          <h4>Method</h4>
-          <ol class="steps">
-            <li>Melt the butter in a pan over medium heat, swirling, until it foams, smells nutty and the milk solids turn golden-brown. Pour into a bowl (scrape in the brown bits) and cool 10 minutes.</li>
-            <li>Whisk both sugars into the warm butter, then the egg, yolk and vanilla, until glossy and smooth.</li>
-            <li>Fold in the flour, bicarb and salt until just combined, then fold through the chopped chocolate. Chill the dough for 30 minutes.</li>
-            <li>Heat the oven to 180&deg;C (fan 160&deg;C). Roll the dough into 12 balls and space well apart on lined trays.</li>
-            <li>Bake for 10&ndash;12 minutes until the edges are set but the centres look slightly underdone. Finish with flaky salt and cool on the tray for 5 minutes to firm up.</li>
-          </ol>
-          <p class="note"><b>For neat rounds:</b> the second the cookies come out, swirl a round cookie cutter or glass around each one on the tray to nudge the edges into a perfect circle.</p>
-        </div>
-      </div>
-      <a class="toplink" href="#top">&uarr; Back to top</a>
-    </article>
-  </main>
+  // ---- number -> nice cooking fraction ----
+  var FR = [[0,''],[0.125,'⅛'],[0.25,'¼'],[1/3,'⅓'],[0.375,'⅜'],[0.5,'½'],[0.625,'⅝'],[2/3,'⅔'],[0.75,'¾'],[0.875,'⅞'],[1,'CARRY']];
+  function frac(x){
+    var whole = Math.floor(x + 1e-9);
+    var f = x - whole;
+    var best = FR[0], bd = Infinity;
+    for (var i=0;i<FR.length;i++){ var d = Math.abs(f - FR[i][0]); if (d < bd){ bd = d; best = FR[i]; } }
+    var w = whole, s = best[1];
+    if (s === 'CARRY'){ w += 1; s = ''; }
+    if (w === 0 && s === '') return x > 0 ? '⅛' : '0';
+    if (w === 0) return s;
+    return s ? (w + s) : String(w);
+  }
+  function unitDisp(unit, amt){
+    if (!unit) return '';
+    if (unit === 'cup' && amt > 1 + 1e-9) return 'cups';
+    return unit;
+  }
+  function amtText(amt, unit){
+    var u = unitDisp(unit, amt);
+    return u ? (frac(amt) + ' ' + u) : frac(amt);
+  }
+  function shortName(name){ return name.split(/[,(]/)[0].trim(); }
+  function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-  <footer>
-    <div class="wrap">
-      <a class="brand" href="#top"><span class="dot" aria-hidden="true"></span>Alex&rsquo;s Recipes</a>
-      <p>Made with butter, patience and plain HTML. &middot; Hosted on GitHub&nbsp;Pages.</p>
-    </div>
-  </footer>
+  function human(sec){
+    if (sec < 60) return sec + ' sec';
+    if (sec < 3600) return (sec % 60 === 0 ? (sec/60) : Math.round(sec/60)) + ' min';
+    return (sec % 3600 === 0 ? (sec/3600) : (sec/3600).toFixed(1)) + ' hr';
+  }
+  function mmss(sec){
+    var m = Math.floor(sec/60), s = sec % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  // ---- build inline step content with live amount spans ----
+  function renderContent(recipe, content, mult){
+    var safe = esc(content);
+    return safe.replace(/\{(\d{4})\}/g, function(m, iid){
+      var ing = null;
+      for (var i=0;i<recipe.ingredients.length;i++){ if (recipe.ingredients[i].id === iid){ ing = recipe.ingredients[i]; break; } }
+      if (!ing) return m;
+      return '<span class="ref"><span class="ramt" data-base="' + ing.amount + '" data-unit="' + (ing.unit || '') + '">'
+           + amtText(ing.amount * mult, ing.unit) + '</span> ' + esc(shortName(ing.name)) + '</span>';
+    });
+  }
+
+  function timerHTML(sec){
+    if (!sec) return '';
+    if (sec >= 3600) return '<span class="timer static">⏲ ' + human(sec) + '</span>';
+    return '<button class="timer" type="button" data-sec="' + sec + '" aria-label="Start ' + human(sec) + ' timer">⏲ ' + human(sec) + '</button>';
+  }
+
+  // ---- render one card ----
+  function cardHTML(recipe, idx){
+    var mult = 1;
+    var ings = recipe.ingredients.map(function(i){
+      return '<li class="ing"><span class="amt" data-base="' + i.amount + '" data-unit="' + (i.unit || '') + '">'
+           + amtText(i.amount * mult, i.unit) + '</span><span class="ing-name">' + esc(i.name) + '</span></li>';
+    }).join('');
+
+    var steps = recipe.steps.map(function(st, n){
+      return '<li class="stepi"><span class="num">' + (n+1) + '</span><div class="stepbody">'
+           + '<div class="stept">' + esc(st.title) + '</div>'
+           + '<div class="stepc">' + renderContent(recipe, st.content, mult) + '</div>'
+           + timerHTML(st.timer) + '</div></li>';
+    }).join('');
+
+    var notes = recipe.notes.split('\n\n').map(function(p){ return '<p>' + esc(p) + '</p>'; }).join('');
+
+    var lab = recipe.servingsLabel;
+    var labLower = lab.toLowerCase();
+
+    return '<article class="card" id="recipe-' + recipe.id + '" data-ri="' + idx + '">'
+      + '<p class="cat">' + esc(recipe.cat) + '</p>'
+      + '<h2 class="title">' + esc(recipe.title) + '</h2>'
+      + '<p class="desc">' + esc(recipe.desc) + '</p>'
+      + '<div class="meta">'
+        + '<span class="servings"><span class="srvlabel">' + esc(lab) + '</span>'
+        + '<span class="srvgroup">'
+          + '<button class="srvbtn minus" type="button" aria-label="Fewer ' + esc(labLower) + '">−</button>'
+          + '<span class="srvcount" aria-live="polite">' + recipe.baseServings + '</span>'
+          + '<button class="srvbtn plus" type="button" aria-label="More ' + esc(labLower) + '">+</button>'
+        + '</span></span>'
+        + '<span class="time">⏱ ' + esc(recipe.time) + '</span>'
+      + '</div>'
+      + '<div class="body">'
+        + '<div class="col col-ings"><h3 class="col-h">Ingredients</h3><ul class="ings">' + ings + '</ul></div>'
+        + '<div class="col col-steps"><h3 class="col-h">Method</h3><ol class="steps">' + steps + '</ol></div>'
+      + '</div>'
+      + '<div class="notes"><p class="notes-h">Notes</p>' + notes + '</div>'
+      + '</article>';
+  }
+
+  // ---- index ----
+  function indexHTML(){
+    return data.map(function(r, i){
+      var serv = r.baseServings + ' ' + (r.servingsLabel === 'Pizzas' ? 'pizzas' : 'servings');
+      return '<a class="index-row" href="#recipe-' + r.id + '">'
+        + '<span class="index-no">' + (i+1 < 10 ? '0' : '') + (i+1) + '</span>'
+        + '<span class="index-name">' + esc(r.title) + '</span>'
+        + '<span class="index-dots"></span>'
+        + '<span class="index-meta">' + esc(r.cat) + ' · ' + serv + ' · ' + esc(r.time) + '</span>'
+        + '</a>';
+    }).join('') + '<span class="hint">Tap <b>−</b> / <b>+</b> on any card to rescale every amount.</span>';
+  }
+
+  // ---- mount ----
+  document.getElementById('index').innerHTML = indexHTML();
+  var recipes = data.map(function(r){ r._servings = r.baseServings; r._mult = 1; return r; });
+  document.getElementById('cards').innerHTML = recipes.map(cardHTML).join('');
+
+  // entrance
+  var cardEls = Array.prototype.slice.call(document.querySelectorAll('.card'));
+  cardEls.forEach(function(c, i){
+    if (!RM) c.style.transitionDelay = (i * 65) + 'ms';
+    requestAnimationFrame(function(){ c.classList.add('in'); });
+  });
+
+  // ---- servings scaling ----
+  function applyServings(card){
+    var r = recipes[+card.dataset.ri];
+    r._mult = r._servings / r.baseServings;
+    var count = card.querySelector('.srvcount');
+    if (count) count.textContent = r._servings;
+    var amts = card.querySelectorAll('.amt, .ramt');
+    for (var i=0;i<amts.length;i++){
+      var el = amts[i];
+      var base = parseFloat(el.getAttribute('data-base'));
+      var unit = el.getAttribute('data-unit') || null;
+      el.textContent = amtText(base * r._mult, unit);
+      if (!RM){ el.classList.remove('flash'); void el.offsetWidth; el.classList.add('flash'); }
+    }
+  }
+
+  // ---- timers ----
+  var audioCtx = null;
+  function beep(){
+    try{
+      audioCtx = audioCtx || new (window.AudioContext || window.webkitAudioContext)();
+      var o = audioCtx.createOscillator(), g = audioCtx.createGain();
+      o.connect(g); g.connect(audioCtx.destination);
+      o.type = 'sine'; o.frequency.value = 880;
+      g.gain.setValueAtTime(0.0001, audioCtx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.25, audioCtx.currentTime + 0.02);
+      g.gain.exponentialRampToValueAtTime(0.0001, audioCtx.currentTime + 0.5);
+      o.start(); o.stop(audioCtx.currentTime + 0.5);
+    }catch(e){}
+  }
+  var timerState = new WeakMap();
+  function setTimerLabel(btn, txt){ btn.textContent = '⏲ ' + txt; }
+  function stopTick(st){ if (st.iv){ clearInterval(st.iv); st.iv = null; } }
+
+  function handleTimer(btn){
+    var sec = parseInt(btn.getAttribute('data-sec'), 10);
+    var st = timerState.get(btn);
+    if (!st){ st = { state:'idle', remaining: sec, iv:null }; timerState.set(btn, st); }
+
+    if (st.state === 'idle' || st.state === 'paused'){
+      if (st.state === 'idle') st.remaining = sec;
+      st.state = 'running';
+      btn.classList.remove('paused','done'); btn.classList.add('running');
+      setTimerLabel(btn, mmss(st.remaining));
+      st.iv = setInterval(function(){
+        st.remaining -= 1;
+        if (st.remaining <= 0){
+          stopTick(st);
+          st.state = 'done';
+          btn.classList.remove('running','paused'); btn.classList.add('done');
+          setTimerLabel(btn, 'Done ✓');
+          beep();
+          return;
+        }
+        setTimerLabel(btn, mmss(st.remaining));
+      }, 1000);
+    } else if (st.state === 'running'){
+      stopTick(st);
+      st.state = 'paused';
+      btn.classList.remove('running'); btn.classList.add('paused');
+      setTimerLabel(btn, mmss(st.remaining) + ' ⏸');
+    } else if (st.state === 'done'){
+      st.state = 'idle'; st.remaining = sec;
+      btn.classList.remove('done','running','paused');
+      setTimerLabel(btn, human(sec));
+    }
+  }
+
+  // ---- delegated clicks ----
+  document.getElementById('cards').addEventListener('click', function(e){
+    var sb = e.target.closest('.srvbtn');
+    if (sb){
+      var card = sb.closest('.card');
+      var r = recipes[+card.dataset.ri];
+      if (sb.classList.contains('plus')) r._servings += 1;
+      else r._servings = Math.max(1, r._servings - 1);
+      applyServings(card);
+      return;
+    }
+    var tb = e.target.closest('button.timer');
+    if (tb){ handleTimer(tb); return; }
+  });
+})();
+</script>
 </body>
 </html>
+
+# The Recipe File
+
+A self-contained recipe collection. Open `index.html` in any browser — no internet, no build step, no dependencies. Each card has a live servings scaler (every amount, including the ones inline in the steps, recalculates) and clickable step timers.
+
+## How to edit it
+
+**Everything lives in one place.** Near the top of `index.html` there's a single block:
+
+```html
+<script type="application/json" id="recipe-data">
+[ ... all recipes ... ]
+</script>
+```
+
+That JSON array *is* the collection. The rest of the file is styling and the rendering engine — you never touch it. To add, remove, or change a recipe, edit the array. Add a recipe by appending one object:
+
+```json
+{
+  "id": "lemon-bars",
+  "cat": "Dessert",
+  "title": "Lemon Bars",
+  "time": "~45 min",
+  "servingsLabel": "Servings",
+  "baseServings": 9,
+  "desc": "One-line description shown under the title.",
+  "ingredients": [
+    { "id": "0001", "amount": 1.5, "unit": "cup", "name": "all-purpose flour" },
+    { "id": "0002", "amount": 4,   "unit": null,  "name": "large eggs" }
+  ],
+  "steps": [
+    { "title": "Make the crust", "content": "Press the {0001} into the pan.", "timer": 900 },
+    { "title": "Bake", "content": "Bake until set.", "timer": 1200 }
+  ],
+  "notes": "Tips go here. Use a blank line (\n\n in JSON) to start a new paragraph."
+}
+```
+
+Rules of the road:
+- **`unit`**: use `"cup"`, `"tbsp"`, `"tsp"`, `"lb"`, `"oz"`, `"g"`, etc. Use `null` for countable things (eggs, cloves) — the name carries the noun.
+- **Ingredient `id`**: any unique 4-digit string within that recipe (`"0001"`, `"0002"`...).
+- **Reference an ingredient inside a step** with its id in curly braces — `{0001}` — and the amount auto-scales with the servings control. The number is pulled from the ingredients list, so you only set each amount once.
+- **`timer`**: seconds, optional. Under an hour it becomes a live countdown; an hour or more shows as a plain time tag (e.g. an overnight rise).
+- It's JSON, so mind the commas and quotes. If the page goes blank, a stray comma or missing quote is the usual culprit.
+
+## Three ways to make changes
+
+- **Ask Claude (quickest).** Say what you want changed and Claude hands back an updated `index.html`.
+- **Claude Code (direct).** Open this repo in Claude Code and Claude edits the JSON and commits for you.
+- **By hand / a collaborator.** Edit the JSON block directly — in your editor, or through GitHub's web editor (pencil icon on the file).
+
+## Publish it as a live page (GitHub Pages)
+
+1. Create a repo and add `index.html` (and this README).
+2. Repo **Settings → Pages → Build and deployment → Source: Deploy from a branch**, pick `main` and `/ (root)`, Save.
+3. Wait ~1 minute, then open the URL it shows you. That's your shareable, always-current link.
+
+Update the page by committing a change to `index.html` — Pages redeploys automatically.
+
+## Print / PDF
+
+Open the page and use your browser's **Print → Save as PDF**. The layout is print-styled (cards won't split across pages), so the PDF matches what you see.
