@@ -1,6 +1,8 @@
 # The Recipe File
 
-A self-contained family recipe collection — **150 recipes**, searchable and sortable, with live servings scaling, step timers, and printing to **3.5″ × 5″ index cards**. No build step, no dependencies, no internet required. Open `index.html` in any browser, or publish it free on GitHub Pages.
+**🔗 Live site: https://afcooper.github.io/alex_recipes.github.io/**
+
+A self-contained family recipe collection — **145 recipes**, searchable and sortable, with live servings scaling, step timers, and printing to **3.5″ × 5″ index cards**. No build step, no dependencies, no internet required. Open `index.html` in any browser, or publish it free on GitHub Pages.
 
 ## What's in the box
 
@@ -78,7 +80,7 @@ Rules of the road:
 
 1. Push this repo to GitHub.
 2. **Settings → Pages → Build and deployment → Source: Deploy from a branch**, pick `main` and `/ (root)`, Save.
-3. Wait ~1 minute, open the URL it shows. That's your shareable, always-current link.
+3. Wait ~1 minute, then open **https://afcooper.github.io/alex_recipes.github.io/** — your shareable, always-current link. (If you later add a custom domain, that becomes the URL instead.)
 
 Update the page by committing a change to `recipes.js` — Pages redeploys automatically.
 
