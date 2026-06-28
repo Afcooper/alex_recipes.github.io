@@ -28,10 +28,13 @@ Why split into files? With 145 recipes, keeping the data (`recipes.js`) separate
 
 ## Printing
 
-Two print buttons in the toolbar:
+Three print buttons in the toolbar:
 
 - **Print** — the whole page, nicely formatted (recipes won't split across pages).
-- **3×5 cards** — each recipe formatted to a **5″ wide × 3.5″ tall index card** (compact two-column layout). In the browser's print dialog, set the paper size to **Index Card (5×3.5 in)** — or print on Letter and cut. Long recipes (e.g. the overnight pizza) flow onto a second card rather than being cut off.
+- **3×5** — each recipe on a **5″ wide × 3.5″ tall** index card (landscape).
+- **4×6** — each recipe on a **6″ wide × 4″ tall** index card (landscape) — more room, larger type, most recipes fit one card.
+
+For either card size, pick the matching paper in the browser's print dialog — **Index Card (5×3.5 in)** or **(6×4 in)**, **Landscape** — or print on Letter and cut. Make sure the dialog's scale is **100% / "Default"** (not "Fit to page"), so the card geometry is exact. Long recipes flow onto a second card rather than being cut off.
 
 For a PDF, use the browser's **Print → Save as PDF** with either button.
 

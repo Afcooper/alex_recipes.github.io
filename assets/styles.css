@@ -339,3 +339,63 @@ body{
   body.print-3x5 .notes p{font-size:6pt;line-height:1.15;margin:0 0 .03in}
   body.print-3x5 .col-h{break-after:avoid}
 }
+
+/* ============================================================
+   PRINT — 4×6 index cards (body.print-4x6), landscape
+   Card stock: 6in wide × 4in tall. Page geometry swapped in by JS.
+   Card area after 0.2in margins ≈ 5.6in × 3.6in — more room than 3×5,
+   so slightly larger type and most recipes land on a single card.
+   ============================================================ */
+@media print{
+  body.print-4x6{font-size:9pt;line-height:1.25}
+  body.print-4x6 .masthead,
+  body.print-4x6 .toolbar,
+  body.print-4x6 .filter-drawer,
+  body.print-4x6 .index,
+  body.print-4x6 .footer,
+  body.print-4x6 .desc,
+  body.print-4x6 .src,
+  body.print-4x6 .card-tags,
+  body.print-4x6 .card-toggle,
+  body.print-4x6 .srvbtn,
+  body.print-4x6 .timer,
+  body.print-4x6 .nutrition,
+  body.print-4x6 .diff,
+  body.print-4x6 .kcal,
+  body.print-4x6 .hint,
+  body.print-4x6 .zero{display:none !important}
+
+  body.print-4x6 .card{
+    width:5.6in;min-height:3.6in;margin:0;padding:.16in .2in;
+    border:.5pt solid #000;border-radius:0;box-shadow:none;
+    break-after:page;page-break-after:always;break-inside:auto;
+  }
+  body.print-4x6 .card:last-child{break-after:auto}
+  body.print-4x6 .card.is-collapsed .body,
+  body.print-4x6 .card.is-collapsed .notes{display:block !important}
+
+  body.print-4x6 .cat{font-size:6pt;letter-spacing:.12em;margin:0}
+  body.print-4x6 .title{font-size:14pt;line-height:1.05;margin:0 0 .03in}
+  body.print-4x6 .meta{margin:.03in 0 .08in;gap:.5rem;font-size:8pt}
+  body.print-4x6 .srvlabel,body.print-4x6 .srvcount,body.print-4x6 .time{font-size:8pt}
+  body.print-4x6 .srvgroup{border:0;background:transparent}
+
+  body.print-4x6 .body{grid-template-columns:1.9in 1fr;gap:.2in;margin-top:.06in}
+  body.print-4x6 .body.no-ings{grid-template-columns:1fr}
+  body.print-4x6 .col-h{font-size:7.5pt;margin:0 0 .06in;padding-bottom:.03in;border-bottom-width:1pt;break-after:avoid}
+
+  body.print-4x6 .ing{grid-template-columns:3.6em 1fr;padding:.02in 0;border-bottom:0;break-inside:avoid}
+  body.print-4x6 .ing.noamt{grid-template-columns:1fr}
+  body.print-4x6 .amt,body.print-4x6 .ing-name{font-size:8.5pt;line-height:1.22}
+
+  body.print-4x6 .stepi{grid-template-columns:1rem 1fr;gap:.35rem;padding:.03in 0;border-top:0 !important;break-inside:avoid}
+  body.print-4x6 .num{width:auto;height:auto;background:none !important;color:#000 !important;border-radius:0;font-size:8.5pt;justify-content:flex-start;margin:0}
+  body.print-4x6 .num::after{content:'.'}
+  body.print-4x6 .stept{font-size:8.5pt;margin:0;display:inline}
+  body.print-4x6 .stept::after{content:' — '}
+  body.print-4x6 .stepc{font-size:8.5pt;line-height:1.3;display:inline;color:#000}
+
+  body.print-4x6 .notes{margin-top:.08in;padding:.05in .08in;border-left-width:1.5pt;background:none !important;border-radius:0;break-inside:avoid}
+  body.print-4x6 .notes-h{font-size:6.5pt;margin:0 0 .03in}
+  body.print-4x6 .notes p{font-size:7.5pt;line-height:1.2;margin:0 0 .04in}
+}

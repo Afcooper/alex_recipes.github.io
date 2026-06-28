@@ -534,15 +534,23 @@
   /* ---------- print modes ---------- */
   var pageStyle = document.createElement('style');
   document.head.appendChild(pageStyle);
-  function set3x5(on){
-    pageStyle.textContent = on
-      ? '@media print{ @page { size: 5in 3.5in; margin: 0.18in; } }'
-      : '@media print{ @page { size: auto; margin: 0.5in; } }';
+  var CARD_PAGE = {
+    '3x5': '@media print{ @page { size: 5in 3.5in; margin: 0.18in; } }',
+    '4x6': '@media print{ @page { size: 6in 4in; margin: 0.2in; } }'
+  };
+  function setCardPage(mode){
+    pageStyle.textContent = (mode && CARD_PAGE[mode]) ? CARD_PAGE[mode] : '@media print{ @page { size: auto; margin: 0.5in; } }';
   }
-  set3x5(false);
-  function printAll(open){
+  setCardPage(null);
+  function expandAllForPrint(){
     // expand every card so print shows full recipes
     Array.prototype.forEach.call(elCards.querySelectorAll('.card'), function(c){ c.classList.remove('is-collapsed'); c.classList.add('is-open'); });
+  }
+  function printCards(mode){
+    document.body.classList.remove('print-3x5', 'print-4x6');
+    if (mode) document.body.classList.add('print-' + mode);
+    setCardPage(mode);
+    expandAllForPrint();
     window.print();
   }
 
@@ -601,10 +609,11 @@
     }
   });
 
-  var pf = $('print-full'), p3 = $('print-3x5');
-  if (pf) pf.addEventListener('click', function(){ document.body.classList.remove('print-3x5'); set3x5(false); printAll(); });
-  if (p3) p3.addEventListener('click', function(){ document.body.classList.add('print-3x5'); set3x5(true); printAll(); });
-  window.addEventListener('afterprint', function(){ document.body.classList.remove('print-3x5'); set3x5(false); });
+  var pf = $('print-full'), p3 = $('print-3x5'), p4 = $('print-4x6');
+  if (pf) pf.addEventListener('click', function(){ document.body.classList.remove('print-3x5', 'print-4x6'); setCardPage(null); expandAllForPrint(); window.print(); });
+  if (p3) p3.addEventListener('click', function(){ printCards('3x5'); });
+  if (p4) p4.addEventListener('click', function(){ printCards('4x6'); });
+  window.addEventListener('afterprint', function(){ document.body.classList.remove('print-3x5', 'print-4x6'); setCardPage(null); });
 
   /* ---------- init ---------- */
   buildChips();
