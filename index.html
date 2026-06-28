@@ -49,6 +49,8 @@
         <button class="tb-more" id="print-full" type="button" title="Print the whole page">Print</button>
         <button class="tb-more" id="print-3x5" type="button" title="Print as 3.5×5 inch index cards (landscape)">3×5</button>
         <button class="tb-more" id="print-4x6" type="button" title="Print as 4×6 inch index cards (landscape)">4×6</button>
+        <button class="tb-more pdf-btn" id="pdf-4x6" type="button" title="Download a 4×6 inch recipe-card PDF — best for printing from a phone">⬇ PDF 4×6</button>
+        <button class="tb-more pdf-btn" id="pdf-3x5" type="button" title="Download a 3.5×5 inch recipe-card PDF">⬇ PDF 3×5</button>
       </div>
     </div>
 
@@ -79,6 +81,7 @@
 <!-- Data first (defines window.RECIPES), then the engine. Relative paths so the page
      works opened straight from disk (file://) AND on GitHub Pages. -->
 <script src="recipes.js"></script>
+<script src="assets/pdf.js" defer></script>
 <script src="assets/engine.js" defer></script>
 <script>
   // tiny convenience: the zero-state reset button shares the engine's clear-all

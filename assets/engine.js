@@ -620,6 +620,21 @@
   if (p4) p4.addEventListener('click', function(){ printCards('4x6'); });
   window.addEventListener('afterprint', function(){ document.body.classList.remove('print-3x5', 'print-4x6'); setCardPage(null); });
 
+  // ---- PDF download (lazy-loads jsPDF; reliable to print from a phone) ----
+  function downloadPDF(size, btn){
+    if (!window.RecipePDF){ alert('PDF feature is still loading — try again in a moment.'); return; }
+    var list = currentList();
+    if (!list.length){ return; }
+    if (list.length > 40 && !confirm('Make a PDF of all ' + list.length + ' recipes shown?\n\nTip: search or filter first to get just the cards you want.')) return;
+    var prev = btn.textContent; btn.disabled = true; btn.textContent = 'Building…';
+    Promise.resolve(window.RecipePDF.generate(size, list))
+      .then(function(){ btn.disabled = false; btn.textContent = prev; })
+      .catch(function(e){ alert('Could not make the PDF: ' + (e && e.message ? e.message : e)); btn.disabled = false; btn.textContent = prev; });
+  }
+  var pdf4 = $('pdf-4x6'), pdf3 = $('pdf-3x5');
+  if (pdf4) pdf4.addEventListener('click', function(){ downloadPDF('4x6', pdf4); });
+  if (pdf3) pdf3.addEventListener('click', function(){ downloadPDF('3x5', pdf3); });
+
   /* ---------- init ---------- */
   buildChips();
   buildDrawer();

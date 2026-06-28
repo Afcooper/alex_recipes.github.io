@@ -36,6 +36,12 @@ Three print buttons in the toolbar:
 
 For either card size, pick the matching paper in the browser's print dialog — **Index Card (5×3.5 in)** or **(6×4 in)**, **Landscape** — or print on Letter and cut. Make sure the dialog's scale is **100% / "Default"** (not "Fit to page"), so the card geometry is exact. Long recipes flow onto a second card rather than being cut off.
 
+### Printing from a phone — use Download PDF
+
+Phone browsers handle the regular Print buttons poorly (they tend to print the on-screen view, not the card layout). So there are two **Download PDF** buttons — **⬇ PDF 4×6** and **⬇ PDF 3×5** — that build an exact-size card PDF with the page dimensions baked in. Tap one, then open the downloaded file and print/share it to your printer at **Actual size**. This works reliably on phones and computers alike.
+
+The PDF includes **whatever recipes are currently shown**, so search or filter first (e.g. search a recipe name) to get just the cards you want. (The PDF library, `assets/jspdf.umd.min.js`, loads only the first time you tap a Download-PDF button.)
+
 For a PDF, use the browser's **Print → Save as PDF** with either button.
 
 ## How to add or edit a recipe
