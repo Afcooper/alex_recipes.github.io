@@ -314,12 +314,13 @@ body{
   body.print-3x5 .srvbtn,
   body.print-3x5 .timer,
   body.print-3x5 .nutrition,
-  body.print-3x5 .stat-cal,
   body.print-3x5 .stat-sub,
   body.print-3x5 .hint,
   body.print-3x5 .zero{display:none !important}
   body.print-3x5 .card-head{gap:.18in}
   body.print-3x5 .card-stats{border-left-width:.5pt;padding-left:.12in;gap:.02in;margin-top:0}
+  body.print-3x5 .stat-cal{font-size:8pt;line-height:1.05;color:#000;margin:0}
+  body.print-3x5 .stat-cal-n{color:#000}
   body.print-3x5 .stat-line{font-size:6pt}
 
   body.print-3x5 .card{
@@ -378,12 +379,13 @@ body{
   body.print-4x6 .srvbtn,
   body.print-4x6 .timer,
   body.print-4x6 .nutrition,
-  body.print-4x6 .stat-cal,
   body.print-4x6 .stat-sub,
   body.print-4x6 .hint,
   body.print-4x6 .zero{display:none !important}
   body.print-4x6 .card-head{gap:.2in}
   body.print-4x6 .card-stats{border-left-width:.5pt;padding-left:.16in;gap:.03in;margin-top:0}
+  body.print-4x6 .stat-cal{font-size:11pt;line-height:1.05;color:#000;margin:0}
+  body.print-4x6 .stat-cal-n{color:#000}
   body.print-4x6 .stat-line{font-size:8pt}
 
   body.print-4x6 .card{
