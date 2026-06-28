@@ -196,16 +196,21 @@
           + '<button class="srvbtn plus" type="button" aria-label="More">+</button>'
           + '</span></span>';
     }
-    var time = recipe.time ? '<span class="time">⏱ ' + esc(recipe.time) + '</span>' : '';
-    var diff = recipe.difficulty ? '<span class="diff" data-diff="' + recipe.difficulty.toLowerCase() + '"><span class="diff-dot" aria-hidden="true"></span>' + esc(recipe.difficulty) + '</span>' : '';
-    var kcal = recipe._cal != null ? '<span class="kcal">~' + recipe._cal + ' cal</span>' : '';
-    var metaRow = (srv || time || diff || kcal) ? '<div class="meta">' + srv + time + diff + kcal + '</div>' : '';
+    var statCal = recipe._cal != null
+      ? '<div class="stat-cal"><span class="stat-cal-n">' + recipe._cal + '</span> cal</div><div class="stat-sub">per ' + esc(unit) + '</div>'
+      : '';
+    var statTime = recipe.time ? '<div class="stat-line">⏱ ' + esc(recipe.time) + '</div>' : '';
+    var statDiff = recipe.difficulty ? '<div class="stat-line diff" data-diff="' + recipe.difficulty.toLowerCase() + '"><span class="diff-dot" aria-hidden="true"></span>' + esc(recipe.difficulty) + '</div>' : '';
+    var statBlock = (statCal || statTime || statDiff) ? '<aside class="card-stats" aria-label="At a glance">' + statCal + statTime + statDiff + '</aside>' : '';
+    var metaRow = srv ? '<div class="meta">' + srv + '</div>' : '';
 
     return '<article class="card anim ' + (open ? 'is-open' : 'is-collapsed') + '" id="recipe-' + recipe.id + '" data-ri="' + recipe._i + '">'
+      + '<div class="card-head"><div class="card-head-main">'
       + '<p class="cat">' + esc(recipe.courses.join(' · ')) + '</p>'
       + '<h2 class="title">' + esc(recipe.title) + '</h2>'
       + (recipe.source ? '<p class="src">from ' + esc(recipe.source) + '</p>' : '')
       + (recipe.desc ? '<p class="desc">' + esc(recipe.desc) + '</p>' : '')
+      + '</div>' + statBlock + '</div>'
       + (tagchips ? '<div class="card-tags">' + tagchips + '</div>' : '')
       + metaRow
       + (body || notes ? '<button class="card-toggle" type="button" aria-expanded="' + open + '">'

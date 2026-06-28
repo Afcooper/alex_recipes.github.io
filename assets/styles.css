@@ -145,6 +145,21 @@ body{
 }
 .card.anim{opacity:0;transform:translateY(10px);transition:opacity .45s ease,transform .45s ease}
 .card.anim.in{opacity:1;transform:none}
+/* card header: main column + top-right stat block */
+.card-head{display:flex;align-items:flex-start;gap:1.25rem;justify-content:space-between}
+.card-head-main{flex:1;min-width:0}
+.card-stats{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:.18rem;text-align:right;border-left:1px solid var(--line);padding-left:1.1rem;margin-top:.2rem}
+.stat-cal{font-family:var(--serif);font-size:1.6rem;line-height:1;color:var(--ink);white-space:nowrap}
+.stat-cal-n{font-weight:600;color:var(--honey)}
+.stat-sub{font-family:var(--mono);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--soft);margin-bottom:.3rem}
+.stat-line{font-family:var(--mono);font-size:.74rem;color:var(--soft);display:inline-flex;align-items:center;gap:.35rem;white-space:nowrap}
+@media (max-width:600px){
+  .card-head{flex-direction:column;gap:.5rem}
+  .card-stats{flex-direction:row;flex-wrap:wrap;align-items:baseline;gap:.3rem 1rem;text-align:left;border-left:0;padding-left:0;border-top:1px solid var(--line);padding-top:.55rem;width:100%;margin-top:0}
+  .stat-cal{font-size:1.25rem}
+  .stat-sub{margin-bottom:0}
+}
+
 .cat{font-family:var(--mono);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--honey);margin:0 0 .35rem}
 .title{font-family:var(--serif);font-weight:600;font-size:clamp(1.45rem,3.2vw,2rem);line-height:1.1;margin:0}
 .src{font-family:var(--mono);font-size:.72rem;color:var(--soft);margin:.3rem 0 0}
@@ -299,10 +314,13 @@ body{
   body.print-3x5 .srvbtn,
   body.print-3x5 .timer,
   body.print-3x5 .nutrition,
-  body.print-3x5 .diff,
-  body.print-3x5 .kcal,
+  body.print-3x5 .stat-cal,
+  body.print-3x5 .stat-sub,
   body.print-3x5 .hint,
   body.print-3x5 .zero{display:none !important}
+  body.print-3x5 .card-head{gap:.18in}
+  body.print-3x5 .card-stats{border-left-width:.5pt;padding-left:.12in;gap:.02in;margin-top:0}
+  body.print-3x5 .stat-line{font-size:6pt}
 
   body.print-3x5 .card{
     width:4.64in;min-height:3.14in;margin:0;padding:.12in .16in;
@@ -360,10 +378,13 @@ body{
   body.print-4x6 .srvbtn,
   body.print-4x6 .timer,
   body.print-4x6 .nutrition,
-  body.print-4x6 .diff,
-  body.print-4x6 .kcal,
+  body.print-4x6 .stat-cal,
+  body.print-4x6 .stat-sub,
   body.print-4x6 .hint,
   body.print-4x6 .zero{display:none !important}
+  body.print-4x6 .card-head{gap:.2in}
+  body.print-4x6 .card-stats{border-left-width:.5pt;padding-left:.16in;gap:.03in;margin-top:0}
+  body.print-4x6 .stat-line{font-size:8pt}
 
   body.print-4x6 .card{
     width:5.6in;min-height:3.6in;margin:0;padding:.16in .2in;
