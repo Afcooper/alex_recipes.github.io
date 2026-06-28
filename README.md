@@ -2,7 +2,7 @@
 
 **🔗 Live site: https://afcooper.github.io/alex_recipes.github.io/**
 
-A self-contained family recipe collection — **145 recipes**, searchable and sortable, with live servings scaling, step timers, and printing to **3.5″ × 5″ index cards**. No build step, no dependencies, no internet required. Open `index.html` in any browser, or publish it free on GitHub Pages.
+A self-contained family recipe collection — **145 recipes**, searchable and sortable, with per-serving **nutrition estimates**, **difficulty** ratings, live servings scaling, step timers, and printing to **3.5″ × 5″ index cards**. No build step, no dependencies, no internet required. Open `index.html` in any browser, or publish it free on GitHub Pages.
 
 ## What's in the box
 
@@ -14,15 +14,16 @@ assets/engine.js  ← the engine: search, filters, sort, scaling, timers, printi
 README.md         ← this file
 ```
 
-Why split into files? With 150 recipes, keeping the data (`recipes.js`) separate from the code (`engine.js` / `styles.css`) means you edit one small, predictable file to manage recipes, and the git history stays clean. Everything loads with **relative paths via `<script>`/`<link>`**, which is what lets the page work both opened straight from disk (`file://`) *and* on GitHub Pages. (We deliberately don't `fetch()` the data — that breaks under `file://`.)
+Why split into files? With 145 recipes, keeping the data (`recipes.js`) separate from the code (`engine.js` / `styles.css`) means you edit one small, predictable file to manage recipes, and the git history stays clean. Everything loads with **relative paths via `<script>`/`<link>`**, which is what lets the page work both opened straight from disk (`file://`) *and* on GitHub Pages. (We deliberately don't `fetch()` the data — that breaks under `file://`.)
 
 ## Browsing, searching, sorting
 
 - **Search** (top bar, or press `/`): instant, matches recipe names **and ingredients** — type `lemon` to find everything with lemon in it.
 - **Course chips**: Breakfast, Lunch, Dinner, Appetizer, Side, Salad, Soup, Bread, Sauce, Dressing, Marinade, Dip, Dessert, Snack, Drink, Basics. Click to filter (multi-select).
-- **Filters → tags**: protein (chicken, beef, pork, shrimp…), cuisine (mexican, italian, asian…), method (slow-cooker, no-bake, freezer-friendly…), and more. Stacking tags narrows the results.
-- **Sort**: A–Z, by Time, or grouped by Course.
-- Every filtered view has a **shareable URL** — e.g. `index.html#course=Dessert&tags=no-bake` — which also lays the groundwork for saved "recipe books" later.
+- **Filters → tags**: protein (chicken, beef, pork, shrimp…), cuisine (mexican, italian, asian…), method (slow-cooker, no-bake, freezer-friendly…), dietary (vegetarian, vegan, gluten-free, dairy-free), plus **Difficulty** (Easy/Medium/Hard) and **Calories per serving** (Light / Medium / Hearty). Stacking filters narrows the results.
+- **Sort**: A–Z, Time, Course, **Calories**, or **Difficulty**.
+- **Nutrition** (calories + protein/carbs/fat per serving) shows on each recipe — it's *estimated from ingredients*, so treat it as a guide, not a label. Serving counts marked with **≈** were estimated too.
+- Every filtered view has a **shareable URL** — e.g. `index.html#course=Dessert&diff=easy&cal=light` — which also lays the groundwork for saved "recipe books" later.
 - Cards are collapsed to a summary by default; click **View recipe** (or any index row) to expand the full method.
 
 ## Printing
@@ -45,9 +46,12 @@ Open `recipes.js`. It's one big list (`window.RECIPES = [ … ]`). Add a recipe 
   "source": "Nana's",                       // attribution, or "" if none
   "courses": ["Dessert"],                   // one or more of the course names above
   "tags": ["no-bake", "make-ahead"],        // lowercase keywords for filtering/search
+  "difficulty": "Easy",                     // "Easy" | "Medium" | "Hard" | null
   "time": "~45 min",                        // pretty text, or "" if unknown
   "servingsLabel": "Servings",              // or "Cookies", "Rolls", "Pieces", "Pizzas"…
   "baseServings": 9,                        // a number, or null if unknown (hides the +/- scaler)
+  "servingsEstimated": false,               // true shows a small ≈ next to the serving count
+  "nutrition": { "calories": 210, "protein": 3, "carbs": 28, "fat": 10 },  // per serving (estimated), or null
   "desc": "One-line description under the title.",   // optional ("" to skip)
   "ingredients": [
     { "id": "0001", "amount": 1.5, "unit": "cup",  "name": "all-purpose flour" },
@@ -66,6 +70,7 @@ Rules of the road:
 - **`amount`**: a number (decimals are fine — `0.5` shows as `½`, `1.5` as `1½`). Use `null` for "to taste" / unmeasured items — the name carries it.
 - **`unit`**: `"cup"`, `"tbsp"`, `"tsp"`, `"lb"`, `"oz"`, `"g"`, or container words like `"can"`, `"pkg"`, `"clove"`. Use `null` for countable things (eggs, onions) — the name carries the noun.
 - **`courses`** is a list, so a recipe can live in more than one bucket (e.g. `["Dip","Appetizer"]`).
+- **`nutrition`** is per serving and estimated — calories drive the Light/Medium/Hearty filter and the Calories sort. Set `null` to hide it (e.g. for technique/how-to entries). **`difficulty`** drives the Difficulty filter/sort.
 - **Scale an ingredient inside a step**: write its id in braces — `{0001}` — and the amount auto-scales with the +/- control. The number comes from the ingredients list, so you set each amount only once.
 - **`timer`**: seconds, optional. Under an hour it becomes a live countdown; an hour or more shows as a plain time tag (e.g. an overnight rise).
 - It's JavaScript, so mind the commas, quotes, and braces. If the page goes blank, open the browser console — it points at the offending line. (The page also shows a friendly "recipes.js failed to load" message in that case.)

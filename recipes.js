@@ -2,8 +2,10 @@
    This is the ONLY file you edit to add/change a recipe.
    It's plain data assigned to window.RECIPES; the engine (assets/engine.js) renders it.
    Loaded via <script src> so the page works opened from disk (file://) and on GitHub Pages.
-   Schema per object: id, title, source, courses[], tags[], time, servingsLabel,
-   baseServings (int|null), desc, ingredients[{id,amount(num|null),unit(str|null),name}],
+   Schema per object: id, title, source, courses[], tags[], difficulty ("Easy"|"Medium"|"Hard"|null),
+   time, servingsLabel, baseServings (int|null), servingsEstimated (bool),
+   nutrition {calories,protein,carbs,fat} per serving (estimated) | null,
+   desc, ingredients[{id,amount(num|null),unit(str|null),name}],
    steps[{title,content,timer(sec|null)}], notes.  See README.md for the full guide. */
 window.RECIPES = [
  {
@@ -17,11 +19,20 @@ window.RECIPES = [
    "vegetarian",
    "stovetop",
    "pasta",
-   "italian"
+   "italian",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 90,
+   "protein": 6,
+   "carbs": 5,
+   "fat": 4
+  },
   "desc": "A lighter Alfredo sauce with Parmesan, sour cream, spinach, and nutritional yeast for pasta.",
   "ingredients": [
    {
@@ -86,9 +97,17 @@ window.RECIPES = [
    "vegetarian",
    "baked"
   ],
+  "difficulty": "Medium",
   "time": "~1.5 hrs",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 700,
+   "protein": 6,
+   "carbs": 108,
+   "fat": 30
+  },
   "desc": "Honeycrisp apples baked under a buttery cinnamon oat crumble until tender.",
   "ingredients": [
    {
@@ -163,11 +182,21 @@ window.RECIPES = [
   "tags": [
    "asian",
    "marinade",
-   "make-ahead"
+   "make-ahead",
+   "vegetarian",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~5 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 165,
+   "protein": 1,
+   "carbs": 26,
+   "fat": 7
+  },
   "desc": "A whisked-together sweet chili, honey, and lime marinade that doubles as a finishing glaze.",
   "ingredients": [
    {
@@ -233,9 +262,17 @@ window.RECIPES = [
    "no-bake",
    "vegetarian"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Pieces",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 135,
+   "protein": 3,
+   "carbs": 12,
+   "fat": 8
+  },
   "desc": "No-bake white chocolate clusters with peanut butter, peanuts, marshmallows and Rice Krispies.",
   "ingredients": [
    {
@@ -320,11 +357,21 @@ window.RECIPES = [
    "bacon",
    "pork",
    "baked",
-   "freezer-friendly"
+   "freezer-friendly",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 100,
+   "protein": 8,
+   "carbs": 0,
+   "fat": 8
+  },
   "desc": "Oven-baked bacon on parchment, with a method for freezing portions.",
   "ingredients": [
    {
@@ -370,11 +417,21 @@ window.RECIPES = [
    "baked",
    "party",
    "potluck",
-   "holiday"
+   "holiday",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Medium",
   "time": "~55 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 140,
+   "protein": 6,
+   "carbs": 16,
+   "fat": 6
+  },
   "desc": "Bacon-wrapped water chestnuts baked and glazed in a sweet-tangy ketchup sauce.",
   "ingredients": [
    {
@@ -445,9 +502,17 @@ window.RECIPES = [
    "baked",
    "vegetarian"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 9,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 305,
+   "protein": 4,
+   "carbs": 40,
+   "fat": 11
+  },
   "desc": "Boxed banana bread layered with a sweet cream cheese filling and baked in an 8x8 pan.",
   "ingredients": [
    {
@@ -512,11 +577,21 @@ window.RECIPES = [
    "bacon",
    "stovetop",
    "freezer-friendly",
-   "make-ahead"
+   "make-ahead",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 10,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 215,
+   "protein": 6,
+   "carbs": 28,
+   "fat": 6
+  },
   "desc": "Mixed beans simmered with sauteed onions, bacon, mustard and Sweet Baby Ray's BBQ sauce.",
   "ingredients": [
    {
@@ -604,9 +679,17 @@ window.RECIPES = [
    "baked",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "~50 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 450,
+   "protein": 24,
+   "carbs": 29,
+   "fat": 25
+  },
   "desc": "Oatmeal-bound beef meatballs baked then finished in BBQ sauce.",
   "ingredients": [
    {
@@ -688,11 +771,22 @@ window.RECIPES = [
    "fruit",
    "vegetarian",
    "no-bake",
-   "freezer-friendly"
+   "freezer-friendly",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~20 min",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 95,
+   "protein": 1,
+   "carbs": 24,
+   "fat": 0
+  },
   "desc": "A quick five-ingredient berry sauce that turns jammy as it cools — perfect over pancakes, yogurt, French toast, or ice cream.",
   "ingredients": [
    {
@@ -760,9 +854,17 @@ window.RECIPES = [
    "rice",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 500,
+   "protein": 11,
+   "carbs": 46,
+   "fat": 29
+  },
   "desc": "Cheesy baked broccoli and rice casserole with cream of mushroom soup and Cheese Whiz.",
   "ingredients": [
    {
@@ -847,9 +949,17 @@ window.RECIPES = [
    "rice",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 200,
+   "protein": 8,
+   "carbs": 15,
+   "fat": 12
+  },
   "desc": "Lighter broccoli casserole with sauteed onions and mushrooms, brown rice and quinoa, and sharp cheddar.",
   "ingredients": [
    {
@@ -926,11 +1036,20 @@ window.RECIPES = [
    "salad",
    "slaw",
    "vegetarian",
-   "make-ahead"
+   "make-ahead",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 135,
+   "protein": 3,
+   "carbs": 23,
+   "fat": 3
+  },
   "desc": "Creamy broccoli slaw with red onion, craisins and a sweet-tangy yogurt dressing.",
   "ingredients": [
    {
@@ -1008,9 +1127,17 @@ window.RECIPES = [
    "vegetarian",
    "chocolate"
   ],
+  "difficulty": "Easy",
   "time": "~45 min",
   "servingsLabel": "Cookies",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 190,
+   "protein": 2,
+   "carbs": 23,
+   "fat": 8
+  },
   "desc": "Fudgy cookies made from boxed brownie mix with espresso and semi-sweet chocolate chips.",
   "ingredients": [
    {
@@ -1090,11 +1217,20 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "frosting",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 285,
+   "protein": 1,
+   "carbs": 40,
+   "fat": 14
+  },
   "desc": "A glossy chocolate topping cooked on the stovetop and poured over brownies.",
   "ingredients": [
    {
@@ -1156,11 +1292,21 @@ window.RECIPES = [
   "tags": [
    "beef",
    "burger",
-   "stovetop"
+   "stovetop",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~5 min",
   "servingsLabel": "Patties",
   "baseServings": 6,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 195,
+   "protein": 13,
+   "carbs": 0,
+   "fat": 15
+  },
   "desc": "Thin, crispy-edged smash burgers cooked on a hot cast iron or stainless skillet.",
   "ingredients": [
    {
@@ -1202,9 +1348,17 @@ window.RECIPES = [
    "one-pan",
    "comfort-food"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 400,
+   "protein": 19,
+   "carbs": 23,
+   "fat": 20
+  },
   "desc": "A quick skillet of ground beef simmered with chicken gumbo soup, brown sugar, ketchup, and oatmeal.",
   "ingredients": [
    {
@@ -1268,11 +1422,20 @@ window.RECIPES = [
   "tags": [
    "frosting",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 280,
+   "protein": 1,
+   "carbs": 33,
+   "fat": 16
+  },
   "desc": "Classic American buttercream beaten smooth with vanilla and cream for piping or spreading.",
   "ingredients": [
    {
@@ -1345,11 +1508,20 @@ window.RECIPES = [
   "tags": [
    "frosting",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 310,
+   "protein": 1,
+   "carbs": 35,
+   "fat": 19
+  },
   "desc": "A light, fluffy buttercream that holds up well for piping decorations.",
   "ingredients": [
    {
@@ -1412,11 +1584,22 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "mexican",
-   "stovetop"
+   "stovetop",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 110,
+   "protein": 3,
+   "carbs": 14,
+   "fat": 5
+  },
   "desc": "A sautéed Mexican medley of squash, zucchini, corn, peppers, and tomato.",
   "ingredients": [
    {
@@ -1520,9 +1703,17 @@ window.RECIPES = [
    "baked",
    "casserole"
   ],
+  "difficulty": "Medium",
   "time": "~40 min",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 630,
+   "protein": 29,
+   "carbs": 46,
+   "fat": 35
+  },
   "desc": "Manicotti or cannelloni tubes stuffed with a ricotta-spinach cheese filling, baked in marinara.",
   "ingredients": [
    {
@@ -1625,11 +1816,21 @@ window.RECIPES = [
   "tags": [
    "candy",
    "no-bake",
-   "holiday"
+   "holiday",
+   "vegetarian",
+   "gluten-free"
   ],
+  "difficulty": "Hard",
   "time": "~12 min + cooling",
   "servingsLabel": "Pieces",
   "baseServings": 60,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 95,
+   "protein": 1,
+   "carbs": 15,
+   "fat": 4
+  },
   "desc": "Homemade soft caramels cooked with brown sugar, corn syrup, butter, and sweetened condensed milk.",
   "ingredients": [
    {
@@ -1712,11 +1913,20 @@ window.RECIPES = [
   ],
   "tags": [
    "vegetarian",
-   "stovetop"
+   "stovetop",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 135,
+   "protein": 1,
+   "carbs": 22,
+   "fat": 4
+  },
   "desc": "Tender baby carrots glazed in a brown sugar, butter, and Dijon mustard sauce.",
   "ingredients": [
    {
@@ -1785,11 +1995,22 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "stovetop",
-   "roasted"
+   "roasted",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~25 min",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 65,
+   "protein": 2,
+   "carbs": 7,
+   "fat": 4
+  },
   "desc": "Blistered, smoky green beans cooked hard and fast in a screaming-hot cast iron pan.",
   "ingredients": [
    {
@@ -1867,9 +2088,17 @@ window.RECIPES = [
    "party",
    "potluck"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 200,
+   "protein": 4,
+   "carbs": 18,
+   "fat": 12
+  },
   "desc": "Buttery, Worcestershire-and-garlic seasoned mix of Chex cereals, pretzels and peanuts made in the microwave.",
   "ingredients": [
    {
@@ -1959,76 +2188,6 @@ window.RECIPES = [
   "notes": ""
  },
  {
-  "id": "shredded-chicken",
-  "title": "Chicken (Shredded)",
-  "source": "",
-  "courses": [
-   "Dinner",
-   "Basics"
-  ],
-  "tags": [
-   "chicken",
-   "stovetop",
-   "slow-cooker",
-   "freezer-friendly",
-   "make-ahead"
-  ],
-  "time": "~30 min",
-  "servingsLabel": "Servings",
-  "baseServings": null,
-  "desc": "Simply simmered chicken thighs shredded and moistened with reduced cooking broth.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 3,
-    "unit": "lb",
-    "name": "chicken thighs (skinless & boneless)"
-   },
-   {
-    "id": "0002",
-    "amount": 1,
-    "unit": null,
-    "name": "onion, medium (peeled and sliced)"
-   },
-   {
-    "id": "0003",
-    "amount": 4,
-    "unit": "clove",
-    "name": "garlic"
-   },
-   {
-    "id": "0004",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "salt"
-   },
-   {
-    "id": "0005",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "ground black pepper"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "In a heavy-bottomed saucepan combine all ingredients. Add just enough water to cover the chicken. Turn heat to high. Bring to a boil. Remove any scum or foam that floats to the top. Adjust heat to a gentle simmer. Cook for 30 minutes or until chicken is very tender and 175 degrees.",
-    "timer": 1800
-   },
-   {
-    "title": "",
-    "content": "Transfer to cutting board, use 2 forks to shred the chicken.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "After removing chicken, boil the liquid until it has reduced to 1/3rd. Spoon about 1 cup over the shredded chicken. Eat within 2-3 days.",
-    "timer": null
-   }
-  ],
-  "notes": "Chicken & broth will keep in fridge up to 3 days or frozen for 1 month.\n\nCan be cooked in slow cooker on LOW for 4-6 hours."
- },
- {
   "id": "bbq-shredded-chicken-slow-cooker",
   "title": "Chicken (Shredded, BBQ Slow Cooker)",
   "source": "",
@@ -2038,11 +2197,20 @@ window.RECIPES = [
   "tags": [
    "chicken",
    "slow-cooker",
-   "american"
+   "american",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "Low 6-7 hrs or High 3-4 hrs",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 460,
+   "protein": 25,
+   "carbs": 45,
+   "fat": 13
+  },
   "desc": "Slow-cooker chicken thighs in honey BBQ sauce, shredded for sandwiches or bowls.",
   "ingredients": [
    {
@@ -2131,6 +2299,86 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "shredded-chicken",
+  "title": "Chicken (Shredded)",
+  "source": "",
+  "courses": [
+   "Dinner",
+   "Basics"
+  ],
+  "tags": [
+   "chicken",
+   "stovetop",
+   "slow-cooker",
+   "freezer-friendly",
+   "make-ahead",
+   "gluten-free",
+   "dairy-free"
+  ],
+  "difficulty": "Easy",
+  "time": "~30 min",
+  "servingsLabel": "Servings",
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 210,
+   "protein": 20,
+   "carbs": 2,
+   "fat": 13
+  },
+  "desc": "Simply simmered chicken thighs shredded and moistened with reduced cooking broth.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 3,
+    "unit": "lb",
+    "name": "chicken thighs (skinless & boneless)"
+   },
+   {
+    "id": "0002",
+    "amount": 1,
+    "unit": null,
+    "name": "onion, medium (peeled and sliced)"
+   },
+   {
+    "id": "0003",
+    "amount": 4,
+    "unit": "clove",
+    "name": "garlic"
+   },
+   {
+    "id": "0004",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0005",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "ground black pepper"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "In a heavy-bottomed saucepan combine all ingredients. Add just enough water to cover the chicken. Turn heat to high. Bring to a boil. Remove any scum or foam that floats to the top. Adjust heat to a gentle simmer. Cook for 30 minutes or until chicken is very tender and 175 degrees.",
+    "timer": 1800
+   },
+   {
+    "title": "",
+    "content": "Transfer to cutting board, use 2 forks to shred the chicken.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "After removing chicken, boil the liquid until it has reduced to 1/3rd. Spoon about 1 cup over the shredded chicken. Eat within 2-3 days.",
+    "timer": null
+   }
+  ],
+  "notes": "Chicken & broth will keep in fridge up to 3 days or frozen for 1 month.\n\nCan be cooked in slow cooker on LOW for 4-6 hours."
+ },
+ {
   "id": "chicken-broth-soup",
   "title": "Chicken Broth Soup",
   "source": "",
@@ -2142,11 +2390,20 @@ window.RECIPES = [
    "chicken",
    "soup",
    "stovetop",
-   "one-pan"
+   "one-pan",
+   "dairy-free"
   ],
+  "difficulty": "Medium",
   "time": "~45 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 170,
+   "protein": 15,
+   "carbs": 5,
+   "fat": 10
+  },
   "desc": "A hearty soup of seared chicken thighs simmered with onion, celery and beef-boosted broth.",
   "ingredients": [
    {
@@ -2233,9 +2490,17 @@ window.RECIPES = [
    "mexican",
    "tex-mex"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 400,
+   "protein": 25,
+   "carbs": 30,
+   "fat": 18
+  },
   "desc": "Crisp baked tortillas layered with Caesar-dressed shredded chicken, melted cheese and romaine.",
   "ingredients": [
    {
@@ -2311,9 +2576,17 @@ window.RECIPES = [
    "baked",
    "casserole"
   ],
+  "difficulty": "Medium",
   "time": "~1 hr",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 350,
+   "protein": 35,
+   "carbs": 8,
+   "fat": 18
+  },
   "desc": "Baked chicken breasts layered with mushrooms, ham, and Swiss cheese under a creamy soup topping.",
   "ingredients": [
    {
@@ -2386,9 +2659,17 @@ window.RECIPES = [
    "stovetop",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "~1 hr",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 340,
+   "protein": 22,
+   "carbs": 30,
+   "fat": 12
+  },
   "desc": "Hearty chicken noodle soup with bone-in thighs, frozen egg noodles, and vegetables.",
   "ingredients": [
    {
@@ -2483,11 +2764,20 @@ window.RECIPES = [
    "slow-cooker",
    "crock-pot",
    "mexican",
-   "tex-mex"
+   "tex-mex",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~4 hrs",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 180,
+   "protein": 20,
+   "carbs": 3,
+   "fat": 10
+  },
   "desc": "Shredded chicken thighs slow-cooked with taco seasoning, salsa and broth.",
   "ingredients": [
    {
@@ -2539,11 +2829,21 @@ window.RECIPES = [
    "tex-mex",
    "stovetop",
    "freezer-friendly",
-   "comfort-food"
+   "comfort-food",
+   "dairy-free",
+   "gluten-free"
   ],
+  "difficulty": "Medium",
   "time": "~45 min",
   "servingsLabel": "Servings",
   "baseServings": 6,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 300,
+   "protein": 18,
+   "carbs": 26,
+   "fat": 12
+  },
   "desc": "Hearty beef chili with fire-roasted tomatoes, kidney beans and warm spices, made for freezing.",
   "ingredients": [
    {
@@ -2688,9 +2988,17 @@ window.RECIPES = [
    "crock-pot",
    "comfort-food"
   ],
+  "difficulty": "Easy",
   "time": "~2 hr",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 245,
+   "protein": 14,
+   "carbs": 35,
+   "fat": 4
+  },
   "desc": "A hearty meatless chili made with Morning Star crumbles, beans, and vegetables in the crock pot.",
   "ingredients": [
    {
@@ -2797,11 +3105,20 @@ window.RECIPES = [
    "asian",
    "chinese",
    "sauce",
-   "stovetop"
+   "stovetop",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~10 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 20,
+   "protein": 1,
+   "carbs": 4,
+   "fat": 0
+  },
   "desc": "A glossy stir-fry style brown sauce thickened with cornstarch from beef broth, oyster and soy sauce.",
   "ingredients": [
    {
@@ -2865,11 +3182,20 @@ window.RECIPES = [
    "chinese",
    "asian",
    "sauce",
-   "stovetop"
+   "stovetop",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 30,
+   "protein": 1,
+   "carbs": 6,
+   "fat": 0
+  },
   "desc": "A thicker version of Chinese brown sauce built on beef broth, oyster sauce, and minced garlic.",
   "ingredients": [
    {
@@ -2946,9 +3272,17 @@ window.RECIPES = [
    "freezer-friendly",
    "vegetarian"
   ],
+  "difficulty": "Medium",
   "time": "~30 min",
   "servingsLabel": "Cookies",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 190,
+   "protein": 2,
+   "carbs": 25,
+   "fat": 10
+  },
   "desc": "Brown-butter chocolate chip cookies with a chewy, nutty toffee flavor.",
   "ingredients": [
    {
@@ -3067,9 +3401,17 @@ window.RECIPES = [
    "baked",
    "vegetarian"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Cookies",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 160,
+   "protein": 2,
+   "carbs": 21,
+   "fat": 8
+  },
   "desc": "Easy chocolate cookies made from a dark chocolate fudge cake mix with chocolate chips.",
   "ingredients": [
    {
@@ -3130,11 +3472,21 @@ window.RECIPES = [
    "slow-cooker",
    "crock-pot",
    "freezer-friendly",
-   "comfort-food"
+   "comfort-food",
+   "dairy-free",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "~4 hrs",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 315,
+   "protein": 30,
+   "carbs": 2,
+   "fat": 20
+  },
   "desc": "A simple chuck roast slow-cooked over onions in beef broth until tender.",
   "ingredients": [
    {
@@ -3202,11 +3554,21 @@ window.RECIPES = [
    "beef",
    "slow-cooker",
    "crock-pot",
-   "comfort-food"
+   "comfort-food",
+   "dairy-free",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "~5 hrs",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 5,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 330,
+   "protein": 30,
+   "carbs": 2,
+   "fat": 20
+  },
   "desc": "A chuck roast slow-cooked over a bed of onions with chicken and beef broth.",
   "ingredients": [
    {
@@ -3276,11 +3638,22 @@ window.RECIPES = [
    "beans",
    "salsa",
    "mexican",
-   "no-bake"
+   "no-bake",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 80,
+   "protein": 3,
+   "carbs": 15,
+   "fat": 1
+  },
   "desc": "A fresh chunky salsa of corn, black beans or edamame, tomatoes, and cilantro.",
   "ingredients": [
    {
@@ -3349,9 +3722,17 @@ window.RECIPES = [
    "vegetarian",
    "make-ahead"
   ],
+  "difficulty": "Hard",
   "time": "~1 hr 30 min rise + ~15 min bake",
   "servingsLabel": "Rolls",
   "baseServings": 12,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 490,
+   "protein": 7,
+   "carbs": 78,
+   "fat": 17
+  },
   "desc": "Homemade cinnamon rolls with a soft yeast dough, cinnamon-sugar filling, and cream cheese frosting.",
   "ingredients": [
    {
@@ -3497,11 +3878,20 @@ window.RECIPES = [
    "salad",
    "vegetarian",
    "make-ahead",
-   "overnight"
+   "overnight",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "Overnight + ~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 130,
+   "protein": 1,
+   "carbs": 10,
+   "fat": 10
+  },
   "desc": "Copycat KFC coleslaw with a creamy, sweet-tangy mayonnaise dressing.",
   "ingredients": [
    {
@@ -3597,9 +3987,17 @@ window.RECIPES = [
    "kid-friendly",
    "vegetarian"
   ],
+  "difficulty": "Medium",
   "time": "7-10 min",
   "servingsLabel": "Cookies",
-  "baseServings": null,
+  "baseServings": 36,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 155,
+   "protein": 2,
+   "carbs": 19,
+   "fat": 8
+  },
   "desc": "Nana's classic roll-and-cut sugar cookies, perfect for decorating on cookie day.",
   "ingredients": [
    {
@@ -3690,11 +4088,20 @@ window.RECIPES = [
   "tags": [
    "corn",
    "vegetarian",
-   "slow-cooker"
+   "slow-cooker",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "Crockpot 2-4 hrs (high) or stovetop ~20-30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 225,
+   "protein": 4,
+   "carbs": 15,
+   "fat": 16
+  },
   "desc": "Rich creamed corn with cream cheese and butter, made in the crockpot or on the stovetop.",
   "ingredients": [
    {
@@ -3769,9 +4176,17 @@ window.RECIPES = [
    "casserole",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 590,
+   "protein": 27,
+   "carbs": 39,
+   "fat": 28
+  },
   "desc": "Flour tortillas filled with creamy chicken, rolled with red enchilada sauce and cheese, and baked.",
   "ingredients": [
    {
@@ -3881,11 +4296,21 @@ window.RECIPES = [
   "tags": [
    "eggs",
    "baked",
-   "make-ahead"
+   "make-ahead",
+   "vegetarian",
+   "gluten-free"
   ],
+  "difficulty": "Hard",
   "time": "~45 min + chill",
   "servingsLabel": "Servings",
   "baseServings": 5,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 465,
+   "protein": 5,
+   "carbs": 22,
+   "fat": 40
+  },
   "desc": "Classic baked vanilla custard with a torched golden sugar crust.",
   "ingredients": [
    {
@@ -3971,9 +4396,17 @@ window.RECIPES = [
    "baked",
    "bread"
   ],
+  "difficulty": "Easy",
   "time": "~10 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 120,
+   "protein": 2,
+   "carbs": 10,
+   "fat": 8
+  },
   "desc": "Cubed baguette tossed in seasoned garlic butter and baked crisp.",
   "ingredients": [
    {
@@ -4059,9 +4492,17 @@ window.RECIPES = [
    "baked",
    "bread"
   ],
+  "difficulty": "Easy",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 105,
+   "protein": 2,
+   "carbs": 10,
+   "fat": 6
+  },
   "desc": "Buttery garlic baguette cubes toasted in a skillet then baked until crispy.",
   "ingredients": [
    {
@@ -4126,9 +4567,17 @@ window.RECIPES = [
    "baked",
    "bread"
   ],
+  "difficulty": "Easy",
   "time": "~20 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 220,
+   "protein": 2,
+   "carbs": 16,
+   "fat": 14
+  },
   "desc": "Pepperidge Farm bread cubes tossed in garlic butter and olive oil, then baked crisp.",
   "ingredients": [
    {
@@ -4193,9 +4642,17 @@ window.RECIPES = [
    "eggs",
    "vegetarian"
   ],
+  "difficulty": "Medium",
   "time": "~30 min",
   "servingsLabel": "Servings",
   "baseServings": 6,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 435,
+   "protein": 13,
+   "carbs": 48,
+   "fat": 14
+  },
   "desc": "Thick challah or brioche soaked in vanilla-cinnamon custard and cooked low and slow in butter — crisp edges, custardy center.",
   "ingredients": [
    {
@@ -4281,11 +4738,20 @@ window.RECIPES = [
   "tags": [
    "eggs",
    "vegetarian",
-   "party"
+   "party",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 130,
+   "protein": 6,
+   "carbs": 1,
+   "fat": 12
+  },
   "desc": "Classic deviled eggs with mayo, mustard, butter and garlic powder, garnished with paprika and chives.",
   "ingredients": [
    {
@@ -4365,11 +4831,20 @@ window.RECIPES = [
   ],
   "tags": [
    "vegetarian",
-   "make-ahead"
+   "make-ahead",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "Overnight",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 75,
+   "protein": 1,
+   "carbs": 2,
+   "fat": 7
+  },
   "desc": "Creamy sour cream and mayo dip seasoned with dill, celery salt, and onion.",
   "ingredients": [
    {
@@ -4431,11 +4906,20 @@ window.RECIPES = [
    "baked",
    "overnight",
    "make-ahead",
-   "vegetarian"
+   "vegetarian",
+   "dairy-free"
   ],
+  "difficulty": "Hard",
   "time": "Overnight + ~bake",
   "servingsLabel": "Rolls",
   "baseServings": 36,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 175,
+   "protein": 3,
+   "carbs": 32,
+   "fat": 3
+  },
   "desc": "Overnight crescent dinner rolls started at 5PM and baked the next morning.",
   "ingredients": [
    {
@@ -4541,9 +5025,17 @@ window.RECIPES = [
    "make-ahead",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "Overnight + ~1.5 hr",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 485,
+   "protein": 25,
+   "carbs": 18,
+   "fat": 30
+  },
   "desc": "Overnight strata of bread, sharp cheddar and sausage baked in an egg and milk custard.",
   "ingredients": [
    {
@@ -4622,11 +5114,22 @@ window.RECIPES = [
   ],
   "tags": [
    "eggs",
-   "stovetop"
+   "stovetop",
+   "vegetarian",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 70,
+   "protein": 6,
+   "carbs": 0,
+   "fat": 5
+  },
   "desc": "Method for boiling eggs to soft or hard doneness, then peeling cleanly under water.",
   "ingredients": [
    {
@@ -4692,11 +5195,21 @@ window.RECIPES = [
    "vegetarian",
    "mexican",
    "sauce",
-   "stovetop"
+   "stovetop",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 10,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 35,
+   "protein": 1,
+   "carbs": 3,
+   "fat": 3
+  },
   "desc": "Quick stovetop enchilada sauce built from toasted spices, tomato paste, and stock.",
   "ingredients": [
    {
@@ -4801,9 +5314,17 @@ window.RECIPES = [
    "stovetop",
    "chicken"
   ],
+  "difficulty": "Medium",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 45,
+   "protein": 1,
+   "carbs": 2,
+   "fat": 3
+  },
   "desc": "A homemade red enchilada sauce built from a spiced roux and chicken broth.",
   "ingredients": [
    {
@@ -4921,9 +5442,12 @@ window.RECIPES = [
    "freezer-friendly",
    "make-ahead"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 1,
+  "servingsEstimated": true,
+  "nutrition": null,
   "desc": "How to freeze bread, meat, garlic, lemon juice and cookie dough for long storage.",
   "ingredients": [],
   "steps": [
@@ -4967,9 +5491,17 @@ window.RECIPES = [
    "vegetarian",
    "baked"
   ],
+  "difficulty": "Medium",
   "time": "~17 min",
   "servingsLabel": "Servings",
   "baseServings": 10,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 385,
+   "protein": 12,
+   "carbs": 50,
+   "fat": 12
+  },
   "desc": "Oven-baked French toast made with thick-cut challah dipped in a cinnamon egg custard.",
   "ingredients": [
    {
@@ -5053,9 +5585,17 @@ window.RECIPES = [
    "casserole",
    "beans"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 520,
+   "protein": 22,
+   "carbs": 40,
+   "fat": 30
+  },
   "desc": "A layered Tex-Mex casserole of ground beef, refried beans, enchilada sauce, and Fritos.",
   "ingredients": [
    {
@@ -5131,9 +5671,17 @@ window.RECIPES = [
    "vegetarian",
    "make-ahead"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 10,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 240,
+   "protein": 3,
+   "carbs": 38,
+   "fat": 9
+  },
   "desc": "A chilled lemon jello salad with pineapple and bananas topped with a cooked custard whipped-cream frosting.",
   "ingredients": [
    {
@@ -5236,11 +5784,20 @@ window.RECIPES = [
   "tags": [
    "frosting",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 14,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 235,
+   "protein": 3,
+   "carbs": 21,
+   "fat": 12
+  },
   "desc": "Creamy peanut butter frosting made with powdered sugar, butter, and milk.",
   "ingredients": [
    {
@@ -5294,11 +5851,20 @@ window.RECIPES = [
    "fudge",
    "candy",
    "no-bake",
-   "vegetarian"
+   "vegetarian",
+   "gluten-free"
   ],
+  "difficulty": "Medium",
   "time": "~10 min + chill",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 16,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 265,
+   "protein": 2,
+   "carbs": 40,
+   "fat": 12
+  },
   "desc": "Classic semi-sweet chocolate fudge made in an 8x8 pan and chilled to set.",
   "ingredients": [
    {
@@ -5372,11 +5938,20 @@ window.RECIPES = [
    "vegetarian",
    "candy",
    "fudge",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Medium",
   "time": "~5 min cook",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 36,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 105,
+   "protein": 2,
+   "carbs": 18,
+   "fat": 3
+  },
   "desc": "Nana's brown sugar peanut butter fudge with marshmallow creme, beaten smooth and cut into squares.",
   "ingredients": [
    {
@@ -5456,11 +6031,20 @@ window.RECIPES = [
    "vegetarian",
    "candy",
    "fudge",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Hard",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 36,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 100,
+   "protein": 2,
+   "carbs": 15,
+   "fat": 4
+  },
   "desc": "Creamy peanut butter fudge made with marshmallow creme, cut into squares.",
   "ingredients": [
    {
@@ -5531,9 +6115,17 @@ window.RECIPES = [
    "baked",
    "bread"
   ],
+  "difficulty": "Easy",
   "time": "~7 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 245,
+   "protein": 3,
+   "carbs": 21,
+   "fat": 15
+  },
   "desc": "Thin baguette slices brushed with garlic butter and baked until crisp.",
   "ingredients": [
    {
@@ -5620,9 +6212,17 @@ window.RECIPES = [
    "party",
    "vegetarian"
   ],
+  "difficulty": "Medium",
   "time": "~45 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 16,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 120,
+   "protein": 3,
+   "carbs": 22,
+   "fat": 2
+  },
   "desc": "Soft yeast dough rolled into ropes, tied into knots, baked, and brushed with garlic spread and parmesan.",
   "ingredients": [
    {
@@ -5704,11 +6304,20 @@ window.RECIPES = [
   ],
   "tags": [
    "vegetarian",
-   "frosting"
+   "frosting",
+   "gluten-free"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 170,
+   "protein": 2,
+   "carbs": 27,
+   "fat": 6
+  },
   "desc": "A cooked butterscotch-chocolate frosting thickened with egg yolk for German chocolate cake.",
   "ingredients": [
    {
@@ -5790,11 +6399,22 @@ window.RECIPES = [
    "vegetarian",
    "mexican",
    "no-bake",
-   "dip"
+   "dip",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~10 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 95,
+   "protein": 1,
+   "carbs": 5,
+   "fat": 8
+  },
   "desc": "A fresh avocado dip with red onion, cilantro, lime, and jalapeño.",
   "ingredients": [
    {
@@ -5871,11 +6491,20 @@ window.RECIPES = [
   "tags": [
    "pork",
    "sauce",
-   "marinade"
+   "marinade",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 65,
+   "protein": 0,
+   "carbs": 4,
+   "fat": 6
+  },
   "desc": "A whisked honey butter sauce paired with a paprika-cayenne spice rub for ribs.",
   "ingredients": [
    {
@@ -5965,11 +6594,20 @@ window.RECIPES = [
    "seafood",
    "stovetop",
    "asian",
-   "make-ahead"
+   "make-ahead",
+   "dairy-free"
   ],
+  "difficulty": "Medium",
   "time": "15 min marinate + ~5 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 195,
+   "protein": 23,
+   "carbs": 14,
+   "fat": 4
+  },
   "desc": "Shrimp marinated in a honey, soy, and garlic sauce, then quickly seared in a skillet.",
   "ingredients": [
    {
@@ -6049,9 +6687,17 @@ window.RECIPES = [
    "pizza",
    "overnight"
   ],
+  "difficulty": "Hard",
   "time": "Overnight + ~45 min active",
   "servingsLabel": "Pizzas",
   "baseServings": 2,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 1240,
+   "protein": 60,
+   "carbs": 120,
+   "fat": 58
+  },
   "desc": "King Arthur '00' Neapolitan dough topped with a quick seasoned tomato sauce, mozzarella and parmesan, Italian sausage, and a finishing drizzle of hot honey. Makes two 10–12\" pies.",
   "ingredients": [
    {
@@ -6218,9 +6864,17 @@ window.RECIPES = [
    "rolls",
    "bread"
   ],
+  "difficulty": "Hard",
   "time": "Rise time + ~20 min bake",
   "servingsLabel": "Rolls",
-  "baseServings": null,
+  "baseServings": 18,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 310,
+   "protein": 6,
+   "carbs": 49,
+   "fat": 10
+  },
   "desc": "Soft yeast-raised cinnamon rolls rolled with butter, sugar and cinnamon and finished with buttercream frosting.",
   "ingredients": [
    {
@@ -6337,9 +6991,17 @@ window.RECIPES = [
    "vegetarian",
    "baked"
   ],
+  "difficulty": "Easy",
   "time": "~10 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 36,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 145,
+   "protein": 1,
+   "carbs": 17,
+   "fat": 8
+  },
   "desc": "Spiced molasses ginger cookies rolled in granulated sugar with chocolate chips mixed in.",
   "ingredients": [
    {
@@ -6444,9 +7106,17 @@ window.RECIPES = [
    "vegetarian",
    "baked"
   ],
+  "difficulty": "Easy",
   "time": "~10 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 55,
+   "protein": 2,
+   "carbs": 5,
+   "fat": 3
+  },
   "desc": "Crispy oven-baked kale chips tossed with popcorn seasoning and salt.",
   "ingredients": [
    {
@@ -6523,11 +7193,22 @@ window.RECIPES = [
   ],
   "tags": [
    "vegetarian",
-   "make-ahead"
+   "make-ahead",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Medium",
   "time": "Overnight + ~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 90,
+   "protein": 4,
+   "carbs": 4,
+   "fat": 7
+  },
   "desc": "White button mushrooms boiled then steeped in a tangy vinegar-garlic marinade overnight.",
   "ingredients": [
    {
@@ -6647,11 +7328,20 @@ window.RECIPES = [
   "tags": [
    "frosting",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 16,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 145,
+   "protein": 1,
+   "carbs": 22,
+   "fat": 6
+  },
   "desc": "Rich, lightly sweet frosting made from mascarpone, cream cheese and sifted powdered sugar.",
   "ingredients": [
    {
@@ -6693,11 +7383,20 @@ window.RECIPES = [
    "vegetarian",
    "low-carb",
    "stovetop",
-   "comfort-food"
+   "comfort-food",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 125,
+   "protein": 5,
+   "carbs": 7,
+   "fat": 9
+  },
   "desc": "Creamy mashed cauliflower blended with cream cheese, sour cream and cheddar.",
   "ingredients": [
    {
@@ -6773,9 +7472,17 @@ window.RECIPES = [
    "vegetarian",
    "baked"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 140,
+   "protein": 13,
+   "carbs": 7,
+   "fat": 7
+  },
   "desc": "Meatless meatballs made with Morning Star crumbles, baked until set.",
   "ingredients": [
    {
@@ -6853,9 +7560,17 @@ window.RECIPES = [
    "comfort-food",
    "american"
   ],
+  "difficulty": "Medium",
   "time": "~1 hr",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 460,
+   "protein": 22,
+   "carbs": 30,
+   "fat": 24
+  },
   "desc": "A classic baked meatloaf with a sweet brown sugar, mustard, and ketchup topping.",
   "ingredients": [
    {
@@ -6966,9 +7681,17 @@ window.RECIPES = [
    "baked",
    "party"
   ],
+  "difficulty": "Easy",
   "time": "~25 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 180,
+   "protein": 6,
+   "carbs": 12,
+   "fat": 10
+  },
   "desc": "Baked layered bean and cheese dip topped with guacamole, tomatoes and green onions for chips.",
   "ingredients": [
    {
@@ -7061,11 +7784,20 @@ window.RECIPES = [
    "candy",
    "no-bake",
    "vegetarian",
-   "party"
+   "party",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Pieces",
-  "baseServings": null,
+  "baseServings": 48,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 50,
+   "protein": 0,
+   "carbs": 10,
+   "fat": 1
+  },
   "desc": "Soft cream cheese mints flavored with almond and shaped in molds or cutters.",
   "ingredients": [
    {
@@ -7140,11 +7872,20 @@ window.RECIPES = [
   "tags": [
    "candy",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 85,
+   "protein": 0,
+   "carbs": 17,
+   "fat": 2
+  },
   "desc": "Quick almond-flavored mints kneaded smooth and molded or sliced.",
   "ingredients": [
    {
@@ -7224,11 +7965,21 @@ window.RECIPES = [
    "vegetarian",
    "asian",
    "japanese",
-   "stovetop"
+   "stovetop",
+   "vegan",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~5 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 2,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 80,
+   "protein": 1,
+   "carbs": 16,
+   "fat": 0
+  },
   "desc": "A quick sweet-savory mirin and soy sauce thickened with cornstarch for meat, veg, rice, or sushi.",
   "ingredients": [
    {
@@ -7289,11 +8040,21 @@ window.RECIPES = [
    "japanese",
    "sauce",
    "marinade",
-   "vegetarian"
+   "vegetarian",
+   "vegan",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~5 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 2,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 185,
+   "protein": 2,
+   "carbs": 12,
+   "fat": 14
+  },
   "desc": "A quick creamy miso sauce whisked in a hot skillet for marinating steaks or serving as a sauce.",
   "ingredients": [
    {
@@ -7346,11 +8107,20 @@ window.RECIPES = [
   "tags": [
    "frosting",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 175,
+   "protein": 0,
+   "carbs": 31,
+   "fat": 5
+  },
   "desc": "Coffee-and-Nesquik buttercream frosting flavored with brewed coffee and vanilla.",
   "ingredients": [
    {
@@ -7416,9 +8186,17 @@ window.RECIPES = [
    "stovetop",
    "mushroom"
   ],
+  "difficulty": "Easy",
   "time": "~45 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 115,
+   "protein": 3,
+   "carbs": 8,
+   "fat": 6
+  },
   "desc": "A savory portabella mushroom soup built on beef and chicken stock with sauteed onion, carrot and celery.",
   "ingredients": [
    {
@@ -7535,9 +8313,17 @@ window.RECIPES = [
    "baked",
    "vegetarian"
   ],
+  "difficulty": "Easy",
   "time": "~30 min",
   "servingsLabel": "Cookies",
   "baseServings": 48,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 115,
+   "protein": 1,
+   "carbs": 18,
+   "fat": 4
+  },
   "desc": "Soft oatmeal cookies loaded with plumped raisins and Quaker quick oats.",
   "ingredients": [
    {
@@ -7639,11 +8425,20 @@ window.RECIPES = [
   ],
   "tags": [
    "vegetarian",
-   "stovetop"
+   "stovetop",
+   "gluten-free"
   ],
+  "difficulty": "Medium",
   "time": "~45 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 75,
+   "protein": 1,
+   "carbs": 5,
+   "fat": 6
+  },
   "desc": "Vidalia onions cooked low and slow in butter until deeply caramelized.",
   "ingredients": [
    {
@@ -7694,11 +8489,22 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "make-ahead",
-   "overnight"
+   "overnight",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "Overnight + ~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 35,
+   "protein": 0,
+   "carbs": 8,
+   "fat": 0
+  },
   "desc": "Quick-pickled red onions in a sweet-tangy cider vinegar brine.",
   "ingredients": [
    {
@@ -7767,11 +8573,20 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "roasted",
-   "baked"
+   "baked",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "~50 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 80,
+   "protein": 1,
+   "carbs": 7,
+   "fat": 6
+  },
   "desc": "Sweet onions roasted with butter and balsamic until golden and tender.",
   "ingredients": [
    {
@@ -7849,11 +8664,21 @@ window.RECIPES = [
   "tags": [
    "frosting",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 205,
+   "protein": 0,
+   "carbs": 31,
+   "fat": 9
+  },
   "desc": "Fluffy marshmallow-and-shortening filling that mimics the creme center of an Oreo.",
   "ingredients": [
    {
@@ -7921,11 +8746,21 @@ window.RECIPES = [
   ],
   "tags": [
    "chicken",
-   "baked"
+   "baked",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "Overnight + ~35 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 320,
+   "protein": 25,
+   "carbs": 0,
+   "fat": 24
+  },
   "desc": "Crispy skin-on, bone-in chicken thighs baked skin-side down then flipped to finish.",
   "ingredients": [
    {
@@ -7982,9 +8817,17 @@ window.RECIPES = [
    "vegetarian",
    "baked"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 16,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 250,
+   "protein": 3,
+   "carbs": 38,
+   "fat": 10
+  },
   "desc": "Yellow cake baked over spiraled peaches and dark brown sugar for a caramelized upside-down finish.",
   "ingredients": [
    {
@@ -8053,9 +8896,17 @@ window.RECIPES = [
    "baked",
    "vegetarian"
   ],
+  "difficulty": "Easy",
   "time": "~10 min",
   "servingsLabel": "Cookies",
-  "baseServings": null,
+  "baseServings": 36,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 110,
+   "protein": 3,
+   "carbs": 14,
+   "fat": 5
+  },
   "desc": "Soft peanut butter cookies sweetened with dark brown sugar and a touch of honey.",
   "ingredients": [
    {
@@ -8141,11 +8992,22 @@ window.RECIPES = [
   ],
   "tags": [
    "vegetarian",
-   "roasted"
+   "roasted",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 80,
+   "protein": 1,
+   "carbs": 18,
+   "fat": 1
+  },
   "desc": "Sliced pineapple roasted until beginning to brown and caramelized.",
   "ingredients": [
    {
@@ -8229,11 +9091,21 @@ window.RECIPES = [
    "make-ahead",
    "overnight",
    "baked",
-   "vegetarian"
+   "vegetarian",
+   "vegan",
+   "dairy-free"
   ],
+  "difficulty": "Hard",
   "time": "Overnight (24 hrs) + ~15 min",
   "servingsLabel": "Pizzas",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 540,
+   "protein": 13,
+   "carbs": 107,
+   "fat": 4
+  },
   "desc": "A bread-flour New York style pizza dough that chills at least 24 hours before shaping into four crusts.",
   "ingredients": [
    {
@@ -8327,11 +9199,21 @@ window.RECIPES = [
    "sauce",
    "glaze",
    "vegetarian",
-   "asian"
+   "asian",
+   "vegan",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 100,
+   "protein": 0,
+   "carbs": 25,
+   "fat": 0
+  },
   "desc": "A sweet-tangy plum jam glaze with soy sauce and balsamic, thickened with cornstarch.",
   "ingredients": [
    {
@@ -8396,11 +9278,21 @@ window.RECIPES = [
    "chicken",
    "stovetop",
    "slow-cooker",
-   "freezer-friendly"
+   "freezer-friendly",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 250,
+   "protein": 31,
+   "carbs": 0,
+   "fat": 14
+  },
   "desc": "Chicken gently simmered until tender, shredded, and finished with a reduced broth.",
   "ingredients": [
    {
@@ -8448,9 +9340,17 @@ window.RECIPES = [
    "casserole",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "~60 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 530,
+   "protein": 16,
+   "carbs": 38,
+   "fat": 33
+  },
   "desc": "A classic chicken pot pie with cream of chicken soup, mixed vegetables, and a double Pillsbury crust.",
   "ingredients": [
    {
@@ -8527,11 +9427,22 @@ window.RECIPES = [
   "tags": [
    "potato",
    "vegetarian",
-   "baked"
+   "baked",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~45-60 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 300,
+   "protein": 7,
+   "carbs": 60,
+   "fat": 4
+  },
   "desc": "Oven-baked russet potato rubbed with oil and Kosher salt for a crisp, fluffy result.",
   "ingredients": [
    {
@@ -8610,11 +9521,21 @@ window.RECIPES = [
    "potato",
    "eggs",
    "vegetarian",
-   "make-ahead"
+   "make-ahead",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~25 min + 3 hr chill",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 10,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 350,
+   "protein": 4,
+   "carbs": 30,
+   "fat": 22
+  },
   "desc": "Creamy potato salad with boiled eggs, onion, and a tangy Miracle Whip dressing.",
   "ingredients": [
    {
@@ -8696,6 +9617,75 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "garlic-red-potatoes",
+  "title": "Potatoes - Garlic Red",
+  "source": "",
+  "courses": [
+   "Side"
+  ],
+  "tags": [
+   "potato",
+   "vegetarian",
+   "baked",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "",
+  "servingsLabel": "Servings",
+  "baseServings": 10,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 435,
+   "protein": 5,
+   "carbs": 38,
+   "fat": 27
+  },
+  "desc": "Cubed red potatoes baked in garlic butter until tender.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 5,
+    "unit": "lb",
+    "name": "red potatoes"
+   },
+   {
+    "id": "0002",
+    "amount": 3,
+    "unit": "stick",
+    "name": "butter"
+   },
+   {
+    "id": "0003",
+    "amount": null,
+    "unit": null,
+    "name": "garlic powder (1 tbsp+)"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Melt butter, add garlic.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Wash potatoes, cut into cubes.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Place cubes in a 9x13\" pan. Pour melted butter and garlic over potatoes. Stir so all are covered.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Bake at 350ºF until tender.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
   "id": "cheesy-potatoes-jan-kuba",
   "title": "Potatoes (Cheesy, Jan Kuba)",
   "source": "",
@@ -8710,9 +9700,17 @@ window.RECIPES = [
    "comfort-food",
    "potluck"
   ],
+  "difficulty": "Medium",
   "time": "~45 min - 1 hr",
   "servingsLabel": "Servings",
   "baseServings": 8,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 465,
+   "protein": 7,
+   "carbs": 35,
+   "fat": 30
+  },
   "desc": "A creamy baked hashbrown casserole with two cream soups, sharp cheddar, and a crunchy cornflake topping.",
   "ingredients": [
    {
@@ -8806,11 +9804,20 @@ window.RECIPES = [
    "potato",
    "vegetarian",
    "freezer-friendly",
-   "comfort-food"
+   "comfort-food",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 10,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 310,
+   "protein": 6,
+   "carbs": 40,
+   "fat": 12
+  },
   "desc": "Creamy Yukon gold mashed potatoes with butter and cream cheese.",
   "ingredients": [
    {
@@ -8889,66 +9896,6 @@ window.RECIPES = [
   "notes": "Freeze extra in freezer-safe baggies with all air removed, labeled."
  },
  {
-  "id": "garlic-red-potatoes",
-  "title": "Potatoes - Garlic Red",
-  "source": "",
-  "courses": [
-   "Side"
-  ],
-  "tags": [
-   "potato",
-   "vegetarian",
-   "baked"
-  ],
-  "time": "",
-  "servingsLabel": "Servings",
-  "baseServings": null,
-  "desc": "Cubed red potatoes baked in garlic butter until tender.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 5,
-    "unit": "lb",
-    "name": "red potatoes"
-   },
-   {
-    "id": "0002",
-    "amount": 3,
-    "unit": "stick",
-    "name": "butter"
-   },
-   {
-    "id": "0003",
-    "amount": null,
-    "unit": null,
-    "name": "garlic powder (1 tbsp+)"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Melt butter, add garlic.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Wash potatoes, cut into cubes.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Place cubes in a 9x13\" pan. Pour melted butter and garlic over potatoes. Stir so all are covered.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Bake at 350ºF until tender.",
-    "timer": null
-   }
-  ],
-  "notes": ""
- },
- {
   "id": "nanas-seasoned-pretzels",
   "title": "Pretzels (Nana's Seasoned)",
   "source": "",
@@ -8961,9 +9908,17 @@ window.RECIPES = [
    "no-bake",
    "party"
   ],
+  "difficulty": "Easy",
   "time": "~2 hr",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 270,
+   "protein": 3,
+   "carbs": 30,
+   "fat": 14
+  },
   "desc": "Tiny twist pretzels tossed with ranch mix and buttery oil until the seasoning is fully absorbed.",
   "ingredients": [
    {
@@ -9016,9 +9971,17 @@ window.RECIPES = [
    "vegetarian",
    "no-bake"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 185,
+   "protein": 1,
+   "carbs": 32,
+   "fat": 7
+  },
   "desc": "Chewy homemade caramels cooked to soft-ball stage and studded with puffed wheat.",
   "ingredients": [
    {
@@ -9098,11 +10061,22 @@ window.RECIPES = [
   ],
   "tags": [
    "party",
-   "vegetarian"
+   "vegetarian",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 140,
+   "protein": 1,
+   "carbs": 35,
+   "fat": 0
+  },
   "desc": "A fruity party punch with raspberry Kool-Aid, lemonade, soda, and frozen strawberries.",
   "ingredients": [
    {
@@ -9172,11 +10146,22 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "roasted",
-   "freezer-friendly"
+   "freezer-friendly",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 40,
+   "protein": 1,
+   "carbs": 7,
+   "fat": 0
+  },
   "desc": "Broiler-roasted red peppers charred, peeled, and ready to use or freeze.",
   "ingredients": [
    {
@@ -9258,9 +10243,17 @@ window.RECIPES = [
    "baked",
    "frosting"
   ],
+  "difficulty": "Medium",
   "time": "~10 min",
   "servingsLabel": "Cookies",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 180,
+   "protein": 2,
+   "carbs": 25,
+   "fat": 7
+  },
   "desc": "Cake-mix red velvet cookies topped with whipped cream cheese frosting.",
   "ingredients": [
    {
@@ -9341,11 +10334,22 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "rice",
-   "stovetop"
+   "stovetop",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~35 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 170,
+   "protein": 3,
+   "carbs": 37,
+   "fat": 1
+  },
   "desc": "Basic stovetop white rice, rinsed and simmered until tender.",
   "ingredients": [
    {
@@ -9385,11 +10389,20 @@ window.RECIPES = [
   ],
   "tags": [
    "rice",
-   "vegetarian"
+   "vegetarian",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "~35 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 185,
+   "protein": 3,
+   "carbs": 24,
+   "fat": 8
+  },
   "desc": "Minute rice cooked in buttery sauteed onion and chicken broth.",
   "ingredients": [
    {
@@ -9452,11 +10465,22 @@ window.RECIPES = [
   "tags": [
    "rice",
    "vegetarian",
-   "stovetop"
+   "stovetop",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~25 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 170,
+   "protein": 3,
+   "carbs": 37,
+   "fat": 0
+  },
   "desc": "Foolproof stove-top long grain white rice cooked, rested, and fluffed.",
   "ingredients": [
    {
@@ -9514,9 +10538,17 @@ window.RECIPES = [
    "vegetarian",
    "kid-friendly"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 135,
+   "protein": 1,
+   "carbs": 26,
+   "fat": 3
+  },
   "desc": "Classic no-bake marshmallow and butter cereal treats cut into squares.",
   "ingredients": [
    {
@@ -9577,11 +10609,22 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "roasted",
-   "asian"
+   "asian",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 140,
+   "protein": 3,
+   "carbs": 18,
+   "fat": 7
+  },
   "desc": "Brussels sprouts roasted until nearly charred, then tossed with sweet chili sauce.",
   "ingredients": [
    {
@@ -9668,9 +10711,17 @@ window.RECIPES = [
    "make-ahead",
    "potluck"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 270,
+   "protein": 4,
+   "carbs": 32,
+   "fat": 13
+  },
   "desc": "Boiled rotini tossed with fresh veggies and a sweet-tangy Italian oil and vinegar dressing.",
   "ingredients": [
    {
@@ -9740,11 +10791,20 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "beans",
-   "salad"
+   "salad",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 180,
+   "protein": 6,
+   "carbs": 30,
+   "fat": 5
+  },
   "desc": "Butter lettuce salad with sweet corn, kidney beans, tomatoes, and craisins tossed in creamy balsamic.",
   "ingredients": [
    {
@@ -9820,11 +10880,21 @@ window.RECIPES = [
    "salmon",
    "seafood",
    "fish",
-   "stovetop"
+   "stovetop",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Medium",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 335,
+   "protein": 34,
+   "carbs": 0,
+   "fat": 22
+  },
   "desc": "Crisp-skinned pan-seared salmon fillets, optionally finished with butter or soy garlic sauce.",
   "ingredients": [
    {
@@ -9888,11 +10958,22 @@ window.RECIPES = [
    "sauce",
    "mexican",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 16,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 20,
+   "protein": 1,
+   "carbs": 4,
+   "fat": 0
+  },
   "desc": "A smooth restaurant-style salsa of fire-roasted tomatoes, onion, chili, cilantro and cumin.",
   "ingredients": [
    {
@@ -9988,9 +11069,17 @@ window.RECIPES = [
    "kid-friendly",
    "vegetarian"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 290,
+   "protein": 5,
+   "carbs": 40,
+   "fat": 14
+  },
   "desc": "No-bake peanut butter Rice Krispie bars topped with melted chocolate and butterscotch chips.",
   "ingredients": [
    {
@@ -10064,11 +11153,20 @@ window.RECIPES = [
   "tags": [
    "scallops",
    "seafood",
-   "stovetop"
+   "stovetop",
+   "gluten-free"
   ],
+  "difficulty": "Medium",
   "time": "~10 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 185,
+   "protein": 27,
+   "carbs": 1,
+   "fat": 5
+  },
   "desc": "Pan-seared sea scallops with a golden crust and translucent center.",
   "ingredients": [
    {
@@ -10134,11 +11232,21 @@ window.RECIPES = [
    "Basics"
   ],
   "tags": [
-   "seafood"
+   "seafood",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 1,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 90,
+   "protein": 18,
+   "carbs": 0,
+   "fat": 1
+  },
   "desc": "Quick method for thawing frozen seafood under cool running water.",
   "ingredients": [
    {
@@ -10168,11 +11276,20 @@ window.RECIPES = [
   "tags": [
    "shrimp",
    "seafood",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 240,
+   "protein": 15,
+   "carbs": 8,
+   "fat": 16
+  },
   "desc": "A creamy cream cheese and shrimp dip served with potato chips or crackers.",
   "ingredients": [
    {
@@ -10226,9 +11343,17 @@ window.RECIPES = [
    "baked",
    "vegetarian"
   ],
+  "difficulty": "Medium",
   "time": "~8-10 min bake",
-  "servingsLabel": "Dozen",
-  "baseServings": 2,
+  "servingsLabel": "Cookies",
+  "baseServings": 24,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 130,
+   "protein": 2,
+   "carbs": 19,
+   "fat": 6
+  },
   "desc": "Soft cinnamon-sugar cookies leavened with cream of tartar and baking soda.",
   "ingredients": [
    {
@@ -10312,9 +11437,17 @@ window.RECIPES = [
    "vegetarian",
    "stovetop"
   ],
+  "difficulty": "Medium",
   "time": "~15 min",
-  "servingsLabel": "Cups",
-  "baseServings": 1,
+  "servingsLabel": "Servings",
+  "baseServings": 8,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 70,
+   "protein": 1,
+   "carbs": 10,
+   "fat": 3
+  },
   "desc": "A sticky soy-garlic glaze finished with butter and Dijon, great over salmon or chicken.",
   "ingredients": [
    {
@@ -10393,9 +11526,17 @@ window.RECIPES = [
    "casserole",
    "italian"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
   "baseServings": 6,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 715,
+   "protein": 46,
+   "carbs": 62,
+   "fat": 26
+  },
   "desc": "A layered baked spaghetti casserole with chunky tomato sauce, a creamy cheese blend, and lots of mozzarella.",
   "ingredients": [
    {
@@ -10473,9 +11614,17 @@ window.RECIPES = [
    "italian",
    "stovetop"
   ],
+  "difficulty": "Easy",
   "time": "~20 min",
   "servingsLabel": "Servings",
   "baseServings": 2,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 415,
+   "protein": 16,
+   "carbs": 44,
+   "fat": 19
+  },
   "desc": "Spaghetti tossed with a no-cook sauce of anchovies, garlic, chili, and parmesan.",
   "ingredients": [
    {
@@ -10548,9 +11697,17 @@ window.RECIPES = [
    "stovetop",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 680,
+   "protein": 15,
+   "carbs": 43,
+   "fat": 47
+  },
   "desc": "Medium shell pasta in a creamy, spicy tomato sauce with parmesan and mozzarella.",
   "ingredients": [
    {
@@ -10662,11 +11819,20 @@ window.RECIPES = [
    "vegetarian",
    "salad",
    "dressing",
-   "no-bake"
+   "no-bake",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~1 hr chill",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 215,
+   "protein": 3,
+   "carbs": 19,
+   "fat": 15
+  },
   "desc": "Baby spinach and strawberries tossed with a sweet sesame-poppy style dressing.",
   "ingredients": [
    {
@@ -10747,11 +11913,20 @@ window.RECIPES = [
   ],
   "tags": [
    "beef",
-   "stovetop"
+   "stovetop",
+   "gluten-free"
   ],
+  "difficulty": "Medium",
   "time": "~30 min",
   "servingsLabel": "Servings",
   "baseServings": 1,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 1000,
+   "protein": 75,
+   "carbs": 2,
+   "fat": 80
+  },
   "desc": "A pan-seared steak started in a cold skillet and basted with butter and garlic to minimize smoke.",
   "ingredients": [
    {
@@ -10842,9 +12017,17 @@ window.RECIPES = [
    "stir-fry",
    "one-pan"
   ],
+  "difficulty": "Medium",
   "time": "~25 min + marinate",
   "servingsLabel": "Servings",
   "baseServings": 3,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 510,
+   "protein": 23,
+   "carbs": 53,
+   "fat": 17
+  },
   "desc": "A fast one-pan dinner: seared marinated sirloin, day-old jasmine rice, and veggies in a savory soy-oyster sauce.",
   "ingredients": [
    {
@@ -10980,9 +12163,17 @@ window.RECIPES = [
    "comfort-food",
    "freezer-friendly"
   ],
+  "difficulty": "Easy",
   "time": "~4-5 hrs",
   "servingsLabel": "Servings",
   "baseServings": 8,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 110,
+   "protein": 3,
+   "carbs": 11,
+   "fat": 4
+  },
   "desc": "A slow-cooker beef and cabbage stew with fire-roasted tomatoes, celery, and onion.",
   "ingredients": [
    {
@@ -11073,9 +12264,17 @@ window.RECIPES = [
    "holiday",
    "comfort-food"
   ],
+  "difficulty": "Medium",
   "time": "~45 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 245,
+   "protein": 4,
+   "carbs": 22,
+   "fat": 14
+  },
   "desc": "Baked Stove Top stuffing enriched with onion, egg, half and half, chicken stock, and optional oysters.",
   "ingredients": [
    {
@@ -11160,11 +12359,20 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "beans",
-   "stovetop"
+   "stovetop",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "~20 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 175,
+   "protein": 4,
+   "carbs": 24,
+   "fat": 6
+  },
   "desc": "Butter beans and fresh corn sauteed with onion and red pepper, finished with lemon.",
   "ingredients": [
    {
@@ -11256,11 +12464,20 @@ window.RECIPES = [
    "frosting",
    "glaze",
    "vegetarian",
-   "no-bake"
+   "no-bake",
+   "gluten-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 65,
+   "protein": 0,
+   "carbs": 16,
+   "fat": 0
+  },
   "desc": "A glossy corn-syrup glaze icing for decorating sugar cookies, tinted with gel food coloring.",
   "ingredients": [
    {
@@ -11320,9 +12537,17 @@ window.RECIPES = [
    "baked",
    "vegetarian"
   ],
+  "difficulty": "Easy",
   "time": "~10 min",
   "servingsLabel": "Cookies",
-  "baseServings": null,
+  "baseServings": 36,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 125,
+   "protein": 1,
+   "carbs": 12,
+   "fat": 8
+  },
   "desc": "Classic rolled sugar cookies pressed flat with a sugar-dipped glass and baked.",
   "ingredients": [
    {
@@ -11416,11 +12641,21 @@ window.RECIPES = [
    "asian",
    "sauce",
    "glaze",
-   "stovetop"
+   "stovetop",
+   "vegan",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~10 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 3,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 105,
+   "protein": 2,
+   "carbs": 14,
+   "fat": 4
+  },
   "desc": "Glossy sweet chili and soy glaze cooked down with garlic and finished with green onion.",
   "ingredients": [
    {
@@ -11494,11 +12729,20 @@ window.RECIPES = [
    "mexican",
    "tex-mex",
    "baked",
-   "vegetarian"
+   "vegetarian",
+   "dairy-free"
   ],
+  "difficulty": "Medium",
   "time": "~15 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 220,
+   "protein": 4,
+   "carbs": 26,
+   "fat": 10
+  },
   "desc": "Flour tortillas crisped in the oven then pan-fried into stuffed taco shells.",
   "ingredients": [
    {
@@ -11548,11 +12792,20 @@ window.RECIPES = [
   "tags": [
    "sauce",
    "vegetarian",
-   "make-ahead"
+   "make-ahead",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 5,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 150,
+   "protein": 0,
+   "carbs": 2,
+   "fat": 16
+  },
   "desc": "A creamy mayonnaise-based tartar sauce with sweet pickles, lemon, and Dijon.",
   "ingredients": [
    {
@@ -11626,9 +12879,17 @@ window.RECIPES = [
    "chicken",
    "stir-fry"
   ],
+  "difficulty": "Medium",
   "time": "~30 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 380,
+   "protein": 20,
+   "carbs": 30,
+   "fat": 14
+  },
   "desc": "A copycat Sarku teriyaki sauce simmered with garlic and thickened with cornstarch, served over chicken and stir-fried vegetables.",
   "ingredients": [
    {
@@ -11752,11 +13013,22 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "holiday",
-   "christmas"
+   "christmas",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~20 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 16,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 145,
+   "protein": 0,
+   "carbs": 37,
+   "fat": 0
+  },
   "desc": "Spiced hot apple cider simmered with allspice, cloves, and cinnamon, garnished with clove-studded oranges.",
   "ingredients": [
    {
@@ -11833,9 +13105,17 @@ window.RECIPES = [
    "asian",
    "party"
   ],
+  "difficulty": "Medium",
   "time": "",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 150,
+   "protein": 3,
+   "carbs": 17,
+   "fat": 7
+  },
   "desc": "Baked wonton cups filled with a sweet and spicy cream cheese mixture.",
   "ingredients": [
    {
@@ -11911,11 +13191,20 @@ window.RECIPES = [
    "dip",
    "vegetarian",
    "japanese",
-   "make-ahead"
+   "make-ahead",
+   "dairy-free"
   ],
+  "difficulty": "Easy",
   "time": "~5 min",
   "servingsLabel": "Servings",
-  "baseServings": null,
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 140,
+   "protein": 0,
+   "carbs": 4,
+   "fat": 15
+  },
   "desc": "Creamy mayo-based hibachi-style sauce with ketchup, sweet chili and sriracha.",
   "ingredients": [
    {
@@ -11997,11 +13286,20 @@ window.RECIPES = [
   "tags": [
    "vegetarian",
    "baked",
-   "italian"
+   "italian",
+   "gluten-free"
   ],
+  "difficulty": "Medium",
   "time": "~45 min prep + ~30 min bake",
   "servingsLabel": "Servings",
   "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 160,
+   "protein": 8,
+   "carbs": 7,
+   "fat": 11
+  },
   "desc": "Layered zucchini and tomatoes with garlic, basil, and Parmesan baked until bubbling.",
   "ingredients": [
    {

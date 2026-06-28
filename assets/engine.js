@@ -99,8 +99,13 @@
     ].join('  ').toLowerCase();
   });
 
+  data.forEach(function (r) {
+    r._diffRank = ({ Easy:0, Medium:1, Hard:2 })[r.difficulty]; if (r._diffRank == null) r._diffRank = 9;
+    r._cal = (r.nutrition && typeof r.nutrition.calories === 'number') ? r.nutrition.calories : null;
+  });
+
   /* ---------- state ---------- */
-  var state = { q:'', courses:[], tags:[], sort:'az', open:{} };
+  var state = { q:'', courses:[], tags:[], diffs:[], cals:[], sort:'az', open:{} };
 
   /* ---------- DOM refs ---------- */
   var $ = function(id){ return document.getElementById(id); };
@@ -127,6 +132,24 @@
     return '<button class="timer" type="button" data-sec="' + sec + '" aria-label="Start ' + human(sec) + ' timer">⏲ ' + human(sec) + '</button>';
   }
 
+  /* ---------- serving unit + nutrition panel ---------- */
+  function servingUnit(label){
+    var map = { 'Servings':'serving', 'Cookies':'cookie', 'Pizzas':'pizza', 'Rolls':'roll', 'Pieces':'piece', 'Dozen':'dozen', 'Cups':'cup', 'Pies':'pie', 'Loaves':'loaf', 'Bars':'bar', 'Muffins':'muffin' };
+    var l = label || 'Servings';
+    return map[l] || (l.toLowerCase().replace(/s$/, '') || 'serving');
+  }
+  function nutritionHTML(recipe, unit){
+    var n = recipe.nutrition;
+    if (!n || n.calories == null) return '';
+    function macro(v, k){ return '<li><span class="nut-v">' + (v == null ? '–' : v + 'g') + '</span><span class="nut-k">' + k + '</span></li>'; }
+    return '<aside class="nutrition" aria-label="Estimated nutrition per ' + esc(unit) + '">'
+      + '<p class="nut-h">Per ' + esc(unit) + '</p>'
+      + '<p class="nut-cal"><span class="nut-cal-n">' + n.calories + '</span> cal</p>'
+      + '<ul class="nut-macros">' + macro(n.protein, 'Protein') + macro(n.carbs, 'Carbs') + macro(n.fat, 'Fat') + '</ul>'
+      + '<p class="nut-cap">Estimated · per ' + esc(unit) + '</p>'
+      + '</aside>';
+  }
+
   /* ---------- one card ---------- */
   function cardHTML(recipe){
     var mult = recipe._mult || 1;
@@ -146,10 +169,13 @@
            + timerHTML(st.timer) + '</div></li>';
     }).join('');
 
+    var unit = servingUnit(recipe.servingsLabel);
+    var nut = nutritionHTML(recipe, unit);
     var hasIngs = recipe.ingredients.length > 0;
     var hasSteps = recipe.steps.length > 0;
     var bodyInner = '';
-    if (hasIngs) bodyInner += '<div class="col col-ings"><h3 class="col-h">Ingredients</h3><ul class="ings">' + ings + '</ul></div>';
+    if (hasIngs) bodyInner += '<div class="col col-ings">' + nut + '<h3 class="col-h">Ingredients</h3><ul class="ings">' + ings + '</ul></div>';
+    else if (nut) bodyInner += '<div class="col col-ings">' + nut + '</div>';
     if (hasSteps) bodyInner += '<div class="col col-steps"><h3 class="col-h">Method</h3><ol class="steps">' + steps + '</ol></div>';
     var body = bodyInner ? '<div class="body' + (hasIngs ? '' : ' no-ings') + '">' + bodyInner + '</div>' : '';
 
@@ -163,7 +189,7 @@
     var srv = '';
     if (recipe.baseServings != null){
       var lab = recipe.servingsLabel || 'Servings';
-      srv = '<span class="servings"><span class="srvlabel">' + esc(lab) + '</span>'
+      srv = '<span class="servings"><span class="srvlabel">' + esc(lab) + (recipe.servingsEstimated ? '<span class="srv-est" title="Serving count is an estimate">≈</span>' : '') + '</span>'
           + '<span class="srvgroup">'
           + '<button class="srvbtn minus" type="button" aria-label="Fewer">−</button>'
           + '<span class="srvcount" aria-live="polite">' + recipe._servings + '</span>'
@@ -171,7 +197,9 @@
           + '</span></span>';
     }
     var time = recipe.time ? '<span class="time">⏱ ' + esc(recipe.time) + '</span>' : '';
-    var metaRow = (srv || time) ? '<div class="meta">' + srv + time + '</div>' : '';
+    var diff = recipe.difficulty ? '<span class="diff" data-diff="' + recipe.difficulty.toLowerCase() + '"><span class="diff-dot" aria-hidden="true"></span>' + esc(recipe.difficulty) + '</span>' : '';
+    var kcal = recipe._cal != null ? '<span class="kcal">~' + recipe._cal + ' cal</span>' : '';
+    var metaRow = (srv || time || diff || kcal) ? '<div class="meta">' + srv + time + diff + kcal + '</div>' : '';
 
     return '<article class="card anim ' + (open ? 'is-open' : 'is-collapsed') + '" id="recipe-' + recipe.id + '" data-ri="' + recipe._i + '">'
       + '<p class="cat">' + esc(recipe.courses.join(' · ')) + '</p>'
@@ -192,14 +220,20 @@
     var terms = q.split(/\s+/).filter(Boolean);
     return terms.every(function(t){ return r._hay.indexOf(t) !== -1; });
   }
+  function calBucket(c){ return c == null ? null : (c < 400 ? 'light' : (c <= 650 ? 'medium' : 'hearty')); }
   function passesFilters(r){
     if (state.courses.length && !state.courses.some(function(c){ return r.courses.indexOf(c) !== -1; })) return false;
-    return state.tags.every(function(t){ return r.tags.indexOf(t) !== -1; });
+    if (!state.tags.every(function(t){ return r.tags.indexOf(t) !== -1; })) return false;
+    if (state.diffs.length && state.diffs.indexOf((r.difficulty || '').toLowerCase()) === -1) return false;
+    if (state.cals.length){ var b = calBucket(r._cal); if (!b || state.cals.indexOf(b) === -1) return false; }
+    return true;
   }
   var sorters = {
     az:     function(a,b){ return a._title.localeCompare(b._title); },
     time:   function(a,b){ return (a._timeMin - b._timeMin) || a._title.localeCompare(b._title); },
-    course: function(a,b){ return (a.courses[0]||'').localeCompare(b.courses[0]||'') || a._title.localeCompare(b._title); }
+    course: function(a,b){ return (a.courses[0]||'').localeCompare(b.courses[0]||'') || a._title.localeCompare(b._title); },
+    kcal:   function(a,b){ return ((a._cal==null?1e9:a._cal) - (b._cal==null?1e9:b._cal)) || a._title.localeCompare(b._title); },
+    diff:   function(a,b){ return (a._diffRank - b._diffRank) || a._title.localeCompare(b._title); }
   };
 
   function currentList(){
@@ -213,6 +247,8 @@
   function groupKey(r){
     if (state.sort === 'course') return r.courses[0] || 'Other';
     if (state.sort === 'time') return r.time ? 'By time' : 'Time not listed';
+    if (state.sort === 'kcal') return r._cal == null ? 'Not estimated' : (r._cal < 400 ? 'Light · under 400 cal' : (r._cal <= 650 ? 'Medium · 400–650 cal' : 'Hearty · 650+ cal'));
+    if (state.sort === 'diff') return r.difficulty || 'Unrated';
     return (r._title[0] || '#').toUpperCase();
   }
   function indexHTML(list){
@@ -240,6 +276,9 @@
     if (state.q) p.push('<button class="pill" data-kind="q" aria-label="Remove search filter">“' + esc(state.q) + '” <span class="pill-x">×</span></button>');
     state.courses.forEach(function(c){ p.push('<button class="pill" data-kind="course" data-val="' + esc(c) + '" aria-label="Remove filter ' + esc(c) + '">' + esc(c) + ' <span class="pill-x">×</span></button>'); });
     state.tags.forEach(function(t){ p.push('<button class="pill" data-kind="tag" data-val="' + esc(t) + '" aria-label="Remove filter ' + esc(t) + '">' + esc(t) + ' <span class="pill-x">×</span></button>'); });
+    var CAP = function(s){ return s.charAt(0).toUpperCase() + s.slice(1); };
+    state.diffs.forEach(function(d){ p.push('<button class="pill" data-kind="diff" data-val="' + esc(d) + '" aria-label="Remove difficulty ' + esc(d) + '">' + esc(CAP(d)) + ' <span class="pill-x">×</span></button>'); });
+    state.cals.forEach(function(c){ p.push('<button class="pill" data-kind="cal" data-val="' + esc(c) + '" aria-label="Remove calories ' + esc(c) + '">' + esc(CAP(c)) + ' cal <span class="pill-x">×</span></button>'); });
     return p.join('');
   }
 
@@ -249,15 +288,15 @@
     var list = currentList();
 
     // count
-    var active = state.q || state.courses.length || state.tags.length;
+    var active = state.q || state.courses.length || state.tags.length || state.diffs.length || state.cals.length;
     elCount.textContent = list.length + (list.length === 1 ? ' recipe' : ' recipes') + (active ? ' of ' + data.length : '');
 
     // pills + clear-all + filter badge
     elPills.innerHTML = pillsHTML();
     elClearAll.hidden = !active;
-    var nTagF = state.tags.length;
-    elFilterCount.hidden = nTagF === 0;
-    elFilterCount.textContent = nTagF;
+    var nDrawerF = state.tags.length + state.diffs.length + state.cals.length;
+    elFilterCount.hidden = nDrawerF === 0;
+    elFilterCount.textContent = nDrawerF;
 
     // course chip pressed states
     Array.prototype.forEach.call(elCourseChips.querySelectorAll('.chip'), function(ch){
@@ -437,11 +476,29 @@
       other.forEach(function(t){ html += '<button class="chip fd-chip" type="button" data-tag="' + esc(t) + '" aria-pressed="false">' + esc(t) + ' <span class="chip-n">' + counts[t] + '</span></button>'; });
       html += '</div></div>';
     }
+    // difficulty group
+    var dc = { easy:0, medium:0, hard:0 };
+    data.forEach(function(r){ var d = (r.difficulty || '').toLowerCase(); if (dc[d] != null) dc[d]++; });
+    html += '<div class="fd-group"><p class="fd-h">Difficulty</p><div class="fd-tags">'
+      + ['easy','medium','hard'].map(function(d){ return '<button class="chip fd-filter" type="button" data-kind="diff" data-val="' + d + '" aria-pressed="false">' + d.charAt(0).toUpperCase()+d.slice(1) + ' <span class="chip-n">' + dc[d] + '</span></button>'; }).join('')
+      + '</div></div>';
+    // calories group
+    var cc = { light:0, medium:0, hearty:0 };
+    data.forEach(function(r){ var b = calBucket(r._cal); if (b) cc[b]++; });
+    html += '<div class="fd-group"><p class="fd-h">Calories (per serving)</p><div class="fd-tags">'
+      + [['light','Light · under 400'],['medium','Medium · 400–650'],['hearty','Hearty · 650+']].map(function(x){ return '<button class="chip fd-filter" type="button" data-kind="cal" data-val="' + x[0] + '" aria-pressed="false">' + x[1] + ' <span class="chip-n">' + cc[x[0]] + '</span></button>'; }).join('')
+      + '</div>'
+      + '<p class="fd-note">Nutrition is estimated from ingredients — treat it as a guide, not a label.</p></div>';
     elDrawer.innerHTML = html;
   }
   function syncDrawer(){
     Array.prototype.forEach.call(elDrawer.querySelectorAll('.fd-chip'), function(ch){
       ch.setAttribute('aria-pressed', state.tags.indexOf(ch.getAttribute('data-tag')) !== -1 ? 'true' : 'false');
+    });
+    Array.prototype.forEach.call(elDrawer.querySelectorAll('.fd-filter'), function(ch){
+      var kind = ch.getAttribute('data-kind'), val = ch.getAttribute('data-val');
+      var on = (kind === 'diff' ? state.diffs : state.cals).indexOf(val) !== -1;
+      ch.setAttribute('aria-pressed', on ? 'true' : 'false');
     });
   }
 
@@ -451,6 +508,8 @@
     if (state.q) p.push('q=' + encodeURIComponent(state.q));
     if (state.courses.length) p.push('course=' + encodeURIComponent(state.courses.join(',')));
     if (state.tags.length) p.push('tags=' + encodeURIComponent(state.tags.join(',')));
+    if (state.diffs.length) p.push('diff=' + encodeURIComponent(state.diffs.join(',')));
+    if (state.cals.length) p.push('cal=' + encodeURIComponent(state.cals.join(',')));
     if (state.sort !== 'az') p.push('sort=' + state.sort);
     var h = p.join('&');
     try { history.replaceState(null, '', h ? '#' + h : location.pathname + location.search); } catch(e){}
@@ -465,6 +524,8 @@
       if (k === 'q') state.q = v;
       else if (k === 'course') state.courses = v.split(',').filter(Boolean);
       else if (k === 'tags') state.tags = v.split(',').filter(Boolean);
+      else if (k === 'diff') state.diffs = v.split(',').filter(Boolean);
+      else if (k === 'cal') state.cals = v.split(',').filter(Boolean);
       else if (k === 'sort') state.sort = v;
     });
     return null;
@@ -506,6 +567,13 @@
     if (open) syncDrawer();
   });
   elDrawer.addEventListener('click', function(e){
+    var ff = e.target.closest('.fd-filter');
+    if (ff){
+      var kind = ff.getAttribute('data-kind'), val = ff.getAttribute('data-val');
+      var arr = kind === 'diff' ? state.diffs : state.cals;
+      var i = arr.indexOf(val); if (i === -1) arr.push(val); else arr.splice(i, 1);
+      syncDrawer(); apply(); return;
+    }
     var ch = e.target.closest('.fd-chip'); if (!ch) return;
     var t = ch.getAttribute('data-tag');
     if (state.tags.indexOf(t) === -1) addTag(t); else removeTag(t);
@@ -517,10 +585,12 @@
     if (kind === 'q'){ elQ.value=''; state.q=''; elQClear.hidden=true; }
     else if (kind === 'course'){ state.courses = state.courses.filter(function(c){ return c !== val; }); }
     else if (kind === 'tag'){ state.tags = state.tags.filter(function(t){ return t !== val; }); syncDrawer(); }
+    else if (kind === 'diff'){ state.diffs = state.diffs.filter(function(d){ return d !== val; }); syncDrawer(); }
+    else if (kind === 'cal'){ state.cals = state.cals.filter(function(c){ return c !== val; }); syncDrawer(); }
     apply();
   });
   elClearAll.addEventListener('click', function(){
-    state.q=''; state.courses=[]; state.tags=[]; elQ.value=''; elQClear.hidden=true; syncDrawer(); apply();
+    state.q=''; state.courses=[]; state.tags=[]; state.diffs=[]; state.cals=[]; elQ.value=''; elQClear.hidden=true; syncDrawer(); apply();
   });
 
   // global keyboard: "/" or Cmd/Ctrl-K focuses search

@@ -166,6 +166,14 @@ body{
 .srvbtn:active{background:var(--honey-2)}
 .srvcount{font-family:var(--mono);font-weight:600;font-size:.95rem;min-width:1.6em;text-align:center;color:var(--ink)}
 .time{font-family:var(--mono);font-size:.74rem;color:var(--soft);letter-spacing:.02em}
+.diff{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--mono);font-size:.74rem;letter-spacing:.02em;color:var(--soft)}
+.diff-dot{width:.5rem;height:.5rem;border-radius:999px;background:var(--honey-2)}
+.diff[data-diff="easy"] .diff-dot{background:#7A8B3D}
+.diff[data-diff="medium"] .diff-dot{background:var(--honey-2)}
+.diff[data-diff="hard"] .diff-dot{background:var(--honey)}
+.kcal{font-family:var(--mono);font-size:.74rem;color:var(--soft);letter-spacing:.02em}
+.srv-est{color:var(--honey);font-family:var(--mono);margin-left:.12em;cursor:help}
+.fd-note{font-family:var(--mono);font-size:.62rem;color:var(--soft);font-style:italic;margin:.6rem 0 0}
 
 /* expand / collapse */
 .card-toggle{
@@ -189,6 +197,18 @@ body{
 .ing.noamt{grid-template-columns:1fr}
 .amt{font-family:var(--mono);font-weight:600;font-size:.92rem;color:var(--honey);text-align:right;white-space:nowrap}
 .ing-name{font-size:.96rem;line-height:1.4}
+
+/* nutrition panel (estimated, per serving) */
+.nutrition{border:1px solid var(--line);border-radius:12px;background:var(--honey-wash);padding:.85rem .95rem;margin:0 0 1.1rem}
+.nut-h{font-family:var(--mono);font-size:.66rem;letter-spacing:.18em;text-transform:uppercase;color:var(--honey);margin:0 0 .5rem}
+.nut-cal{font-family:var(--serif);font-size:1.5rem;line-height:1;color:var(--ink);margin:0 0 .7rem}
+.nut-cal-n{font-weight:600}
+.nut-macros{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:.4rem;text-align:center}
+.nut-macros li{display:flex;flex-direction:column;gap:.15rem;border-left:1px solid var(--line);padding-left:.5rem}
+.nut-macros li:first-child{border-left:0;padding-left:0}
+.nut-v{font-family:var(--mono);font-weight:600;font-size:.9rem;color:var(--ink)}
+.nut-k{font-family:var(--mono);font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--soft)}
+.nut-cap{font-family:var(--mono);font-size:.62rem;color:var(--soft);margin:.7rem 0 0;font-style:italic}
 
 /* steps */
 .steps{list-style:none;margin:0;padding:0}
@@ -278,6 +298,9 @@ body{
   body.print-3x5 .card-toggle,
   body.print-3x5 .srvbtn,
   body.print-3x5 .timer,
+  body.print-3x5 .nutrition,
+  body.print-3x5 .diff,
+  body.print-3x5 .kcal,
   body.print-3x5 .hint,
   body.print-3x5 .zero{display:none !important}
 
