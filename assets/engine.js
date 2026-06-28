@@ -635,9 +635,43 @@
   if (pdf4) pdf4.addEventListener('click', function(){ downloadPDF('4x6', pdf4); });
   if (pdf3) pdf3.addEventListener('click', function(){ downloadPDF('3x5', pdf3); });
 
+  /* ---------- make an overflowing row reachable: drag (mouse) + wheel + native touch ---------- */
+  function enableDragScroll(el){
+    var down = false, moved = false, startX = 0, startLeft = 0, pid = null;
+    el.addEventListener('pointerdown', function(e){
+      if (e.pointerType === 'touch') return; // let mobile use native swipe
+      down = true; moved = false; startX = e.clientX; startLeft = el.scrollLeft; pid = e.pointerId;
+    });
+    el.addEventListener('pointermove', function(e){
+      if (!down) return;
+      var dx = e.clientX - startX;
+      if (!moved && Math.abs(dx) > 4){ moved = true; el.classList.add('dragging'); try { el.setPointerCapture(pid); } catch(_){} }
+      if (moved){ el.scrollLeft = startLeft - dx; e.preventDefault(); }
+    });
+    function end(){
+      if (down && moved){ // swallow the click that would otherwise toggle a chip after a drag
+        var sup = function(ev){ ev.stopPropagation(); ev.preventDefault(); };
+        el.addEventListener('click', sup, true);
+        setTimeout(function(){ el.removeEventListener('click', sup, true); }, 0);
+      }
+      down = false; el.classList.remove('dragging');
+    }
+    el.addEventListener('pointerup', end);
+    el.addEventListener('pointercancel', end);
+  }
+  function enableWheelScroll(el){
+    el.addEventListener('wheel', function(e){
+      if (el.scrollWidth <= el.clientWidth) return;
+      var d = Math.abs(e.deltaY) >= Math.abs(e.deltaX) ? e.deltaY : e.deltaX;
+      if (d){ el.scrollLeft += d; e.preventDefault(); }
+    }, { passive:false });
+  }
+
   /* ---------- init ---------- */
   buildChips();
   buildDrawer();
+  enableDragScroll(elCourseChips);
+  enableWheelScroll(elCourseChips);
   var jumpId = readHash();
   if (state.q) elQ.value = state.q;
   if (state.q) elQClear.hidden = false;
