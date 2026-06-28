@@ -51,6 +51,12 @@
     });
   }
 
+  // jsPDF's standard fonts use WinAnsi encoding; normalize a few symbols that
+  // aren't in it (or are used as a degree sign) so they render correctly.
+  function sanitize(s){
+    return String(s == null ? '' : s).replace(/[˚º⁰]/g, '°');
+  }
+
   function sumH(lines){ var t=0; for (var i=0;i<lines.length;i++) t += lines[i].h; return t; }
 
   /* ---- build wrapped line lists (measure + draw use the same data) ---- */
@@ -58,13 +64,14 @@
     var lines = [];
     (recipe.ingredients || []).forEach(function(i){
       doc.setFont('helvetica','normal'); doc.setFontSize(S.body);
+      var nm = sanitize(i.name);
       if (i.amount == null){
-        var nl = doc.splitTextToSize(i.name || '', width);
+        var nl = doc.splitTextToSize(nm, width);
         nl.forEach(function(t){ lines.push({ h:S.lh, segs:[{ t:t, x:0, font:'helvetica', style:'normal', size:S.body, color:INK }] }); });
       } else {
         var amt = amtText(i.amount, i.unit);
         var nameW = width - S.amtCol - S.pad;
-        var nl = doc.splitTextToSize(i.name || '', nameW);
+        var nl = doc.splitTextToSize(nm, nameW);
         nl.forEach(function(t, idx){
           var segs = [];
           if (idx === 0) segs.push({ t:amt, x:S.amtCol, align:'right', font:'helvetica', style:'bold', size:S.body, color:HONEY });
@@ -81,7 +88,7 @@
     doc.setFont('helvetica','normal'); doc.setFontSize(S.body);
     var numW = doc.getTextWidth('00.  ');
     (recipe.steps || []).forEach(function(st, n){
-      var txt = (st.title ? st.title + ': ' : '') + resolveRefs(st.content, recipe);
+      var txt = sanitize((st.title ? st.title + ': ' : '') + resolveRefs(st.content, recipe));
       doc.setFont('helvetica','normal'); doc.setFontSize(S.body);
       var tl = doc.splitTextToSize(txt, width - numW);
       tl.forEach(function(t, idx){
@@ -96,7 +103,7 @@
       lines.push({ h:S.lh * 0.9, segs:[{ t:'NOTES', x:0, font:'helvetica', style:'bold', size:S.note, color:HONEY }] });
       recipe.notes.split('\n\n').forEach(function(p){
         doc.setFont('helvetica','italic'); doc.setFontSize(S.note);
-        doc.splitTextToSize(p, width).forEach(function(t){
+        doc.splitTextToSize(sanitize(p), width).forEach(function(t){
           lines.push({ h:S.lh * 0.92, segs:[{ t:t, x:0, font:'helvetica', style:'italic', size:S.note, color:SOFT }] });
         });
         lines.push({ h:S.lh * 0.3, segs:[] });
@@ -131,7 +138,7 @@
     doc.text(label, x, y);
     doc.setDrawColor(HONEY[0],HONEY[1],HONEY[2]); doc.setLineWidth(0.8);
     doc.line(x, y + 3, x + doc.getTextWidth(label) + 2, y + 3);
-    return y + 7;
+    return y + S.lh + 3; // clear gap below the underline so the first line doesn't overlap it
   }
 
   function renderRecipe(doc, r, S){
@@ -139,8 +146,8 @@
 
     /* ---- stat block (right) ---- */
     var calStr = (r.nutrition && r.nutrition.calories != null) ? (r.nutrition.calories + ' cal') : '';
-    var timeStr = r.time || '';
-    var diffStr = r.difficulty || '';
+    var timeStr = sanitize(r.time || '');
+    var diffStr = sanitize(r.difficulty || '');
     doc.setFont('times','bold'); doc.setFontSize(S.statCal);
     var calW = calStr ? doc.getTextWidth(calStr) : 0;
     doc.setFont('helvetica','normal'); doc.setFontSize(S.stat);
@@ -165,18 +172,18 @@
     /* ---- header left (eyebrow + title + source) ---- */
     var eyeY = M + S.eyebrow;
     doc.setFont('helvetica','normal'); doc.setFontSize(S.eyebrow); doc.setTextColor(HONEY[0],HONEY[1],HONEY[2]);
-    doc.text((r.courses || []).join('  ·  ').toUpperCase(), x0, eyeY);
+    doc.text(sanitize((r.courses || []).join('  ·  ').toUpperCase()), x0, eyeY);
 
     var titleMaxW = contentW - statW - S.gap;
     doc.setFont('times','bold'); doc.setFontSize(S.title); doc.setTextColor(INK[0],INK[1],INK[2]);
-    var titleLines = doc.splitTextToSize(r.title || '', Math.max(60, titleMaxW));
+    var titleLines = doc.splitTextToSize(sanitize(r.title || ''), Math.max(60, titleMaxW));
     var ty = eyeY + S.title;
     titleLines.forEach(function(t){ doc.text(t, x0, ty); ty += S.title * 1.02; });
     var leftBottom = ty - S.title * 1.02;
 
     if (r.source){
       doc.setFont('helvetica','normal'); doc.setFontSize(S.stat); doc.setTextColor(SOFT[0],SOFT[1],SOFT[2]);
-      ty += S.stat; doc.text('from ' + r.source, x0, ty); leftBottom = ty;
+      ty += S.stat; doc.text('from ' + sanitize(r.source), x0, ty); leftBottom = ty;
     }
 
     var headerBottom = Math.max(leftBottom, statBottom) + 8;
@@ -187,7 +194,7 @@
     var avail = (S.h - M) - headerBottom;
     var ingLines = hasIngs ? ingredientLines(doc, r, leftW, S) : [];
     var methLines = methodLines(doc, r, rightW, S);
-    var headingH = 7 + 2;
+    var headingH = S.lh + 3;
     var fits = hasIngs && (sumH(ingLines) + headingH) <= avail && (sumH(methLines) + headingH) <= avail;
 
     if (fits){
