@@ -7319,6 +7319,159 @@ window.RECIPES = [
   "notes": "Keeps up to 1.5 months sealed in a jar in the refrigerator."
  },
  {
+  "id": "marry-me-chicken-pasta",
+  "title": "Marry Me Chicken Pasta",
+  "source": "The Recipe Critic",
+  "courses": [
+   "Dinner"
+  ],
+  "tags": [
+   "chicken",
+   "pasta",
+   "italian",
+   "stovetop",
+   "comfort-food",
+   "make-ahead"
+  ],
+  "difficulty": "Medium",
+  "time": "~30 min",
+  "servingsLabel": "Servings",
+  "baseServings": 6,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 646,
+   "protein": 41,
+   "carbs": 51,
+   "fat": 31
+  },
+  "desc": "Creamy sun-dried tomato parmesan chicken tossed with penne — the famous Marry Me Chicken, made a full meal.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 1.5,
+    "unit": "lb",
+    "name": "boneless skinless chicken, cut into 1-inch pieces"
+   },
+   {
+    "id": "0002",
+    "amount": 10,
+    "unit": "oz",
+    "name": "penne pasta"
+   },
+   {
+    "id": "0003",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0004",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "black pepper"
+   },
+   {
+    "id": "0005",
+    "amount": 1,
+    "unit": "tbsp",
+    "name": "olive oil"
+   },
+   {
+    "id": "0006",
+    "amount": 3,
+    "unit": "tbsp",
+    "name": "butter"
+   },
+   {
+    "id": "0007",
+    "amount": 2,
+    "unit": "tsp",
+    "name": "garlic, minced"
+   },
+   {
+    "id": "0008",
+    "amount": 3,
+    "unit": "tbsp",
+    "name": "flour"
+   },
+   {
+    "id": "0009",
+    "amount": 2,
+    "unit": "cup",
+    "name": "chicken broth"
+   },
+   {
+    "id": "0010",
+    "amount": 1,
+    "unit": "cup",
+    "name": "heavy cream"
+   },
+   {
+    "id": "0011",
+    "amount": 1,
+    "unit": "cup",
+    "name": "parmesan cheese, grated"
+   },
+   {
+    "id": "0012",
+    "amount": 1,
+    "unit": "cup",
+    "name": "sun-dried tomatoes, drained"
+   },
+   {
+    "id": "0013",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "paprika"
+   },
+   {
+    "id": "0014",
+    "amount": 2,
+    "unit": "tsp",
+    "name": "dried Italian seasoning"
+   },
+   {
+    "id": "0015",
+    "amount": null,
+    "unit": null,
+    "name": "fresh basil, for garnish"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Cook the pasta",
+    "content": "Cook the {0002} according to package instructions. Drain and set aside.",
+    "timer": null
+   },
+   {
+    "title": "Season the chicken",
+    "content": "Cut the {0001} into 1-inch pieces and season with the {0003} and {0004}.",
+    "timer": null
+   },
+   {
+    "title": "Sear the chicken",
+    "content": "Heat the {0005} in a large skillet over medium-high heat. Add the chicken and cook 6-8 minutes until no longer pink and cooked through (165°F). Transfer to a plate and set aside.",
+    "timer": 480
+   },
+   {
+    "title": "Start the sauce",
+    "content": "In the same skillet, melt the {0006}. Saute the {0007} about 30 seconds until fragrant, then add the {0008} and stir into a paste.",
+    "timer": null
+   },
+   {
+    "title": "Build the sauce",
+    "content": "Whisk in the {0009}, {0010}, and {0011}. Stir in the {0012}, {0013}, and {0014}; season with extra salt and pepper if needed. Simmer a few minutes to thicken.",
+    "timer": null
+   },
+   {
+    "title": "Combine and serve",
+    "content": "Return the chicken to the skillet with the cooked pasta and stir to coat in the sauce. Garnish with chopped fresh basil and extra parmesan.",
+    "timer": null
+   }
+  ],
+  "notes": "Check the chicken with a meat thermometer — 165°F — so it stays juicy. Add red pepper flakes for heat, and use freshly grated parmesan for better melting.\n\nStore leftovers covered up to 4 days; reheat gently on the stovetop or in the microwave with a splash of cream."
+ },
+ {
   "id": "mascarpone-cream-cheese-frosting",
   "title": "Mascarpone Cream Cheese Frosting",
   "source": "",
