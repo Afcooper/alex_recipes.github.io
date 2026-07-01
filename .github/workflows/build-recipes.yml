@@ -1,0 +1,78 @@
+name: Build recipes
+
+# Rebuilds recipes.js from the /recipes/*.md source files.
+#
+# Security posture (public repo):
+#   • The privileged job (build-and-commit) runs ONLY on direct pushes to main,
+#     which require write access — never on pull requests, never on forks.
+#   • Pull requests (including from forks) run ONLY the read-only "check" job:
+#     no write token, no secrets, nothing is committed.
+#   • Default permissions are read-only; write is granted to the one job that
+#     needs it. The build itself just parses text (no eval, no dependencies),
+#     and refuses to publish anything containing HTML/script/control characters.
+
+on:
+  push:
+    branches: [main]
+    # Don't retrigger on the bot's own recipes.js commit — only source changes.
+    paths:
+      - 'recipes/**'
+      - 'tools/**'
+      - '.github/workflows/build-recipes.yml'
+  pull_request:
+    paths:
+      - 'recipes/**'
+      - 'tools/**'
+      - '.github/workflows/build-recipes.yml'
+
+# Least privilege by default; the commit job opts into write below.
+permissions:
+  contents: read
+
+# Serialize runs on the same branch so two quick edits can't race the push.
+concurrency:
+  group: build-recipes-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-commit:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      # Official GitHub action. To harden further you may pin to a full commit
+      # SHA instead of the v4 tag.
+      - uses: actions/checkout@v4
+      # ubuntu-latest ships a current Node — no third-party setup action needed.
+      - name: Validate + self-test + build
+        run: |
+          node --version
+          node tools/selftest.mjs
+          node tools/build.mjs
+      - name: Commit regenerated files (if changed)
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          # Stage first, then check the index — this also catches a brand-new file.
+          git add recipes.js assets/recipe-format.global.js
+          if git diff --cached --quiet; then
+            echo "recipes.js already up to date — nothing to commit."
+          else
+            git commit -m "Build: regenerate recipes.js [skip ci]"
+            # Rebase onto anything that landed while we built, then push.
+            git pull --rebase origin "${GITHUB_REF_NAME}"
+            git push
+          fi
+
+  check:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate (no write, no commit)
+        run: |
+          node tools/selftest.mjs
+          node tools/build.mjs --check

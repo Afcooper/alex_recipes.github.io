@@ -53,7 +53,10 @@
     return u ? (frac(amt) + ' ' + u) : frac(amt);
   }
   function shortName(name){ return name.split(/[,(]/)[0].trim(); }
-  function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  // Escapes &, <, > AND quotes, so values are safe both as text and inside
+  // double/single-quoted HTML attributes (defense-in-depth; the build also
+  // rejects "<"/">" at publish time).
+  function esc(s){ return String(s == null ? '' : s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;'); }
 
   function human(sec){
     if (sec < 60) return sec + ' sec';
@@ -121,8 +124,8 @@
       var ing = null;
       for (var i=0;i<recipe.ingredients.length;i++){ if (recipe.ingredients[i].id === iid){ ing = recipe.ingredients[i]; break; } }
       if (!ing || ing.amount == null) return ing ? esc(shortName(ing.name)) : m;
-      return '<span class="ref"><span class="ramt" data-base="' + ing.amount + '" data-unit="' + (ing.unit || '') + '">'
-           + amtText(ing.amount * mult, ing.unit) + '</span> ' + esc(shortName(ing.name)) + '</span>';
+      return '<span class="ref"><span class="ramt" data-base="' + ing.amount + '" data-unit="' + esc(ing.unit || '') + '">'
+           + esc(amtText(ing.amount * mult, ing.unit)) + '</span> ' + esc(shortName(ing.name)) + '</span>';
     });
   }
 
@@ -158,8 +161,8 @@
     var ings = recipe.ingredients.map(function(i){
       if (i.amount == null)
         return '<li class="ing noamt"><span class="ing-name">' + esc(i.name) + '</span></li>';
-      return '<li class="ing"><span class="amt" data-base="' + i.amount + '" data-unit="' + (i.unit || '') + '">'
-           + amtText(i.amount * mult, i.unit) + '</span><span class="ing-name">' + esc(i.name) + '</span></li>';
+      return '<li class="ing"><span class="amt" data-base="' + i.amount + '" data-unit="' + esc(i.unit || '') + '">'
+           + esc(amtText(i.amount * mult, i.unit)) + '</span><span class="ing-name">' + esc(i.name) + '</span></li>';
     }).join('');
 
     var steps = recipe.steps.map(function(st, n){
@@ -200,7 +203,7 @@
       ? '<div class="stat-cal"><span class="stat-cal-n">' + recipe._cal + '</span> cal</div><div class="stat-sub">per ' + esc(unit) + '</div>'
       : '';
     var statTime = recipe.time ? '<div class="stat-line">⏱ ' + esc(recipe.time) + '</div>' : '';
-    var statDiff = recipe.difficulty ? '<div class="stat-line diff" data-diff="' + recipe.difficulty.toLowerCase() + '"><span class="diff-dot" aria-hidden="true"></span>' + esc(recipe.difficulty) + '</div>' : '';
+    var statDiff = recipe.difficulty ? '<div class="stat-line diff" data-diff="' + esc(recipe.difficulty.toLowerCase()) + '"><span class="diff-dot" aria-hidden="true"></span>' + esc(recipe.difficulty) + '</div>' : '';
     var statBlock = (statCal || statTime || statDiff) ? '<aside class="card-stats" aria-label="At a glance">' + statCal + statTime + statDiff + '</aside>' : '';
     var metaRow = srv ? '<div class="meta">' + srv + '</div>' : '';
 

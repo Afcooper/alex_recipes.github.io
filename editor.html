@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Add / Edit a Recipe · The Recipe File</title>
+<link rel="stylesheet" href="assets/styles.css">
+<style>
+  /* Editor-only styles; uses the same honey palette variables from styles.css. */
+  .ed { max-width: 860px; margin: 0 auto; padding: 1.2rem 1rem 4rem; }
+  .ed h1 { font-size: 1.8rem; margin: .2rem 0 .1rem; }
+  .ed .sub { color: var(--ink-3, #6b6257); margin: 0 0 1rem; }
+  .ed fieldset { border: 1px solid var(--line, #e7ded0); border-radius: 12px; padding: 1rem 1rem 1.1rem; margin: 0 0 1.1rem; }
+  .ed legend { font-weight: 700; padding: 0 .4rem; }
+  .ed label { display: block; font-size: .82rem; font-weight: 600; color: var(--ink-2, #4a4239); margin: .6rem 0 .2rem; }
+  .req { color: #c0392b; }
+  .ed input[type=text], .ed input[type=number], .ed select, .ed textarea {
+    width: 100%; box-sizing: border-box; padding: .5rem .6rem; border: 1px solid var(--line, #e7ded0);
+    border-radius: 8px; font: inherit; background: #fff; }
+  .ed textarea { min-height: 3.2rem; resize: vertical; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: .2rem .8rem; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: .2rem .8rem; }
+  .row { display: grid; grid-template-columns: 90px 130px 1fr 34px; gap: .5rem; align-items: center; margin: .4rem 0; }
+  .row.step { grid-template-columns: 1fr 34px; gap: .5rem; align-items: start; }
+  .row.step .stepmain { display: grid; grid-template-columns: 200px 1fr 90px; gap: .5rem; }
+  .chips { display: flex; flex-wrap: wrap; gap: .4rem; margin: .3rem 0; }
+  .chk { display: inline-flex; align-items: center; gap: .3rem; font-weight: 500; font-size: .85rem; border: 1px solid var(--line,#e7ded0); border-radius: 999px; padding: .25rem .6rem; cursor: pointer; }
+  .chk input { margin: 0; }
+  .btn { font: inherit; font-weight: 600; border: 1px solid var(--line,#e7ded0); background: #fff; border-radius: 8px; padding: .5rem .8rem; cursor: pointer; }
+  .btn.primary { background: var(--honey-2, #d99a2b); border-color: var(--honey-2,#d99a2b); color: #fff; }
+  .btn.mini { padding: .3rem .5rem; }
+  .btn.del { color: #b23; border-color: #eab; }
+  .btn:disabled { opacity: .5; cursor: default; }
+  .actions { display: flex; flex-wrap: wrap; gap: .6rem; margin: 1rem 0; position: sticky; bottom: 0; background: var(--paper,#fbf7ef); padding: .8rem 0; }
+  .out { white-space: pre-wrap; font-family: ui-monospace, Menlo, Consolas, monospace; font-size: .8rem; background: #fff; border: 1px solid var(--line,#e7ded0); border-radius: 10px; padding: .9rem; max-height: 340px; overflow: auto; }
+  .msg { padding: .6rem .8rem; border-radius: 8px; margin: .6rem 0; font-weight: 600; font-size: .9rem; white-space: pre-wrap; }
+  .msg.ok { background: #e9f6ec; color: #256a35; }
+  .msg.err { background: #fbeaea; color: #a12; }
+  .msg.warn { background: #fdf4e3; color: #8a5a12; }
+  .hint { font-size: .78rem; color: var(--ink-3,#6b6257); margin: .2rem 0 0; }
+  .backlink { display: inline-block; margin-bottom: .6rem; }
+  .loadbar { display: flex; align-items: center; gap: .5rem; margin: .2rem 0 1rem; }
+  .loadbar select { max-width: 340px; }
+  @media (max-width: 620px) {
+    .grid3 { grid-template-columns: 1fr 1fr; }
+    .row { grid-template-columns: 70px 100px 1fr 30px; }
+    .row.step .stepmain { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="ed">
+  <a class="backlink" href="index.html">← back to the recipes</a>
+  <h1>Add / Edit a Recipe</h1>
+  <p class="sub">Fill in the boxes — no code, no syntax. When you're done, save it to the collection and the site rebuilds itself.</p>
+
+  <div class="loadbar">
+    <label for="loadExisting" style="margin:0">Editing:</label>
+    <select id="loadExisting"><option value="">➕ New recipe</option></select>
+  </div>
+
+  <form id="form" autocomplete="off">
+    <fieldset>
+      <legend>The basics</legend>
+      <label>Recipe name <span class="req">*</span></label>
+      <input type="text" id="title" placeholder="Marry Me Chicken Pasta">
+      <div class="grid2">
+        <div><label>Where it's from (optional)</label><input type="text" id="source" placeholder="The Recipe Critic"></div>
+        <div><label>Time (optional)</label><input type="text" id="time" placeholder="~40 min"></div>
+      </div>
+      <label>Courses <span class="req">*</span> (pick one or more)</label>
+      <div class="chips" id="courses"></div>
+      <label>Difficulty</label>
+      <select id="difficulty">
+        <option value="">— none —</option>
+        <option>Easy</option><option>Medium</option><option>Hard</option>
+      </select>
+      <label>Tags (comma-separated, optional)</label>
+      <input type="text" id="tags" placeholder="chicken, pasta, italian">
+      <p class="hint">Tags power the filters. Use simple lowercase words.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Servings &amp; nutrition</legend>
+      <div class="grid3">
+        <div><label>How many it makes</label><input type="number" id="servings" min="1" step="1" placeholder="6"></div>
+        <div><label>Unit</label>
+          <select id="servingsLabel">
+            <option>Servings</option><option>Cookies</option><option>Rolls</option>
+            <option>Pieces</option><option>Pizzas</option><option>Patties</option>
+            <option>Bars</option><option>Muffins</option><option>Loaves</option>
+          </select>
+        </div>
+        <div><label>Estimate?</label>
+          <label class="chk" style="margin-top:.3rem"><input type="checkbox" id="servingsEstimated"> shows a ≈</label>
+        </div>
+      </div>
+      <div class="grid3">
+        <div><label>Calories</label><input type="number" id="calories" min="0" placeholder="per serving"></div>
+        <div><label>Protein (g)</label><input type="number" id="protein" min="0"></div>
+        <div><label>Carbs (g)</label><input type="number" id="carbs" min="0"></div>
+        <div><label>Fat (g)</label><input type="number" id="fat" min="0"></div>
+      </div>
+      <p class="hint">Leave calories blank to hide nutrition (e.g. for a technique/how-to entry).</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Description (optional)</legend>
+      <textarea id="desc" placeholder="One line that appears under the title."></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Ingredients</legend>
+      <div id="ings"></div>
+      <button type="button" class="btn mini" id="addIng">+ add ingredient</button>
+      <p class="hint">Amount accepts numbers or fractions: <code>1</code>, <code>1/2</code>, <code>1 1/2</code>, <code>½</code>. Leave amount &amp; unit blank for "to taste" items.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Steps</legend>
+      <div id="steps"></div>
+      <button type="button" class="btn mini" id="addStep">+ add step</button>
+      <p class="hint">Timer accepts <code>8m</code>, <code>90s</code>, <code>1.5h</code> (optional). To show a live, scaling amount inside a step, type the ingredient in double braces, e.g. <code>{{heavy cream}}</code>.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>Notes (optional)</legend>
+      <textarea id="notes" placeholder="Tips. Leave a blank line between paragraphs."></textarea>
+    </fieldset>
+  </form>
+
+  <div class="actions">
+    <button class="btn primary" id="save" type="button">✓ Check &amp; build the file</button>
+    <button class="btn" id="copy" type="button" disabled>Copy Markdown</button>
+    <button class="btn" id="download" type="button" disabled>⬇ Download .md</button>
+    <button class="btn" id="github" type="button" disabled>Save to GitHub…</button>
+  </div>
+
+  <div id="message"></div>
+  <label>Preview of the recipe file (<span id="fname">recipe.md</span>)</label>
+  <div class="out" id="preview">Fill in the form and press “Check &amp; build the file”.</div>
+</div>
+
+<!-- Classic scripts (no ES modules) so the editor works from file:// too.
+     recipe-format.global.js is generated from tools/recipe-format.mjs by the build. -->
+<script src="assets/recipe-format.global.js"></script>
+<script src="recipes.js"></script>
+<script>
+(function () {
+  'use strict';
+  var $ = function (id) { return document.getElementById(id); };
+  var msg = function (kind, text) { $('message').innerHTML = ''; var d = document.createElement('div'); d.className = 'msg ' + kind; d.textContent = text; $('message').appendChild(d); };
+
+  var RF = window.RecipeFormat;
+  if (!RF) {
+    msg('err', 'The editor’s format library did not load (assets/recipe-format.global.js). ' +
+      'If you opened this file straight from disk, run “node tools/build.mjs” once to generate it, ' +
+      'or just use the editor on the live site.');
+    return;
+  }
+  var EXISTING = Array.isArray(window.RECIPES) ? window.RECIPES : [];
+  var existingIds = {}; EXISTING.forEach(function (r) { existingIds[r.id] = r; });
+
+  // ---- where "Save to GitHub" points (edit if you fork this) ----
+  var REPO = { owner: 'Afcooper', name: 'alex_recipes.github.io', branch: 'main' };
+
+  var COURSES = RF.KNOWN_COURSES;
+  var el = function (tag, props, kids) { var e = document.createElement(tag); if (props) Object.assign(e, props); (kids || []).forEach(function (k) { e.append(k); }); return e; };
+
+  // course chips
+  COURSES.forEach(function (c) {
+    var cb = el('input', { type: 'checkbox', value: c });
+    $('courses').append(el('label', { className: 'chk' }, [cb, ' ' + c]));
+  });
+
+  // "edit existing" dropdown
+  EXISTING.slice().sort(function (a, b) { return (a.title || '').localeCompare(b.title || ''); })
+    .forEach(function (r) { $('loadExisting').append(el('option', { value: r.id, textContent: r.title })); });
+
+  var unitOptions = function () {
+    var s = el('select');
+    s.append(el('option', { value: '', textContent: '(none)' }));
+    RF.UNIT_VOCAB.forEach(function (u) { s.append(el('option', { value: u, textContent: u })); });
+    return s;
+  };
+
+  function addIngRow(v) {
+    v = v || {};
+    var amount = el('input', { type: 'text', placeholder: 'e.g. 1 1/2', value: v.amount || '' });
+    var unit = unitOptions(); unit.value = v.unit || '';
+    var name = el('input', { type: 'text', placeholder: 'ingredient (e.g. heavy cream)', value: v.name || '' });
+    var del = el('button', { type: 'button', className: 'btn mini del', textContent: '×' });
+    var row = el('div', { className: 'row' }, [amount, unit, name, del]);
+    del.onclick = function () { row.remove(); };
+    $('ings').append(row);
+  }
+  function addStepRow(v) {
+    v = v || {};
+    var title = el('input', { type: 'text', placeholder: 'step title (optional)', value: v.title || '' });
+    var content = el('input', { type: 'text', placeholder: 'what to do', value: v.content || '' });
+    var timer = el('input', { type: 'text', placeholder: 'timer', value: v.timer || '' });
+    var del = el('button', { type: 'button', className: 'btn mini del', textContent: '×' });
+    var main = el('div', { className: 'stepmain' }, [title, content, timer]);
+    var row = el('div', { className: 'row step' }, [main, del]);
+    del.onclick = function () { row.remove(); };
+    $('steps').append(row);
+  }
+  $('addIng').onclick = function () { addIngRow(); };
+  $('addStep').onclick = function () { addStepRow(); };
+
+  function slug(s) {
+    return s.toLowerCase().trim().replace(/['".]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'recipe';
+  }
+  var numOrNull = function (id) { var v = $(id).value.trim(); return v === '' ? null : Number(v); };
+
+  var editingId = ''; // '' = new recipe; otherwise the id being edited
+
+  function clearForm() {
+    ['title', 'source', 'time', 'tags', 'desc', 'notes', 'servings', 'calories', 'protein', 'carbs', 'fat'].forEach(function (id) { $(id).value = ''; });
+    $('difficulty').value = ''; $('servingsLabel').value = 'Servings'; $('servingsEstimated').checked = false;
+    Array.prototype.forEach.call($('courses').querySelectorAll('input'), function (c) { c.checked = false; });
+    $('ings').innerHTML = ''; $('steps').innerHTML = '';
+    addIngRow(); addIngRow(); addStepRow();
+    resetActions();
+  }
+
+  function populateForm(r) {
+    clearForm();
+    $('title').value = r.title || ''; $('source').value = r.source || ''; $('time').value = r.time || '';
+    $('difficulty').value = r.difficulty || ''; $('tags').value = (r.tags || []).join(', ');
+    Array.prototype.forEach.call($('courses').querySelectorAll('input'), function (c) { c.checked = (r.courses || []).indexOf(c.value) !== -1; });
+    if (r.baseServings != null) $('servings').value = r.baseServings;
+    $('servingsLabel').value = r.servingsLabel || 'Servings';
+    $('servingsEstimated').checked = !!r.servingsEstimated;
+    if (r.nutrition) { $('calories').value = r.nutrition.calories != null ? r.nutrition.calories : ''; $('protein').value = r.nutrition.protein != null ? r.nutrition.protein : ''; $('carbs').value = r.nutrition.carbs != null ? r.nutrition.carbs : ''; $('fat').value = r.nutrition.fat != null ? r.nutrition.fat : ''; }
+    $('desc').value = r.desc || ''; $('notes').value = r.notes || '';
+    $('ings').innerHTML = '';
+    (r.ingredients || []).forEach(function (i) { addIngRow({ amount: i.amount == null ? '' : RF.formatAmount(i.amount), unit: i.unit || '', name: i.name }); });
+    if (!r.ingredients || !r.ingredients.length) addIngRow();
+    $('steps').innerHTML = '';
+    (r.steps || []).forEach(function (s) { addStepRow({ title: s.title || '', content: RF.stepContentToFriendly(s.content, r.ingredients || []), timer: s.timer != null ? RF.formatTimer(s.timer) : '' }); });
+    if (!r.steps || !r.steps.length) addStepRow();
+  }
+
+  $('loadExisting').onchange = function () {
+    var id = $('loadExisting').value;
+    editingId = id;
+    if (!id) { clearForm(); msg('ok', 'Starting a new recipe.'); return; }
+    populateForm(existingIds[id]);
+    msg('ok', 'Loaded “' + existingIds[id].title + '”. Make your changes, then Check & build.');
+  };
+
+  // Build a recipe object from the form, matching the runtime schema.
+  function collect() {
+    var courses = Array.prototype.map.call($('courses').querySelectorAll('input:checked'), function (c) { return c.value; });
+    var tags = $('tags').value.split(',').map(function (t) { return t.trim(); }).filter(Boolean);
+    var ings = Array.prototype.map.call($('ings').children, function (row, i) {
+      var f = row.querySelectorAll('input, select');
+      var amt = f[0].value.trim(), unit = f[1].value, name = f[2].value.trim();
+      var amount = null;
+      if (amt !== '') {
+        amount = RF.parseAmount(amt);
+        if (amount == null) throw new Error('Ingredient ' + (i + 1) + ': "' + amt + '" isn\'t a number I understand (try 1, 1/2, or 1 1/2).');
+      }
+      return { amount: amount, unit: unit || null, name: name };
+    }).filter(function (x) { return x.name; }).map(function (x, i) { return { id: String(i + 1).padStart(4, '0'), amount: x.amount, unit: x.unit, name: x.name }; });
+
+    var steps = Array.prototype.map.call($('steps').children, function (row, i) {
+      var f = row.querySelectorAll('input');
+      var title = f[0].value.trim(), content = f[1].value.trim(), t = f[2].value.trim();
+      var timer = null;
+      if (t !== '') {
+        timer = RF.parseTimer(t);
+        if (timer == null || timer <= 0) throw new Error('Step ' + (i + 1) + ': timer "' + t + '" should look like 8m, 90s, or 1.5h.');
+      }
+      return { title: title, content: content, timer: timer };
+    }).filter(function (x) { return x.content || x.title; });
+
+    var cal = numOrNull('calories');
+    var otherMacros = numOrNull('protein') != null || numOrNull('carbs') != null || numOrNull('fat') != null;
+    if (cal == null && otherMacros) throw new Error('You entered protein/carbs/fat but no Calories. Add a calories value, or clear the macros (nutrition needs calories).');
+    var nutrition = cal == null ? null : { calories: cal, protein: numOrNull('protein'), carbs: numOrNull('carbs'), fat: numOrNull('fat') };
+
+    return RF.orderKeys({
+      // When editing an existing recipe, keep its id/filename stable (renaming
+      // would change the URL); only new recipes get an id slugged from the title.
+      id: editingId || slug($('title').value),
+      title: $('title').value.trim(),
+      source: $('source').value.trim(),
+      courses: courses, tags: tags,
+      difficulty: $('difficulty').value || null,
+      time: $('time').value.trim(),
+      servingsLabel: $('servingsLabel').value,
+      baseServings: numOrNull('servings'),
+      servingsEstimated: $('servingsEstimated').checked,
+      nutrition: nutrition,
+      desc: $('desc').value.trim(),
+      ingredients: ings,
+      steps: steps,
+      notes: $('notes').value.trim()
+    });
+  }
+
+  var currentMd = '', currentId = '';
+  function resetActions() { ['copy', 'download', 'github'].forEach(function (b) { $(b).disabled = true; }); currentMd = ''; }
+
+  $('save').onclick = function () {
+    var recipe;
+    try { recipe = collect(); } catch (e) { msg('err', e.message); resetActions(); return; }
+    if (!recipe.title) { msg('err', 'Please give the recipe a name.'); resetActions(); return; }
+    if (!recipe.courses.length) { msg('err', 'Please pick at least one course.'); resetActions(); return; }
+
+    // Collision: creating a NEW recipe whose id already exists would overwrite
+    // it / fail the GitHub commit.
+    if ((!editingId || editingId !== recipe.id) && existingIds[recipe.id]) {
+      msg('err', 'A recipe named “' + existingIds[recipe.id].title + '” already exists (id "' + recipe.id + '").\n' +
+        'Choose it from the “Editing” menu above to change it, or pick a different name.');
+      resetActions(); return;
+    }
+
+    var md;
+    try {
+      md = RF.serialize(recipe);
+      var reparsed = RF.parse(md, recipe.id); // structural check (bad {{refs}}, headings…)
+      var v = RF.validateRecipe(reparsed);    // EXACT same rules the build enforces
+      if (v.errors.length) throw new Error(v.errors.join('\n'));
+      var warnNote = v.warnings.length ? '\n(Heads up: ' + v.warnings.join('; ') + ')' : '';
+      currentMd = md; currentId = recipe.id;
+      $('fname').textContent = 'recipes/' + recipe.id + '.md';
+      $('preview').textContent = md;
+      ['copy', 'download', 'github'].forEach(function (b) { $(b).disabled = false; });
+      msg(v.warnings.length ? 'warn' : 'ok', '✓ Looks good! Now Copy, Download, or Save to GitHub below.' + warnNote);
+    } catch (e) {
+      msg('err', 'This recipe needs a fix before it can be saved:\n' + e.message);
+      resetActions();
+    }
+  };
+
+  $('copy').onclick = function () {
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(currentMd).then(function () { msg('ok', 'Copied to clipboard.'); },
+        function () { msg('err', 'Could not copy — select the preview text and copy manually.'); });
+    } else { msg('err', 'Copy not supported here — select the preview text and copy manually.'); }
+  };
+  $('download').onclick = function () {
+    var blob = new Blob([currentMd], { type: 'text/markdown' });
+    var a = el('a', { href: URL.createObjectURL(blob), download: currentId + '.md' });
+    document.body.append(a); a.click(); a.remove();
+    msg('ok', 'Downloaded ' + currentId + '.md — put it in the /recipes folder and commit it.');
+  };
+  $('github').onclick = function () {
+    var verb = existingIds[currentId] ? 'edit' : 'new';
+    // For an existing file, GitHub's edit URL; for a new one, the new-file URL.
+    var base = verb === 'edit'
+      ? 'https://github.com/' + REPO.owner + '/' + REPO.name + '/edit/' + REPO.branch + '/recipes/' + currentId + '.md'
+      : 'https://github.com/' + REPO.owner + '/' + REPO.name + '/new/' + REPO.branch + '?filename=' + encodeURIComponent('recipes/' + currentId + '.md') + '&value=' + encodeURIComponent(currentMd);
+    if (base.length > 8000) { msg('err', 'This recipe is long — use “Download .md” instead, then upload it to the /recipes folder on GitHub.'); return; }
+    var w = window.open(base, '_blank', 'noopener');
+    if (!w) { msg('err', 'Your browser blocked the popup. Allow popups for this site, or use “Download .md”.'); return; }
+    if (verb === 'edit') { navigator.clipboard && navigator.clipboard.writeText(currentMd); msg('ok', 'Opened the file on GitHub. Select all, paste the copied text (already on your clipboard), then “Commit changes”.'); }
+    else msg('ok', 'Opened GitHub in a new tab. Scroll down there and click “Commit changes” — the site rebuilds in about a minute.');
+  };
+
+  clearForm();
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+{
+  "name": "the-recipe-file",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static family recipe site. Source recipes live in /recipes/*.md and are built into recipes.js. No dependencies.",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "check": "node tools/build.mjs --check",
+    "test": "node tools/selftest.mjs",
+    "export": "node tools/export-from-js.mjs"
+  }
+}

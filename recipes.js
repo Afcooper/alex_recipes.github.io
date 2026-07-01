@@ -1,12 +1,8 @@
-/* The Recipe File — recipe data.
-   This is the ONLY file you edit to add/change a recipe.
-   It's plain data assigned to window.RECIPES; the engine (assets/engine.js) renders it.
-   Loaded via <script src> so the page works opened from disk (file://) and on GitHub Pages.
-   Schema per object: id, title, source, courses[], tags[], difficulty ("Easy"|"Medium"|"Hard"|null),
-   time, servingsLabel, baseServings (int|null), servingsEstimated (bool),
-   nutrition {calories,protein,carbs,fat} per serving (estimated) | null,
-   desc, ingredients[{id,amount(num|null),unit(str|null),name}],
-   steps[{title,content,timer(sec|null)}], notes.  See README.md for the full guide. */
+/* The Recipe File - recipe data.
+   AUTO-GENERATED from /recipes/*.md by tools/build.mjs - DO NOT EDIT BY HAND.
+   To add or change a recipe, edit the matching file in /recipes (or use the
+   in-site editor), then the build regenerates this file. See README.md.
+   Loaded via <script src> so the page works from disk (file://) and on GitHub Pages. */
 window.RECIPES = [
  {
   "id": "alfredo-sauce",
@@ -491,6 +487,97 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "baked-potato",
+  "title": "Potato (Baked)",
+  "source": "",
+  "courses": [
+   "Side"
+  ],
+  "tags": [
+   "potato",
+   "vegetarian",
+   "baked",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
+  ],
+  "difficulty": "Easy",
+  "time": "~45-60 min",
+  "servingsLabel": "Servings",
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 300,
+   "protein": 7,
+   "carbs": 60,
+   "fat": 4
+  },
+  "desc": "Oven-baked russet potato rubbed with oil and Kosher salt for a crisp, fluffy result.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": null,
+    "unit": null,
+    "name": "Idaho russet potato"
+   },
+   {
+    "id": "0002",
+    "amount": null,
+    "unit": null,
+    "name": "high heat olive oil"
+   },
+   {
+    "id": "0003",
+    "amount": null,
+    "unit": null,
+    "name": "Kosher salt"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Wash potatoes and allow to dry completely.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Heat oven to 450°.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Poke 6-8 holes in each potato.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Drench in oil and rub all over.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Place on a plate and sprinkle Kosher salt very liberally all over.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Place on a baking sheet and cook until internal temp reaches 205° (45-60 min).",
+    "timer": 2700
+   },
+   {
+    "title": "",
+    "content": "Remove excess salt.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Cut immediately in an 'X', then open and fluff.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
   "id": "banana-cake-cream-cheese-filled",
   "title": "Banana Cake (Cream Cheese Filled)",
   "source": "",
@@ -560,6 +647,209 @@ window.RECIPES = [
    {
     "title": "Assemble & Bake",
     "content": "Spray an 8 x 8 pan. Layer half the batter, then the cream cheese filling, then the remaining batter. Bake at 325-350.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
+  "id": "bbq-meatballs",
+  "title": "BBQ Meatballs",
+  "source": "",
+  "courses": [
+   "Dinner"
+  ],
+  "tags": [
+   "beef",
+   "baked",
+   "comfort-food"
+  ],
+  "difficulty": "Medium",
+  "time": "~50 min",
+  "servingsLabel": "Servings",
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 450,
+   "protein": 24,
+   "carbs": 29,
+   "fat": 25
+  },
+  "desc": "Oatmeal-bound beef meatballs baked then finished in BBQ sauce.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 1,
+    "unit": "lb",
+    "name": "ground beef"
+   },
+   {
+    "id": "0002",
+    "amount": 0.75,
+    "unit": "cup",
+    "name": "oatmeal"
+   },
+   {
+    "id": "0003",
+    "amount": null,
+    "unit": null,
+    "name": "onion (as desired)"
+   },
+   {
+    "id": "0004",
+    "amount": 1.5,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0005",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "pepper"
+   },
+   {
+    "id": "0006",
+    "amount": 1,
+    "unit": "cup",
+    "name": "milk"
+   },
+   {
+    "id": "0007",
+    "amount": null,
+    "unit": null,
+    "name": "BBQ sauce"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Mix and form into walnut-size balls.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Place on an aluminum foil lined and sprayed baking sheet.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Bake at 350 degrees for 20 minutes.",
+    "timer": 1200
+   },
+   {
+    "title": "",
+    "content": "Cover with BBQ sauce and bake an additional 30 minutes.",
+    "timer": 1800
+   }
+  ],
+  "notes": ""
+ },
+ {
+  "id": "bbq-shredded-chicken-slow-cooker",
+  "title": "Chicken (Shredded, BBQ Slow Cooker)",
+  "source": "",
+  "courses": [
+   "Dinner"
+  ],
+  "tags": [
+   "chicken",
+   "slow-cooker",
+   "american",
+   "dairy-free"
+  ],
+  "difficulty": "Easy",
+  "time": "Low 6-7 hrs or High 3-4 hrs",
+  "servingsLabel": "Servings",
+  "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 460,
+   "protein": 25,
+   "carbs": 45,
+   "fat": 13
+  },
+  "desc": "Slow-cooker chicken thighs in honey BBQ sauce, shredded for sandwiches or bowls.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 4,
+    "unit": null,
+    "name": "chicken thighs (skin and fat removed)"
+   },
+   {
+    "id": "0002",
+    "amount": 0.5,
+    "unit": null,
+    "name": "onion, medium (grated with juices)"
+   },
+   {
+    "id": "0003",
+    "amount": 1.5,
+    "unit": "cup",
+    "name": "Sweet Baby Ray's Honey BBQ Sauce"
+   },
+   {
+    "id": "0004",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "light brown sugar"
+   },
+   {
+    "id": "0005",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "olive oil"
+   },
+   {
+    "id": "0006",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "garlic powder"
+   },
+   {
+    "id": "0007",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "paprika"
+   },
+   {
+    "id": "0008",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "chili powder"
+   },
+   {
+    "id": "0009",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "black or white pepper"
+   },
+   {
+    "id": "0010",
+    "amount": 1,
+    "unit": "tbsp",
+    "name": "Worcestershire sauce"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Add chicken",
+    "content": "Pat chicken dry with paper towels. Place chicken in slow cooker on Low.",
+    "timer": null
+   },
+   {
+    "title": "Make sauce",
+    "content": "In a bowl, combine all other ingredients and stir to combine. Pour the BBQ sauce mixture into the slow cooker over the chicken.",
+    "timer": null
+   },
+   {
+    "title": "Cook",
+    "content": "Cover and cook on Low (6-7 hrs), or High (3-4 hrs).",
+    "timer": 21600
+   },
+   {
+    "title": "Shred",
+    "content": "When chicken is tender and can pull apart easily, it is ready to shred. Shred chicken and mix the BBQ sauce together.",
     "timer": null
    }
   ],
@@ -666,178 +956,6 @@ window.RECIPES = [
    }
   ],
   "notes": "Can freeze within 3 days in a freezer bag or glass jar."
- },
- {
-  "id": "bbq-meatballs",
-  "title": "BBQ Meatballs",
-  "source": "",
-  "courses": [
-   "Dinner"
-  ],
-  "tags": [
-   "beef",
-   "baked",
-   "comfort-food"
-  ],
-  "difficulty": "Medium",
-  "time": "~50 min",
-  "servingsLabel": "Servings",
-  "baseServings": 4,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 450,
-   "protein": 24,
-   "carbs": 29,
-   "fat": 25
-  },
-  "desc": "Oatmeal-bound beef meatballs baked then finished in BBQ sauce.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 1,
-    "unit": "lb",
-    "name": "ground beef"
-   },
-   {
-    "id": "0002",
-    "amount": 0.75,
-    "unit": "cup",
-    "name": "oatmeal"
-   },
-   {
-    "id": "0003",
-    "amount": null,
-    "unit": null,
-    "name": "onion (as desired)"
-   },
-   {
-    "id": "0004",
-    "amount": 1.5,
-    "unit": "tsp",
-    "name": "salt"
-   },
-   {
-    "id": "0005",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "pepper"
-   },
-   {
-    "id": "0006",
-    "amount": 1,
-    "unit": "cup",
-    "name": "milk"
-   },
-   {
-    "id": "0007",
-    "amount": null,
-    "unit": null,
-    "name": "BBQ sauce"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Mix and form into walnut-size balls.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Place on an aluminum foil lined and sprayed baking sheet.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Bake at 350 degrees for 20 minutes.",
-    "timer": 1200
-   },
-   {
-    "title": "",
-    "content": "Cover with BBQ sauce and bake an additional 30 minutes.",
-    "timer": 1800
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "compote",
-  "title": "Blueberry Compote",
-  "source": "",
-  "courses": [
-   "Sauce",
-   "Breakfast"
-  ],
-  "tags": [
-   "fruit",
-   "vegetarian",
-   "no-bake",
-   "freezer-friendly",
-   "vegan",
-   "gluten-free",
-   "dairy-free"
-  ],
-  "difficulty": "Easy",
-  "time": "~20 min",
-  "servingsLabel": "Servings",
-  "baseServings": 4,
-  "servingsEstimated": false,
-  "nutrition": {
-   "calories": 95,
-   "protein": 1,
-   "carbs": 24,
-   "fat": 0
-  },
-  "desc": "A quick five-ingredient berry sauce that turns jammy as it cools — perfect over pancakes, yogurt, French toast, or ice cream.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 2,
-    "unit": "cup",
-    "name": "fresh or frozen blueberries"
-   },
-   {
-    "id": "0002",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "maple syrup"
-   },
-   {
-    "id": "0003",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "water"
-   },
-   {
-    "id": "0004",
-    "amount": 1,
-    "unit": "tbsp",
-    "name": "fresh lemon juice"
-   },
-   {
-    "id": "0005",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "vanilla extract"
-   }
-  ],
-  "steps": [
-   {
-    "title": "Simmer the base",
-    "content": "Add half the blueberries (about 1 cup) to a small saucepan with the {0002}, {0003}, {0004}, and {0005}. Bring to a simmer over medium heat and cook 10 minutes, stirring occasionally.",
-    "timer": 600
-   },
-   {
-    "title": "Add the rest of the berries",
-    "content": "Stir in the remaining blueberries and cook another 8 minutes, stirring occasionally, until the berries burst and the sauce looks glossy.",
-    "timer": 480
-   },
-   {
-    "title": "Cool to thicken",
-    "content": "Pull it off the heat. The compote keeps thickening into a jammy sauce as it cools, so give it a few minutes before serving.",
-    "timer": 300
-   }
-  ],
-  "notes": "Keeps in the fridge up to 5 days and freezes well — try freezing it in an ice cube tray for single servings to drop on oatmeal or pancakes later.\n\nFor a thicker, brighter sauce, whisk in a pinch of cornstarch partway through and add a little lemon zest in the last few minutes."
  },
  {
   "id": "broccoli-casserole",
@@ -1281,59 +1399,6 @@ window.RECIPES = [
    }
   ],
   "notes": ""
- },
- {
-  "id": "smash-burger",
-  "title": "Burger (Smash)",
-  "source": "",
-  "courses": [
-   "Dinner"
-  ],
-  "tags": [
-   "beef",
-   "burger",
-   "stovetop",
-   "gluten-free",
-   "dairy-free"
-  ],
-  "difficulty": "Easy",
-  "time": "~5 min",
-  "servingsLabel": "Patties",
-  "baseServings": 6,
-  "servingsEstimated": false,
-  "nutrition": {
-   "calories": 195,
-   "protein": 13,
-   "carbs": 0,
-   "fat": 15
-  },
-  "desc": "Thin, crispy-edged smash burgers cooked on a hot cast iron or stainless skillet.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 1,
-    "unit": "lb",
-    "name": "ground beef 80/20 (1-1.5 lbs)"
-   }
-  ],
-  "steps": [
-   {
-    "title": "Form balls",
-    "content": "Make 6 balls with 1 lb 80/20 ground beef. Refrigerate; keep cold before moving to skillet. Cut squares of parchment to place on top of the balls when heating.",
-    "timer": null
-   },
-   {
-    "title": "Smash",
-    "content": "Heat skillet to medium-high. Place a ball on the skillet, set parchment on top, and smash to desired thickness with a spatula (smash the sides more than the middle).",
-    "timer": null
-   },
-   {
-    "title": "Cook",
-    "content": "Cook 2 minutes. Turn, salt and pepper, and cook 1 minute more. Remove from skillet.",
-    "timer": 120
-   }
-  ],
-  "notes": "Use a cast iron skillet or stainless steel frying pan."
  },
  {
   "id": "burger-gumbo",
@@ -1905,175 +1970,175 @@ window.RECIPES = [
   "notes": "Helpful tools: digital thermometer, long wood spoon, rubber spatula.\n\nYields 60+ caramels."
  },
  {
-  "id": "sweet-cooked-carrots",
-  "title": "Carrots (Sweet Cooked)",
+  "id": "caramelized-onions",
+  "title": "Onions (Caramelized)",
   "source": "",
   "courses": [
-   "Side"
+   "Basics"
   ],
   "tags": [
    "vegetarian",
    "stovetop",
    "gluten-free"
   ],
-  "difficulty": "Easy",
-  "time": "",
+  "difficulty": "Medium",
+  "time": "~45 min",
   "servingsLabel": "Servings",
-  "baseServings": 8,
+  "baseServings": 4,
   "servingsEstimated": true,
   "nutrition": {
-   "calories": 135,
+   "calories": 75,
    "protein": 1,
-   "carbs": 22,
-   "fat": 4
+   "carbs": 5,
+   "fat": 6
   },
-  "desc": "Tender baby carrots glazed in a brown sugar, butter, and Dijon mustard sauce.",
+  "desc": "Vidalia onions cooked low and slow in butter until deeply caramelized.",
   "ingredients": [
    {
     "id": "0001",
     "amount": 2,
-    "unit": "lb",
-    "name": "baby carrots"
+    "unit": null,
+    "name": "Vidalia onions, medium, sliced"
    },
    {
     "id": "0002",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "salt"
-   },
-   {
-    "id": "0003",
-    "amount": 0.5,
-    "unit": "cup",
-    "name": "packed light brown sugar"
-   },
-   {
-    "id": "0004",
-    "amount": 3,
+    "amount": 2,
     "unit": "tbsp",
     "name": "butter"
    },
    {
-    "id": "0005",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "Dijon mustard"
-   },
-   {
-    "id": "0006",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "white pepper"
+    "id": "0003",
+    "amount": null,
+    "unit": null,
+    "name": "salt"
    }
   ],
   "steps": [
    {
     "title": "",
-    "content": "Put carrots in a saucepan, sprinkle with salt, and cover with water. Bring to a boil, cover with a lid, and simmer on low until tender. Drain.",
+    "content": "Slice onions. Heat a cast iron skillet to medium.",
     "timer": null
    },
    {
     "title": "",
-    "content": "In the saucepan put the remaining ingredients, stir, and add the carrots.",
+    "content": "Add oil and butter, then onions. Add a pinch of salt. Reduce heat if butter starts to brown.",
     "timer": null
    },
    {
     "title": "",
-    "content": "Stir over low heat until well coated.",
-    "timer": null
+    "content": "Cook onions low and slow for up to 45 minutes depending on texture preference, turning frequently. Deglaze pan with balsamic vinegar or water if needed.",
+    "timer": 2700
    }
   ],
   "notes": ""
  },
  {
-  "id": "green-beans",
-  "title": "Charred Green Beans",
+  "id": "cheesy-potatoes-jan-kuba",
+  "title": "Potatoes (Cheesy, Jan Kuba)",
   "source": "",
   "courses": [
    "Side"
   ],
   "tags": [
    "vegetarian",
-   "stovetop",
-   "roasted",
-   "vegan",
-   "gluten-free",
-   "dairy-free"
+   "potato",
+   "baked",
+   "casserole",
+   "comfort-food",
+   "potluck"
   ],
-  "difficulty": "Easy",
-  "time": "~25 min",
+  "difficulty": "Medium",
+  "time": "~45 min - 1 hr",
   "servingsLabel": "Servings",
-  "baseServings": 4,
+  "baseServings": 8,
   "servingsEstimated": false,
   "nutrition": {
-   "calories": 65,
-   "protein": 2,
-   "carbs": 7,
-   "fat": 4
+   "calories": 465,
+   "protein": 7,
+   "carbs": 35,
+   "fat": 30
   },
-  "desc": "Blistered, smoky green beans cooked hard and fast in a screaming-hot cast iron pan.",
+  "desc": "A creamy baked hashbrown casserole with two cream soups, sharp cheddar, and a crunchy cornflake topping.",
   "ingredients": [
    {
     "id": "0001",
-    "amount": 1,
+    "amount": 2,
     "unit": "lb",
-    "name": "green beans"
+    "name": "thawed frozen hashbrowns"
    },
    {
     "id": "0002",
-    "amount": 1,
-    "unit": "tbsp",
-    "name": "avocado oil (or olive oil)"
-   },
-   {
-    "id": "0003",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "paprika"
-   },
-   {
-    "id": "0004",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "onion powder"
-   },
-   {
-    "id": "0005",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "garlic powder"
-   },
-   {
-    "id": "0006",
     "amount": 1,
     "unit": "tsp",
     "name": "salt"
    },
    {
+    "id": "0003",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "pepper"
+   },
+   {
+    "id": "0004",
+    "amount": 1,
+    "unit": "can",
+    "name": "cream of mushroom soup"
+   },
+   {
+    "id": "0005",
+    "amount": 1,
+    "unit": "can",
+    "name": "cream of celery soup"
+   },
+   {
+    "id": "0006",
+    "amount": 2,
+    "unit": "cup",
+    "name": "sharp cheddar cheese, shredded"
+   },
+   {
     "id": "0007",
     "amount": 0.5,
-    "unit": "tsp",
-    "name": "black pepper"
+    "unit": "cup",
+    "name": "melted butter"
+   },
+   {
+    "id": "0008",
+    "amount": 0.5,
+    "unit": "cup",
+    "name": "white onion (chopped)"
+   },
+   {
+    "id": "0009",
+    "amount": 2,
+    "unit": "cup",
+    "name": "crushed cornflakes (topping)"
+   },
+   {
+    "id": "0010",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "melted butter (topping)"
    }
   ],
   "steps": [
    {
-    "title": "Get the pan ripping hot",
-    "content": "Set a cast iron skillet over high heat and let it get properly hot, about 3–4 minutes. Add the {0002} and give it a few seconds to heat up.",
-    "timer": 240
+    "title": "",
+    "content": "In a large mixing bowl, combine the hashbrowns, salt, pepper, cream of mushroom soup, cream of celery soup, cheddar cheese, melted butter, and white onion.",
+    "timer": null
    },
    {
-    "title": "Char the beans",
-    "content": "Add the {0001} in a single layer — make sure they're trimmed and patted dry so they char instead of steam. Cook 10–15 minutes, stirring only occasionally, until blistered and charred to your liking.",
-    "timer": 720
+    "title": "Topping",
+    "content": "Mix together the crushed cornflakes and melted butter and sprinkle over the top.",
+    "timer": null
    },
    {
-    "title": "Season at the end",
-    "content": "In the last 3–5 minutes, sprinkle in the {0003}, {0004}, {0005}, {0006}, and {0007}. Toss to coat and let the spices toast against the hot beans, then pull from the heat.",
-    "timer": 240
+    "title": "",
+    "content": "Bake at 350º for 45 minutes to 1 hour.",
+    "timer": 2700
    }
   ],
-  "notes": "Dry beans are non-negotiable — any surface water steams them and kills the char.\n\nAvocado oil is the move here because it takes high heat without burning, unlike butter or olive oil. Want extra richness? Toss with a small knob of butter off the heat at the very end."
+  "notes": ""
  },
  {
   "id": "chex-mix",
@@ -2186,197 +2251,6 @@ window.RECIPES = [
    }
   ],
   "notes": ""
- },
- {
-  "id": "bbq-shredded-chicken-slow-cooker",
-  "title": "Chicken (Shredded, BBQ Slow Cooker)",
-  "source": "",
-  "courses": [
-   "Dinner"
-  ],
-  "tags": [
-   "chicken",
-   "slow-cooker",
-   "american",
-   "dairy-free"
-  ],
-  "difficulty": "Easy",
-  "time": "Low 6-7 hrs or High 3-4 hrs",
-  "servingsLabel": "Servings",
-  "baseServings": 4,
-  "servingsEstimated": false,
-  "nutrition": {
-   "calories": 460,
-   "protein": 25,
-   "carbs": 45,
-   "fat": 13
-  },
-  "desc": "Slow-cooker chicken thighs in honey BBQ sauce, shredded for sandwiches or bowls.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 4,
-    "unit": null,
-    "name": "chicken thighs (skin and fat removed)"
-   },
-   {
-    "id": "0002",
-    "amount": 0.5,
-    "unit": null,
-    "name": "onion, medium (grated with juices)"
-   },
-   {
-    "id": "0003",
-    "amount": 1.5,
-    "unit": "cup",
-    "name": "Sweet Baby Ray's Honey BBQ Sauce"
-   },
-   {
-    "id": "0004",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "light brown sugar"
-   },
-   {
-    "id": "0005",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "olive oil"
-   },
-   {
-    "id": "0006",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "garlic powder"
-   },
-   {
-    "id": "0007",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "paprika"
-   },
-   {
-    "id": "0008",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "chili powder"
-   },
-   {
-    "id": "0009",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "black or white pepper"
-   },
-   {
-    "id": "0010",
-    "amount": 1,
-    "unit": "tbsp",
-    "name": "Worcestershire sauce"
-   }
-  ],
-  "steps": [
-   {
-    "title": "Add chicken",
-    "content": "Pat chicken dry with paper towels. Place chicken in slow cooker on Low.",
-    "timer": null
-   },
-   {
-    "title": "Make sauce",
-    "content": "In a bowl, combine all other ingredients and stir to combine. Pour the BBQ sauce mixture into the slow cooker over the chicken.",
-    "timer": null
-   },
-   {
-    "title": "Cook",
-    "content": "Cover and cook on Low (6-7 hrs), or High (3-4 hrs).",
-    "timer": 21600
-   },
-   {
-    "title": "Shred",
-    "content": "When chicken is tender and can pull apart easily, it is ready to shred. Shred chicken and mix the BBQ sauce together.",
-    "timer": null
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "shredded-chicken",
-  "title": "Chicken (Shredded)",
-  "source": "",
-  "courses": [
-   "Dinner",
-   "Basics"
-  ],
-  "tags": [
-   "chicken",
-   "stovetop",
-   "slow-cooker",
-   "freezer-friendly",
-   "make-ahead",
-   "gluten-free",
-   "dairy-free"
-  ],
-  "difficulty": "Easy",
-  "time": "~30 min",
-  "servingsLabel": "Servings",
-  "baseServings": 12,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 210,
-   "protein": 20,
-   "carbs": 2,
-   "fat": 13
-  },
-  "desc": "Simply simmered chicken thighs shredded and moistened with reduced cooking broth.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 3,
-    "unit": "lb",
-    "name": "chicken thighs (skinless & boneless)"
-   },
-   {
-    "id": "0002",
-    "amount": 1,
-    "unit": null,
-    "name": "onion, medium (peeled and sliced)"
-   },
-   {
-    "id": "0003",
-    "amount": 4,
-    "unit": "clove",
-    "name": "garlic"
-   },
-   {
-    "id": "0004",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "salt"
-   },
-   {
-    "id": "0005",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "ground black pepper"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "In a heavy-bottomed saucepan combine all ingredients. Add just enough water to cover the chicken. Turn heat to high. Bring to a boil. Remove any scum or foam that floats to the top. Adjust heat to a gentle simmer. Cook for 30 minutes or until chicken is very tender and 175 degrees.",
-    "timer": 1800
-   },
-   {
-    "title": "",
-    "content": "Transfer to cutting board, use 2 forks to shred the chicken.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "After removing chicken, boil the liquid until it has reduced to 1/3rd. Spoon about 1 cup over the shredded chicken. Eat within 2-3 days.",
-    "timer": null
-   }
-  ],
-  "notes": "Chicken & broth will keep in fridge up to 3 days or frozen for 1 month.\n\nCan be cooked in slow cooker on LOW for 4-6 hours."
  },
  {
   "id": "chicken-broth-soup",
@@ -2970,129 +2844,6 @@ window.RECIPES = [
    }
   ],
   "notes": "Makes 6-8 servings."
- },
- {
-  "id": "vegetarian-chili",
-  "title": "Chili (Vegetarian)",
-  "source": "",
-  "courses": [
-   "Soup",
-   "Dinner"
-  ],
-  "tags": [
-   "vegetarian",
-   "beans",
-   "chili",
-   "soup",
-   "slow-cooker",
-   "crock-pot",
-   "comfort-food"
-  ],
-  "difficulty": "Easy",
-  "time": "~2 hr",
-  "servingsLabel": "Servings",
-  "baseServings": 6,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 245,
-   "protein": 14,
-   "carbs": 35,
-   "fat": 4
-  },
-  "desc": "A hearty meatless chili made with Morning Star crumbles, beans, and vegetables in the crock pot.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": null,
-    "unit": null,
-    "name": "Morning Star Crumbles"
-   },
-   {
-    "id": "0002",
-    "amount": 1,
-    "unit": "can",
-    "name": "chili beans in sauce"
-   },
-   {
-    "id": "0003",
-    "amount": 1,
-    "unit": "can",
-    "name": "red kidney beans"
-   },
-   {
-    "id": "0004",
-    "amount": 14,
-    "unit": "oz",
-    "name": "diced fire roasted tomatoes"
-   },
-   {
-    "id": "0005",
-    "amount": 0.5,
-    "unit": null,
-    "name": "red onion (chopped)"
-   },
-   {
-    "id": "0006",
-    "amount": 1,
-    "unit": null,
-    "name": "carrot (chopped)"
-   },
-   {
-    "id": "0007",
-    "amount": 1,
-    "unit": null,
-    "name": "zucchini (chopped)"
-   },
-   {
-    "id": "0008",
-    "amount": 0.5,
-    "unit": "cup",
-    "name": "edamame"
-   },
-   {
-    "id": "0009",
-    "amount": 0.5,
-    "unit": "cup",
-    "name": "corn"
-   },
-   {
-    "id": "0010",
-    "amount": 1,
-    "unit": "pkg",
-    "name": "chili mix"
-   },
-   {
-    "id": "0011",
-    "amount": null,
-    "unit": null,
-    "name": "garlic powder"
-   },
-   {
-    "id": "0012",
-    "amount": null,
-    "unit": null,
-    "name": "chili powder"
-   },
-   {
-    "id": "0013",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "sugar"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Combine all ingredients and cook in a crock pot for about 2 hours on low.",
-    "timer": 7200
-   },
-   {
-    "title": "",
-    "content": "Add sour cream or sharp cheddar cheese to individual bowls.",
-    "timer": null
-   }
-  ],
-  "notes": ""
  },
  {
   "id": "chinese-brown-sauce",
@@ -3866,112 +3617,84 @@ window.RECIPES = [
   "notes": "Sooo Yummy! Enjoy!"
  },
  {
-  "id": "kfc-coleslaw",
-  "title": "Coleslaw (KFC)",
-  "source": "KFC (copycat)",
+  "id": "compote",
+  "title": "Blueberry Compote",
+  "source": "",
   "courses": [
-   "Salad",
-   "Side"
+   "Sauce",
+   "Breakfast"
   ],
   "tags": [
-   "slaw",
-   "salad",
+   "fruit",
    "vegetarian",
-   "make-ahead",
-   "overnight",
-   "gluten-free"
+   "no-bake",
+   "freezer-friendly",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
   ],
   "difficulty": "Easy",
-  "time": "Overnight + ~15 min",
+  "time": "~20 min",
   "servingsLabel": "Servings",
-  "baseServings": 8,
-  "servingsEstimated": true,
+  "baseServings": 4,
+  "servingsEstimated": false,
   "nutrition": {
-   "calories": 130,
+   "calories": 95,
    "protein": 1,
-   "carbs": 10,
-   "fat": 10
+   "carbs": 24,
+   "fat": 0
   },
-  "desc": "Copycat KFC coleslaw with a creamy, sweet-tangy mayonnaise dressing.",
+  "desc": "A quick five-ingredient berry sauce that turns jammy as it cools — perfect over pancakes, yogurt, French toast, or ice cream.",
   "ingredients": [
    {
     "id": "0001",
-    "amount": 0.5,
+    "amount": 2,
     "unit": "cup",
-    "name": "mayonnaise (Hellmans)"
+    "name": "fresh or frozen blueberries"
    },
    {
     "id": "0002",
     "amount": 0.25,
     "unit": "cup",
-    "name": "granulated sugar"
+    "name": "maple syrup"
    },
    {
     "id": "0003",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "milk + 3/4 tsp lemon (or buttermilk)"
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "water"
    },
    {
     "id": "0004",
-    "amount": 1.5,
+    "amount": 1,
     "unit": "tbsp",
-    "name": "lemon juice"
+    "name": "fresh lemon juice"
    },
    {
     "id": "0005",
-    "amount": 4,
-    "unit": "cup",
-    "name": "cabbage (about 1/2 head) finely shredded + carrot, or 15-16 oz shredded cabbage coleslaw bag"
-   },
-   {
-    "id": "0006",
-    "amount": 0.25,
-    "unit": null,
-    "name": "medium yellow onion (minced)"
-   },
-   {
-    "id": "0007",
-    "amount": 1,
+    "amount": 0.5,
     "unit": "tsp",
-    "name": "salt"
-   },
-   {
-    "id": "0008",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "black pepper"
-   },
-   {
-    "id": "0009",
-    "amount": 1.5,
-    "unit": "tbsp",
-    "name": "apple cider vinegar"
+    "name": "vanilla extract"
    }
   ],
   "steps": [
    {
-    "title": "",
-    "content": "Shred cabbage and carrot in a food processor, then add the minced onion.",
-    "timer": null
+    "title": "Simmer the base",
+    "content": "Add half the blueberries (about 1 cup) to a small saucepan with the {0002}, {0003}, {0004}, and {0005}. Bring to a simmer over medium heat and cook 10 minutes, stirring occasionally.",
+    "timer": 600
    },
    {
-    "title": "",
-    "content": "Combine all other ingredients in a large mixing bowl. Whisk together.",
-    "timer": null
+    "title": "Add the rest of the berries",
+    "content": "Stir in the remaining blueberries and cook another 8 minutes, stirring occasionally, until the berries burst and the sauce looks glossy.",
+    "timer": 480
    },
    {
-    "title": "",
-    "content": "Combine the dressing and veggies.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Cover the bowl, place in the fridge, and marinate at least 4 hours, preferably overnight.",
-    "timer": 43200
+    "title": "Cool to thicken",
+    "content": "Pull it off the heat. The compote keeps thickening into a jammy sauce as it cools, so give it a few minutes before serving.",
+    "timer": 300
    }
   ],
-  "notes": ""
+  "notes": "Keeps in the fridge up to 5 days and freezes well — try freezing it in an ice cube tray for single servings to drop on oatmeal or pancakes later.\n\nFor a thicker, brighter sauce, whisk in a pinch of cornstarch partway through and add a little lemon zest in the last few minutes."
  },
  {
   "id": "cookie-day-sugar-cookies",
@@ -4074,89 +3797,6 @@ window.RECIPES = [
     "title": "",
     "content": "Bake at 375º on an ungreased cookie sheet for 7-10 minutes.",
     "timer": 600
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "creamed-corn",
-  "title": "Corn (Creamed)",
-  "source": "",
-  "courses": [
-   "Side"
-  ],
-  "tags": [
-   "corn",
-   "vegetarian",
-   "slow-cooker",
-   "gluten-free"
-  ],
-  "difficulty": "Easy",
-  "time": "Crockpot 2-4 hrs (high) or stovetop ~20-30 min",
-  "servingsLabel": "Servings",
-  "baseServings": 8,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 225,
-   "protein": 4,
-   "carbs": 15,
-   "fat": 16
-  },
-  "desc": "Rich creamed corn with cream cheese and butter, made in the crockpot or on the stovetop.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 20,
-    "unit": "oz",
-    "name": "frozen corn (20-30 oz, ~5 cups / 8-9 ears sweet corn from cob)"
-   },
-   {
-    "id": "0002",
-    "amount": 8,
-    "unit": "oz",
-    "name": "cream cheese"
-   },
-   {
-    "id": "0003",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "butter"
-   },
-   {
-    "id": "0004",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "milk + half and half"
-   },
-   {
-    "id": "0005",
-    "amount": 1,
-    "unit": "tbsp",
-    "name": "sugar (optional)"
-   },
-   {
-    "id": "0006",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "salt (or to taste)"
-   },
-   {
-    "id": "0007",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "pepper (or to taste)"
-   }
-  ],
-  "steps": [
-   {
-    "title": "Crockpot method",
-    "content": "Put all the ingredients in the crockpot. Cook on high 2-4 hours or low 4-6 hours. Stir after about an hour.",
-    "timer": 7200
-   },
-   {
-    "title": "Stovetop method",
-    "content": "Alternatively, cook on the stovetop in a dutch oven or deep skillet until corn is tender and butter and cream cheese are melted (~20-30 min).",
-    "timer": 1200
    }
   ],
   "notes": ""
@@ -4282,6 +3922,264 @@ window.RECIPES = [
     "title": "Bake",
     "content": "Bake until heated through and the cheese is melted and bubbly.",
     "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
+  "id": "cream-cheese-mints",
+  "title": "Mints (Cream Cheese)",
+  "source": "",
+  "courses": [
+   "Dessert"
+  ],
+  "tags": [
+   "candy",
+   "no-bake",
+   "vegetarian",
+   "party",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "",
+  "servingsLabel": "Pieces",
+  "baseServings": 48,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 50,
+   "protein": 0,
+   "carbs": 10,
+   "fat": 1
+  },
+  "desc": "Soft cream cheese mints flavored with almond and shaped in molds or cutters.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 4,
+    "unit": "oz",
+    "name": "cream cheese (room temp)"
+   },
+   {
+    "id": "0002",
+    "amount": 1,
+    "unit": "tbsp",
+    "name": "butter"
+   },
+   {
+    "id": "0003",
+    "amount": 4,
+    "unit": "cup",
+    "name": "powdered sugar"
+   },
+   {
+    "id": "0004",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "almond extract"
+   },
+   {
+    "id": "0005",
+    "amount": 0.125,
+    "unit": "tsp",
+    "name": "vanilla"
+   },
+   {
+    "id": "0006",
+    "amount": null,
+    "unit": null,
+    "name": "granulated sugar"
+   },
+   {
+    "id": "0007",
+    "amount": null,
+    "unit": null,
+    "name": "food coloring"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Place cream cheese in a mixing bowl. Using an electric mixer, start adding powdered sugar until you reach the consistency of play dough (use just less than a 2 lb bag of powdered sugar). Add more powdered sugar if too sticky.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Add a drop or two of flavoring and mix to incorporate. Add food coloring and knead into the dough.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Roll dough in granulated sugar and press into a mint mold or cut with mini cookie cutters. Store in the fridge.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
+  "id": "cream-cheese-wontons",
+  "title": "Wontons (Cream Cheese)",
+  "source": "",
+  "courses": [
+   "Appetizer"
+  ],
+  "tags": [
+   "vegetarian",
+   "baked",
+   "asian",
+   "party"
+  ],
+  "difficulty": "Medium",
+  "time": "",
+  "servingsLabel": "Servings",
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 150,
+   "protein": 3,
+   "carbs": 17,
+   "fat": 7
+  },
+  "desc": "Baked wonton cups filled with a sweet and spicy cream cheese mixture.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 8,
+    "unit": "oz",
+    "name": "cream cheese, softened"
+   },
+   {
+    "id": "0002",
+    "amount": 4,
+    "unit": null,
+    "name": "green onions, sliced very thin (most white)"
+   },
+   {
+    "id": "0003",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "Sriracha and sweet chili sauce (1+ tsp)"
+   },
+   {
+    "id": "0004",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "powdered sugar (or to taste)"
+   },
+   {
+    "id": "0005",
+    "amount": 1,
+    "unit": "pkg",
+    "name": "wonton wrappers (square or round)"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Preheat oven to 350-400°.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Mix all ingredients well in a bowl, except the wrappers.",
+    "timer": null
+   },
+   {
+    "title": "Bake cups",
+    "content": "Spray a mini muffin pan, place a wonton wrapper in each, and spray with butter spray. Bake until edges are brown, then remove from oven.",
+    "timer": null
+   },
+   {
+    "title": "Fill",
+    "content": "Put about a teaspoon of the mixture in the center of each wrapper.",
+    "timer": null
+   },
+   {
+    "title": "Warm",
+    "content": "Heat again for 2-3 minutes until the center mix is warm. Serve with favorite dipping sauce.",
+    "timer": 180
+   }
+  ],
+  "notes": "Freeze on parchment uncooked for 2 hrs, then transfer to a freezer bag."
+ },
+ {
+  "id": "creamed-corn",
+  "title": "Corn (Creamed)",
+  "source": "",
+  "courses": [
+   "Side"
+  ],
+  "tags": [
+   "corn",
+   "vegetarian",
+   "slow-cooker",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "Crockpot 2-4 hrs (high) or stovetop ~20-30 min",
+  "servingsLabel": "Servings",
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 225,
+   "protein": 4,
+   "carbs": 15,
+   "fat": 16
+  },
+  "desc": "Rich creamed corn with cream cheese and butter, made in the crockpot or on the stovetop.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 20,
+    "unit": "oz",
+    "name": "frozen corn (20-30 oz, ~5 cups / 8-9 ears sweet corn from cob)"
+   },
+   {
+    "id": "0002",
+    "amount": 8,
+    "unit": "oz",
+    "name": "cream cheese"
+   },
+   {
+    "id": "0003",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "butter"
+   },
+   {
+    "id": "0004",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "milk + half and half"
+   },
+   {
+    "id": "0005",
+    "amount": 1,
+    "unit": "tbsp",
+    "name": "sugar (optional)"
+   },
+   {
+    "id": "0006",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "salt (or to taste)"
+   },
+   {
+    "id": "0007",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "pepper (or to taste)"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Crockpot method",
+    "content": "Put all the ingredients in the crockpot. Cook on high 2-4 hours or low 4-6 hours. Stir after about an hour.",
+    "timer": 7200
+   },
+   {
+    "title": "Stovetop method",
+    "content": "Alternatively, cook on the stovetop in a dutch oven or deep skillet until corn is tender and butter and cream cheese are melted (~20-30 min).",
+    "timer": 1200
    }
   ],
   "notes": ""
@@ -4480,81 +4378,6 @@ window.RECIPES = [
   "notes": "Store for up to 2 weeks."
  },
  {
-  "id": "croutons-skillet-garlic",
-  "title": "Croutons (Baguette, Skillet Garlic)",
-  "source": "",
-  "courses": [
-   "Basics",
-   "Side"
-  ],
-  "tags": [
-   "vegetarian",
-   "baked",
-   "bread"
-  ],
-  "difficulty": "Easy",
-  "time": "~30 min",
-  "servingsLabel": "Servings",
-  "baseServings": 6,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 105,
-   "protein": 2,
-   "carbs": 10,
-   "fat": 6
-  },
-  "desc": "Buttery garlic baguette cubes toasted in a skillet then baked until crispy.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 0.5,
-    "unit": null,
-    "name": "baguette (cut in small cubes)"
-   },
-   {
-    "id": "0002",
-    "amount": 3,
-    "unit": "tbsp",
-    "name": "butter (or more)"
-   },
-   {
-    "id": "0003",
-    "amount": 2,
-    "unit": "clove",
-    "name": "garlic (minced)"
-   },
-   {
-    "id": "0004",
-    "amount": null,
-    "unit": null,
-    "name": "salt"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Preheat oven to 300˚ and line a baking sheet with parchment.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Melt butter in a large skillet over medium heat. Add garlic and stir for about 1 minute. Add salt and bread cubes and toss until thoroughly coated.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Transfer to the baking sheet in a single layer.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Bake in the oven 12-15 minutes until crispy.",
-    "timer": 900
-   }
-  ],
-  "notes": ""
- },
- {
   "id": "croutons-pf-garlic-oven",
   "title": "Croutons (Pepperidge Farm, Garlic Butter, Oven)",
   "source": "",
@@ -4631,101 +4454,79 @@ window.RECIPES = [
   "notes": ""
  },
  {
-  "id": "french-toast",
-  "title": "Custardy French Toast",
+  "id": "croutons-skillet-garlic",
+  "title": "Croutons (Baguette, Skillet Garlic)",
   "source": "",
   "courses": [
-   "Breakfast"
+   "Basics",
+   "Side"
   ],
   "tags": [
-   "bread",
-   "eggs",
-   "vegetarian"
+   "vegetarian",
+   "baked",
+   "bread"
   ],
-  "difficulty": "Medium",
+  "difficulty": "Easy",
   "time": "~30 min",
   "servingsLabel": "Servings",
   "baseServings": 6,
-  "servingsEstimated": false,
+  "servingsEstimated": true,
   "nutrition": {
-   "calories": 435,
-   "protein": 13,
-   "carbs": 48,
-   "fat": 14
+   "calories": 105,
+   "protein": 2,
+   "carbs": 10,
+   "fat": 6
   },
-  "desc": "Thick challah or brioche soaked in vanilla-cinnamon custard and cooked low and slow in butter — crisp edges, custardy center.",
+  "desc": "Buttery garlic baguette cubes toasted in a skillet then baked until crispy.",
   "ingredients": [
    {
     "id": "0001",
-    "amount": 1,
+    "amount": 0.5,
     "unit": null,
-    "name": "loaf challah or brioche bread, thick-sliced"
+    "name": "baguette (cut in small cubes)"
    },
    {
     "id": "0002",
-    "amount": 2,
-    "unit": "cup",
-    "name": "half-and-half or heavy cream"
+    "amount": 3,
+    "unit": "tbsp",
+    "name": "butter (or more)"
    },
    {
     "id": "0003",
-    "amount": 4,
-    "unit": null,
-    "name": "large eggs"
+    "amount": 2,
+    "unit": "clove",
+    "name": "garlic (minced)"
    },
    {
     "id": "0004",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "sugar"
-   },
-   {
-    "id": "0005",
-    "amount": 2,
-    "unit": "tsp",
-    "name": "vanilla extract"
-   },
-   {
-    "id": "0006",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "cinnamon"
-   },
-   {
-    "id": "0007",
-    "amount": 3,
-    "unit": "tbsp",
-    "name": "salted butter, for the pan (plus more as needed)"
+    "amount": null,
+    "unit": null,
+    "name": "salt"
    }
   ],
   "steps": [
    {
-    "title": "Slice the bread",
-    "content": "Cut the {0001} into ~1-inch slices. Day-old or slightly stale is best — sturdier, and soaks up more custard without falling apart.",
+    "title": "",
+    "content": "Preheat oven to 300˚ and line a baking sheet with parchment.",
     "timer": null
    },
    {
-    "title": "Make the custard",
-    "content": "Whisk the {0002}, {0003}, {0004}, {0005}, and {0006} until combined. For the smoothest custard with no streaks, blitz it with an immersion blender so the cinnamon fully blends in.",
+    "title": "",
+    "content": "Melt butter in a large skillet over medium heat. Add garlic and stir for about 1 minute. Add salt and bread cubes and toss until thoroughly coated.",
     "timer": null
    },
    {
-    "title": "Soak the slices",
-    "content": "Dip each slice, soaking about 20 seconds per side, then let the excess drip off.",
-    "timer": 40
-   },
-   {
-    "title": "Cook low and slow",
-    "content": "Melt a generous amount of {0007} in a skillet over medium-low heat. Cook each slice 3–5 minutes per side until deeply golden — keep it low and slow so the custardy center cooks through before the outside over-browns. Drop to low if it's coloring too fast.",
-    "timer": 300
-   },
-   {
-    "title": "Check and serve",
-    "content": "Press the center gently: firm means done, jiggly means it needs longer. Serve right away with powdered sugar, a pat of butter, and real maple syrup.",
+    "title": "",
+    "content": "Transfer to the baking sheet in a single layer.",
     "timer": null
+   },
+   {
+    "title": "",
+    "content": "Bake in the oven 12-15 minutes until crispy.",
+    "timer": 900
    }
   ],
-  "notes": "Cooking in batches? Hold finished slices in a 180°F oven so everything stays warm and crisp. Pairs perfectly with the blueberry compote above.\n\nThe bread is the star — sturdy challah or brioche makes all the difference."
+  "notes": ""
  },
  {
   "id": "deviled-eggs-garlic",
@@ -5004,6 +4805,98 @@ window.RECIPES = [
    {
     "title": "8 AM",
     "content": "Bake at 350 degrees. You can brush tops with cream, butter, or beaten egg.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
+  "id": "easy-mints",
+  "title": "Mints (Easy)",
+  "source": "",
+  "courses": [
+   "Dessert"
+  ],
+  "tags": [
+   "candy",
+   "vegetarian",
+   "no-bake",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "",
+  "servingsLabel": "Servings",
+  "baseServings": 24,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 85,
+   "protein": 0,
+   "carbs": 17,
+   "fat": 2
+  },
+  "desc": "Quick almond-flavored mints kneaded smooth and molded or sliced.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "butter"
+   },
+   {
+    "id": "0002",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "water"
+   },
+   {
+    "id": "0003",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0004",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "almond extract"
+   },
+   {
+    "id": "0005",
+    "amount": 3.5,
+    "unit": "cup",
+    "name": "powdered sugar"
+   },
+   {
+    "id": "0006",
+    "amount": null,
+    "unit": null,
+    "name": "food coloring (optional)"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Combine butter and water. Place over low heat until butter melts. Remove from heat.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Add salt and extract.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Gradually add sugar.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Knead until smooth.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Mold into individual candies or form small rolls to slice.",
     "timer": null
    }
   ],
@@ -5480,6 +5373,103 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "french-toast",
+  "title": "Custardy French Toast",
+  "source": "",
+  "courses": [
+   "Breakfast"
+  ],
+  "tags": [
+   "bread",
+   "eggs",
+   "vegetarian"
+  ],
+  "difficulty": "Medium",
+  "time": "~30 min",
+  "servingsLabel": "Servings",
+  "baseServings": 6,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 435,
+   "protein": 13,
+   "carbs": 48,
+   "fat": 14
+  },
+  "desc": "Thick challah or brioche soaked in vanilla-cinnamon custard and cooked low and slow in butter — crisp edges, custardy center.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 1,
+    "unit": null,
+    "name": "loaf challah or brioche bread, thick-sliced"
+   },
+   {
+    "id": "0002",
+    "amount": 2,
+    "unit": "cup",
+    "name": "half-and-half or heavy cream"
+   },
+   {
+    "id": "0003",
+    "amount": 4,
+    "unit": null,
+    "name": "large eggs"
+   },
+   {
+    "id": "0004",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "sugar"
+   },
+   {
+    "id": "0005",
+    "amount": 2,
+    "unit": "tsp",
+    "name": "vanilla extract"
+   },
+   {
+    "id": "0006",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "cinnamon"
+   },
+   {
+    "id": "0007",
+    "amount": 3,
+    "unit": "tbsp",
+    "name": "salted butter, for the pan (plus more as needed)"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Slice the bread",
+    "content": "Cut the {0001} into ~1-inch slices. Day-old or slightly stale is best — sturdier, and soaks up more custard without falling apart.",
+    "timer": null
+   },
+   {
+    "title": "Make the custard",
+    "content": "Whisk the {0002}, {0003}, {0004}, {0005}, and {0006} until combined. For the smoothest custard with no streaks, blitz it with an immersion blender so the cinnamon fully blends in.",
+    "timer": null
+   },
+   {
+    "title": "Soak the slices",
+    "content": "Dip each slice, soaking about 20 seconds per side, then let the excess drip off.",
+    "timer": 40
+   },
+   {
+    "title": "Cook low and slow",
+    "content": "Melt a generous amount of {0007} in a skillet over medium-low heat. Cook each slice 3–5 minutes per side until deeply golden — keep it low and slow so the custardy center cooks through before the outside over-browns. Drop to low if it's coloring too fast.",
+    "timer": 300
+   },
+   {
+    "title": "Check and serve",
+    "content": "Press the center gently: firm means done, jiggly means it needs longer. Serve right away with powdered sugar, a pat of butter, and real maple syrup.",
+    "timer": null
+   }
+  ],
+  "notes": "Cooking in batches? Hold finished slices in a 180°F oven so everything stays warm and crisp. Pairs perfectly with the blueberry compote above.\n\nThe bread is the star — sturdy challah or brioche makes all the difference."
+ },
+ {
   "id": "french-toast-challah",
   "title": "French Toast (Challah)",
   "source": "",
@@ -5570,6 +5560,150 @@ window.RECIPES = [
    }
   ],
   "notes": ""
+ },
+ {
+  "id": "fried-rice",
+  "title": "Steak Fried Rice",
+  "source": "",
+  "courses": [
+   "Dinner"
+  ],
+  "tags": [
+   "beef",
+   "rice",
+   "asian",
+   "stir-fry",
+   "one-pan"
+  ],
+  "difficulty": "Medium",
+  "time": "~25 min + marinate",
+  "servingsLabel": "Servings",
+  "baseServings": 3,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 510,
+   "protein": 23,
+   "carbs": 53,
+   "fat": 17
+  },
+  "desc": "A fast one-pan dinner: seared marinated sirloin, day-old jasmine rice, and veggies in a savory soy-oyster sauce.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 0.5,
+    "unit": "lb",
+    "name": "sirloin steak"
+   },
+   {
+    "id": "0002",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "soy sauce"
+   },
+   {
+    "id": "0003",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "oyster sauce"
+   },
+   {
+    "id": "0004",
+    "amount": 2,
+    "unit": "tsp",
+    "name": "sesame oil"
+   },
+   {
+    "id": "0005",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "white or black pepper"
+   },
+   {
+    "id": "0006",
+    "amount": 1,
+    "unit": "tbsp",
+    "name": "garlic, minced"
+   },
+   {
+    "id": "0007",
+    "amount": 3,
+    "unit": "tbsp",
+    "name": "onion, diced"
+   },
+   {
+    "id": "0008",
+    "amount": 3,
+    "unit": "cup",
+    "name": "cooked jasmine rice (preferably day-old)"
+   },
+   {
+    "id": "0009",
+    "amount": 1,
+    "unit": "cup",
+    "name": "frozen mixed vegetables (peas, corn, carrots)"
+   },
+   {
+    "id": "0010",
+    "amount": 1,
+    "unit": null,
+    "name": "large egg"
+   },
+   {
+    "id": "0011",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "butter, for stir-frying"
+   },
+   {
+    "id": "0012",
+    "amount": 2,
+    "unit": null,
+    "name": "scallions, sliced (for garnish)"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Make the sauce",
+    "content": "Stir together the {0002}, {0003}, {0004}, and {0005} in a small bowl.",
+    "timer": null
+   },
+   {
+    "title": "Marinate the steak",
+    "content": "Cube the {0001} into 1-inch pieces; toss with half the sauce and set the rest aside. Marinate about 30 minutes if you have time.",
+    "timer": 1800
+   },
+   {
+    "title": "Prep your station",
+    "content": "Mince the {0006}, dice the {0007}, and fluff the {0008} to break up clumps. Have everything within arm's reach — stir-frying moves fast.",
+    "timer": null
+   },
+   {
+    "title": "Sear the steak",
+    "content": "Melt half the {0011} in a wok or large skillet over high heat. Sear the steak in a single layer 2–4 minutes, just shy of done (it goes back in later). Remove and set aside. Butter browns fast on high heat — keep it moving and lower the heat if it darkens too quickly.",
+    "timer": 240
+   },
+   {
+    "title": "Fry aromatics and rice",
+    "content": "Add the rest of the {0011}, then the {0006} and {0007}; stir 30–60 seconds until the onion is slightly golden. Add the {0008} and stir-fry 1–2 minutes.",
+    "timer": 120
+   },
+   {
+    "title": "Bring it together",
+    "content": "Add the {0009}, the reserved sauce, and the steak. Stir-fry about a minute to combine and heat through.",
+    "timer": 60
+   },
+   {
+    "title": "Scramble in the egg",
+    "content": "Push the rice aside, crack the {0010} into the gap, scramble it lightly, then pile the rice back over it for a few seconds before stirring it through. Cook about a minute more.",
+    "timer": 60
+   },
+   {
+    "title": "Garnish and serve",
+    "content": "Pull it off the heat promptly — don't overcook. Garnish with {0012} and serve hot.",
+    "timer": null
+   }
+  ],
+  "notes": "Day-old cold rice is the secret — it's drier and fries up with the right texture instead of going mushy. No leftovers? Cook a fresh batch, spread it out to cool and dry, or just fry it a little longer in the pan.\n\nCut the steak across the grain so it stays tender, and keep the pan hot and uncrowded (cook in two batches if you double it). The butter replaces the usual neutral oil and adds hibachi-style richness. Swap in chicken, shrimp, or tofu; add sriracha for heat."
  },
  {
   "id": "frito-casserole",
@@ -5769,72 +5903,6 @@ window.RECIPES = [
    {
     "title": "",
     "content": "Stir the cooled sauce and whip topping together, then frost the jello.",
-    "timer": null
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "peanut-butter-frosting",
-  "title": "Frosting (Peanut Butter)",
-  "source": "",
-  "courses": [
-   "Dessert"
-  ],
-  "tags": [
-   "frosting",
-   "vegetarian",
-   "no-bake",
-   "gluten-free"
-  ],
-  "difficulty": "Easy",
-  "time": "",
-  "servingsLabel": "Servings",
-  "baseServings": 14,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 235,
-   "protein": 3,
-   "carbs": 21,
-   "fat": 12
-  },
-  "desc": "Creamy peanut butter frosting made with powdered sugar, butter, and milk.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 2,
-    "unit": "cup",
-    "name": "powdered sugar"
-   },
-   {
-    "id": "0002",
-    "amount": 1,
-    "unit": "stick",
-    "name": "butter (softened, unsalted)"
-   },
-   {
-    "id": "0003",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "vanilla"
-   },
-   {
-    "id": "0004",
-    "amount": 1,
-    "unit": "cup",
-    "name": "creamy peanut butter"
-   },
-   {
-    "id": "0005",
-    "amount": 3,
-    "unit": "tbsp",
-    "name": "milk"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Beat the powdered sugar, softened butter, vanilla, and peanut butter together until smooth, adding milk to reach a spreadable consistency.",
     "timer": null
    }
   ],
@@ -6296,6 +6364,75 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "garlic-red-potatoes",
+  "title": "Potatoes - Garlic Red",
+  "source": "",
+  "courses": [
+   "Side"
+  ],
+  "tags": [
+   "potato",
+   "vegetarian",
+   "baked",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "",
+  "servingsLabel": "Servings",
+  "baseServings": 10,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 435,
+   "protein": 5,
+   "carbs": 38,
+   "fat": 27
+  },
+  "desc": "Cubed red potatoes baked in garlic butter until tender.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 5,
+    "unit": "lb",
+    "name": "red potatoes"
+   },
+   {
+    "id": "0002",
+    "amount": 3,
+    "unit": "stick",
+    "name": "butter"
+   },
+   {
+    "id": "0003",
+    "amount": null,
+    "unit": null,
+    "name": "garlic powder (1 tbsp+)"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Melt butter, add garlic.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Wash potatoes, cut into cubes.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Place cubes in a 9x13\" pan. Pour melted butter and garlic over potatoes. Stir so all are covered.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Bake at 350ºF until tender.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
   "id": "german-chocolate-cake-frosting",
   "title": "German Chocolate Cake Frosting",
   "source": "Ina Gearhart",
@@ -6386,6 +6523,96 @@ window.RECIPES = [
    }
   ],
   "notes": ""
+ },
+ {
+  "id": "green-beans",
+  "title": "Charred Green Beans",
+  "source": "",
+  "courses": [
+   "Side"
+  ],
+  "tags": [
+   "vegetarian",
+   "stovetop",
+   "roasted",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
+  ],
+  "difficulty": "Easy",
+  "time": "~25 min",
+  "servingsLabel": "Servings",
+  "baseServings": 4,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 65,
+   "protein": 2,
+   "carbs": 7,
+   "fat": 4
+  },
+  "desc": "Blistered, smoky green beans cooked hard and fast in a screaming-hot cast iron pan.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 1,
+    "unit": "lb",
+    "name": "green beans"
+   },
+   {
+    "id": "0002",
+    "amount": 1,
+    "unit": "tbsp",
+    "name": "avocado oil (or olive oil)"
+   },
+   {
+    "id": "0003",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "paprika"
+   },
+   {
+    "id": "0004",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "onion powder"
+   },
+   {
+    "id": "0005",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "garlic powder"
+   },
+   {
+    "id": "0006",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0007",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "black pepper"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Get the pan ripping hot",
+    "content": "Set a cast iron skillet over high heat and let it get properly hot, about 3–4 minutes. Add the {0002} and give it a few seconds to heat up.",
+    "timer": 240
+   },
+   {
+    "title": "Char the beans",
+    "content": "Add the {0001} in a single layer — make sure they're trimmed and patted dry so they char instead of steam. Cook 10–15 minutes, stirring only occasionally, until blistered and charred to your liking.",
+    "timer": 720
+   },
+   {
+    "title": "Season at the end",
+    "content": "In the last 3–5 minutes, sprinkle in the {0003}, {0004}, {0005}, {0006}, and {0007}. Toss to coat and let the spices toast against the hot beans, then pull from the heat.",
+    "timer": 240
+   }
+  ],
+  "notes": "Dry beans are non-negotiable — any surface water steams them and kills the char.\n\nAvocado oil is the move here because it takes high heat without burning, unlike butter or olive oil. Want extra richness? Toss with a small knob of butter off the heat at the very end."
  },
  {
   "id": "guacamole",
@@ -6671,184 +6898,6 @@ window.RECIPES = [
    }
   ],
   "notes": ""
- },
- {
-  "id": "pizza",
-  "title": "Hot Honey Italian Sausage Pizza",
-  "source": "",
-  "courses": [
-   "Dinner"
-  ],
-  "tags": [
-   "pork",
-   "sausage",
-   "italian",
-   "baked",
-   "pizza",
-   "overnight"
-  ],
-  "difficulty": "Hard",
-  "time": "Overnight + ~45 min active",
-  "servingsLabel": "Pizzas",
-  "baseServings": 2,
-  "servingsEstimated": false,
-  "nutrition": {
-   "calories": 1240,
-   "protein": 60,
-   "carbs": 120,
-   "fat": 58
-  },
-  "desc": "King Arthur '00' Neapolitan dough topped with a quick seasoned tomato sauce, mozzarella and parmesan, Italian sausage, and a finishing drizzle of hot honey. Makes two 10–12\" pies.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 2,
-    "unit": "cup",
-    "name": "King Arthur '00' pizza flour"
-   },
-   {
-    "id": "0002",
-    "amount": 0.125,
-    "unit": "tsp",
-    "name": "instant or active dry yeast"
-   },
-   {
-    "id": "0003",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "granulated sugar"
-   },
-   {
-    "id": "0004",
-    "amount": 1.25,
-    "unit": "tsp",
-    "name": "table salt"
-   },
-   {
-    "id": "0005",
-    "amount": 0.75,
-    "unit": "cup",
-    "name": "lukewarm water (105–115°F)"
-   },
-   {
-    "id": "0006",
-    "amount": 1,
-    "unit": "cup",
-    "name": "tomato sauce"
-   },
-   {
-    "id": "0007",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "garlic powder"
-   },
-   {
-    "id": "0008",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "onion powder"
-   },
-   {
-    "id": "0009",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "salt (for the sauce)"
-   },
-   {
-    "id": "0010",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "black pepper"
-   },
-   {
-    "id": "0011",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "Italian seasoning"
-   },
-   {
-    "id": "0012",
-    "amount": 2,
-    "unit": "cup",
-    "name": "shredded mozzarella"
-   },
-   {
-    "id": "0013",
-    "amount": 0.5,
-    "unit": "cup",
-    "name": "grated parmesan"
-   },
-   {
-    "id": "0014",
-    "amount": 0.5,
-    "unit": "lb",
-    "name": "Italian sausage, casings removed"
-   },
-   {
-    "id": "0015",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "hot honey, for drizzling"
-   }
-  ],
-  "steps": [
-   {
-    "title": "Mix the dough (night before)",
-    "content": "The night before, whisk the {0001}, {0002}, {0003}, and {0004} in a medium bowl. Add the {0005} and stir until it comes together into a rough, shaggy dough.",
-    "timer": null
-   },
-   {
-    "title": "Rise overnight (12–24 hrs)",
-    "content": "Cover the bowl and let it rise at room temperature at least 12 hours and up to 24. It won't double — it'll just get a bit puffy.",
-    "timer": 43200
-   },
-   {
-    "title": "Preheat the oven + stone",
-    "content": "When you're ready to bake, set a baking steel or stone on a center rack and preheat the oven as hot as it goes (500–550°F) for at least 30 minutes. A fully preheated stone is what gives you a crisp bottom.",
-    "timer": 1800
-   },
-   {
-    "title": "Divide and shape into balls",
-    "content": "Divide the dough in half (about 200g each). On a well-floured surface, stretch-and-fold each piece: grab both ends, pull apart, fold back over itself, and repeat on all four sides. Then tuck the edges under into a smooth ball, seam-side down.",
-    "timer": null
-   },
-   {
-    "title": "Second rise (45–60 min)",
-    "content": "Set each ball seam-side down in a floured bowl, cover, and let rise 45–60 minutes while the oven heats.",
-    "timer": 2700
-   },
-   {
-    "title": "Make the sauce",
-    "content": "Stir together the {0006}, {0007}, {0008}, {0009}, {0010}, and {0011}. That's your pizza sauce — taste and adjust.",
-    "timer": null
-   },
-   {
-    "title": "Prep the sausage",
-    "content": "Pinch the {0014} into small, thin pieces (about ½ inch) so they cook through in the short, hot bake — or brown it in a skillet first if you'd rather be sure.",
-    "timer": null
-   },
-   {
-    "title": "Shape the crust",
-    "content": "Move one ball to a floured surface, seam-side down. Press the center with your fingertips, leaving the outer rim untouched (that's what puffs into the crust). Using your knuckles and gravity, stretch it into a 10–12\" round — if it fights you, rest it 5–10 minutes and try again. Transfer to a well-floured peel or a sheet of parchment.",
-    "timer": null
-   },
-   {
-    "title": "Sauce and top",
-    "content": "Spread a thin layer of sauce over the crust, leaving a border. Scatter on the {0012} and {0013}, then top with the sausage pieces.",
-    "timer": null
-   },
-   {
-    "title": "Bake hot and fast",
-    "content": "Slide the pizza onto the hot stone and bake 6–8 minutes, until the crust is golden and the cheese is bubbling. For extra char, finish under the top broiler 2–3 minutes — but only with at least 8\" between the stone and the broiler, and watch it closely.",
-    "timer": 480
-   },
-   {
-    "title": "Finish with hot honey",
-    "content": "Pull it out and immediately drizzle with {0015}. Cool a minute, then slice and serve. Reshape and top the second ball while the stone comes back up to temp, and repeat.",
-    "timer": null
-   }
-  ],
-  "notes": "Makes two 10–12\" pizzas — this is King Arthur's '00' dough straight off the bag, with your sauce, sausage, and hot-honey build. For best results, weigh the dough: 232g flour and 170g water.\n\nShort on time? Use the bag's faster method: bump the yeast to ½ tsp, rest the mixed dough 20–30 minutes (with one round of stretch-and-folds), then rise at room temperature about 8 hours instead of overnight.\n\nSalt note: 1¼ tsp in 2 cups of flour runs a touch salty — dial it back toward 1 tsp if you prefer. No pizza stone? A preheated upside-down baking sheet or cast iron skillet works; just give it the full 30-minute preheat. Hot honey: store-bought is easy, or warm honey with a pinch of chili flakes and let it steep."
  },
  {
   "id": "ina-gearharts-cinnamon-rolls",
@@ -7182,6 +7231,114 @@ window.RECIPES = [
    }
   ],
   "notes": "3 stalks yield ~2 batches."
+ },
+ {
+  "id": "kfc-coleslaw",
+  "title": "Coleslaw (KFC)",
+  "source": "KFC (copycat)",
+  "courses": [
+   "Salad",
+   "Side"
+  ],
+  "tags": [
+   "slaw",
+   "salad",
+   "vegetarian",
+   "make-ahead",
+   "overnight",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "Overnight + ~15 min",
+  "servingsLabel": "Servings",
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 130,
+   "protein": 1,
+   "carbs": 10,
+   "fat": 10
+  },
+  "desc": "Copycat KFC coleslaw with a creamy, sweet-tangy mayonnaise dressing.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 0.5,
+    "unit": "cup",
+    "name": "mayonnaise (Hellmans)"
+   },
+   {
+    "id": "0002",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "granulated sugar"
+   },
+   {
+    "id": "0003",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "milk + 3/4 tsp lemon (or buttermilk)"
+   },
+   {
+    "id": "0004",
+    "amount": 1.5,
+    "unit": "tbsp",
+    "name": "lemon juice"
+   },
+   {
+    "id": "0005",
+    "amount": 4,
+    "unit": "cup",
+    "name": "cabbage (about 1/2 head) finely shredded + carrot, or 15-16 oz shredded cabbage coleslaw bag"
+   },
+   {
+    "id": "0006",
+    "amount": 0.25,
+    "unit": null,
+    "name": "medium yellow onion (minced)"
+   },
+   {
+    "id": "0007",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0008",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "black pepper"
+   },
+   {
+    "id": "0009",
+    "amount": 1.5,
+    "unit": "tbsp",
+    "name": "apple cider vinegar"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Shred cabbage and carrot in a food processor, then add the minced onion.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Combine all other ingredients in a large mixing bowl. Whisk together.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Combine the dressing and veggies.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Cover the bowl, place in the fridge, and marinate at least 4 hours, preferably overnight.",
+    "timer": 43200
+   }
+  ],
+  "notes": ""
  },
  {
   "id": "marinated-mushrooms",
@@ -7615,90 +7772,106 @@ window.RECIPES = [
   "notes": ""
  },
  {
-  "id": "vegetarian-meatballs",
-  "title": "Meatballs (Vegetarian)",
+  "id": "mashed-potatoes",
+  "title": "Potatoes (Mashed)",
   "source": "",
   "courses": [
-   "Dinner"
+   "Side"
   ],
   "tags": [
+   "potato",
    "vegetarian",
-   "baked"
+   "freezer-friendly",
+   "comfort-food",
+   "gluten-free"
   ],
   "difficulty": "Easy",
-  "time": "~15 min",
+  "time": "",
   "servingsLabel": "Servings",
-  "baseServings": 4,
+  "baseServings": 10,
   "servingsEstimated": true,
   "nutrition": {
-   "calories": 140,
-   "protein": 13,
-   "carbs": 7,
-   "fat": 7
+   "calories": 310,
+   "protein": 6,
+   "carbs": 40,
+   "fat": 12
   },
-  "desc": "Meatless meatballs made with Morning Star crumbles, baked until set.",
+  "desc": "Creamy Yukon gold mashed potatoes with butter and cream cheese.",
   "ingredients": [
    {
     "id": "0001",
-    "amount": 1,
-    "unit": "pkg",
-    "name": "Morning Star Crumbles"
+    "amount": 5,
+    "unit": "lb",
+    "name": "Yukon gold potatoes, peeled & diced"
    },
    {
     "id": "0002",
-    "amount": 1,
+    "amount": null,
     "unit": null,
-    "name": "egg"
+    "name": "2% or whole milk"
    },
    {
     "id": "0003",
-    "amount": 0.5,
-    "unit": null,
-    "name": "medium sweet onion (yellow), small diced"
+    "amount": 6,
+    "unit": "tbsp",
+    "name": "butter"
    },
    {
     "id": "0004",
-    "amount": 1,
-    "unit": "tbsp",
-    "name": "Worcestershire sauce"
+    "amount": 4,
+    "unit": "oz",
+    "name": "cream cheese"
    },
    {
     "id": "0005",
     "amount": null,
     "unit": null,
-    "name": "oregano"
-   },
-   {
-    "id": "0006",
-    "amount": null,
-    "unit": null,
-    "name": "salt & pepper"
-   },
-   {
-    "id": "0007",
-    "amount": 0.125,
-    "unit": "cup",
-    "name": "half and half"
+    "name": "salt"
    }
   ],
   "steps": [
    {
     "title": "",
-    "content": "Place crumbles in the microwave for 2 minutes (until thawed). Small dice the yellow onion.",
-    "timer": 120
-   },
-   {
-    "title": "",
-    "content": "Add all ingredients to a bowl and combine. Form into balls with a scoop and place on a parchment-lined cookie sheet.",
+    "content": "Place potatoes in a pot, cover with water an inch or 2 above the potatoes, add a bit of Land O'Lakes butter or margarine (reduces the overspill) and salt.",
     "timer": null
    },
    {
     "title": "",
-    "content": "Bake at 350F for about 15 minutes.",
-    "timer": 900
+    "content": "Bring to a boil, then reduce to a simmer.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Simmer until cooked through (tender when pierced with a knife), about 12 minutes.",
+    "timer": 720
+   },
+   {
+    "title": "",
+    "content": "When done, drain in a colander.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Add butter and cream cheese to a large bowl, then add the potatoes and milk.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Mash together until smooth (use a mixer); can leave chunks.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Season with salt and pepper to taste.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Freeze extra in freezer-safe baggies, remove all air, and label.",
+    "timer": null
    }
   ],
-  "notes": ""
+  "notes": "Freeze extra in freezer-safe baggies with all air removed, labeled."
  },
  {
   "id": "meatloaf",
@@ -7921,187 +8094,6 @@ window.RECIPES = [
    {
     "title": "",
     "content": "Garnish with guacamole, green onions, cilantro, tomatoes and chips.",
-    "timer": null
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "cream-cheese-mints",
-  "title": "Mints (Cream Cheese)",
-  "source": "",
-  "courses": [
-   "Dessert"
-  ],
-  "tags": [
-   "candy",
-   "no-bake",
-   "vegetarian",
-   "party",
-   "gluten-free"
-  ],
-  "difficulty": "Easy",
-  "time": "",
-  "servingsLabel": "Pieces",
-  "baseServings": 48,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 50,
-   "protein": 0,
-   "carbs": 10,
-   "fat": 1
-  },
-  "desc": "Soft cream cheese mints flavored with almond and shaped in molds or cutters.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 4,
-    "unit": "oz",
-    "name": "cream cheese (room temp)"
-   },
-   {
-    "id": "0002",
-    "amount": 1,
-    "unit": "tbsp",
-    "name": "butter"
-   },
-   {
-    "id": "0003",
-    "amount": 4,
-    "unit": "cup",
-    "name": "powdered sugar"
-   },
-   {
-    "id": "0004",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "almond extract"
-   },
-   {
-    "id": "0005",
-    "amount": 0.125,
-    "unit": "tsp",
-    "name": "vanilla"
-   },
-   {
-    "id": "0006",
-    "amount": null,
-    "unit": null,
-    "name": "granulated sugar"
-   },
-   {
-    "id": "0007",
-    "amount": null,
-    "unit": null,
-    "name": "food coloring"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Place cream cheese in a mixing bowl. Using an electric mixer, start adding powdered sugar until you reach the consistency of play dough (use just less than a 2 lb bag of powdered sugar). Add more powdered sugar if too sticky.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Add a drop or two of flavoring and mix to incorporate. Add food coloring and knead into the dough.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Roll dough in granulated sugar and press into a mint mold or cut with mini cookie cutters. Store in the fridge.",
-    "timer": null
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "easy-mints",
-  "title": "Mints (Easy)",
-  "source": "",
-  "courses": [
-   "Dessert"
-  ],
-  "tags": [
-   "candy",
-   "vegetarian",
-   "no-bake",
-   "gluten-free"
-  ],
-  "difficulty": "Easy",
-  "time": "",
-  "servingsLabel": "Servings",
-  "baseServings": 24,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 85,
-   "protein": 0,
-   "carbs": 17,
-   "fat": 2
-  },
-  "desc": "Quick almond-flavored mints kneaded smooth and molded or sliced.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "butter"
-   },
-   {
-    "id": "0002",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "water"
-   },
-   {
-    "id": "0003",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "salt"
-   },
-   {
-    "id": "0004",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "almond extract"
-   },
-   {
-    "id": "0005",
-    "amount": 3.5,
-    "unit": "cup",
-    "name": "powdered sugar"
-   },
-   {
-    "id": "0006",
-    "amount": null,
-    "unit": null,
-    "name": "food coloring (optional)"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Combine butter and water. Place over low heat until butter melts. Remove from heat.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Add salt and extract.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Gradually add sugar.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Knead until smooth.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Mold into individual candies or form small rolls to slice.",
     "timer": null
    }
   ],
@@ -8455,6 +8447,70 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "nanas-seasoned-pretzels",
+  "title": "Pretzels (Nana's Seasoned)",
+  "source": "",
+  "courses": [
+   "Snack"
+  ],
+  "tags": [
+   "snack",
+   "vegetarian",
+   "no-bake",
+   "party"
+  ],
+  "difficulty": "Easy",
+  "time": "~2 hr",
+  "servingsLabel": "Servings",
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 270,
+   "protein": 3,
+   "carbs": 30,
+   "fat": 14
+  },
+  "desc": "Tiny twist pretzels tossed with ranch mix and buttery oil until the seasoning is fully absorbed.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 1,
+    "unit": "pkg",
+    "name": "tiny unsalted twist pretzels"
+   },
+   {
+    "id": "0002",
+    "amount": 1,
+    "unit": "pkg",
+    "name": "Ranch dressing mix"
+   },
+   {
+    "id": "0003",
+    "amount": 0.75,
+    "unit": "cup",
+    "name": "Orville Redenbacher buttery oil topping"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "In a large bowl, cover pretzels with dressing mix.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Dribble oil over all and mix with a large spoon.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Mix every 15 minutes for at least 2 hours to absorb the oil.",
+    "timer": 7200
+   }
+  ],
+  "notes": ""
+ },
+ {
   "id": "oatmeal-raisin-cookies",
   "title": "Oatmeal Raisin Cookies",
   "source": "",
@@ -8568,244 +8624,6 @@ window.RECIPES = [
    }
   ],
   "notes": "Makes 3 trays of 16."
- },
- {
-  "id": "caramelized-onions",
-  "title": "Onions (Caramelized)",
-  "source": "",
-  "courses": [
-   "Basics"
-  ],
-  "tags": [
-   "vegetarian",
-   "stovetop",
-   "gluten-free"
-  ],
-  "difficulty": "Medium",
-  "time": "~45 min",
-  "servingsLabel": "Servings",
-  "baseServings": 4,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 75,
-   "protein": 1,
-   "carbs": 5,
-   "fat": 6
-  },
-  "desc": "Vidalia onions cooked low and slow in butter until deeply caramelized.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 2,
-    "unit": null,
-    "name": "Vidalia onions, medium, sliced"
-   },
-   {
-    "id": "0002",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "butter"
-   },
-   {
-    "id": "0003",
-    "amount": null,
-    "unit": null,
-    "name": "salt"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Slice onions. Heat a cast iron skillet to medium.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Add oil and butter, then onions. Add a pinch of salt. Reduce heat if butter starts to brown.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Cook onions low and slow for up to 45 minutes depending on texture preference, turning frequently. Deglaze pan with balsamic vinegar or water if needed.",
-    "timer": 2700
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "red-pickled-onions",
-  "title": "Onions (Red Pickled)",
-  "source": "",
-  "courses": [
-   "Side"
-  ],
-  "tags": [
-   "vegetarian",
-   "make-ahead",
-   "overnight",
-   "vegan",
-   "gluten-free",
-   "dairy-free"
-  ],
-  "difficulty": "Easy",
-  "time": "Overnight + ~15 min",
-  "servingsLabel": "Servings",
-  "baseServings": 8,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 35,
-   "protein": 0,
-   "carbs": 8,
-   "fat": 0
-  },
-  "desc": "Quick-pickled red onions in a sweet-tangy cider vinegar brine.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 1,
-    "unit": "cup",
-    "name": "apple cider vinegar"
-   },
-   {
-    "id": "0002",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "water"
-   },
-   {
-    "id": "0003",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "sugar"
-   },
-   {
-    "id": "0004",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "salt"
-   },
-   {
-    "id": "0005",
-    "amount": 2,
-    "unit": null,
-    "name": "medium red onions"
-   },
-   {
-    "id": "0006",
-    "amount": null,
-    "unit": null,
-    "name": "garlic (sliced), optional"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Bring water to a boil. Add water, vinegar, sugar, and salt. Stir until the sugar is dissolved. Let sit off heat for 10 minutes.",
-    "timer": 600
-   },
-   {
-    "title": "",
-    "content": "Place thinly sliced red onions in a glass mason jar. Pour the liquid mixture over, add garlic (optional).",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Place in the refrigerator. Let marinate at least overnight.",
-    "timer": 43200
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "roasted-onions",
-  "title": "Onions (Roasted)",
-  "source": "",
-  "courses": [
-   "Basics"
-  ],
-  "tags": [
-   "vegetarian",
-   "roasted",
-   "baked",
-   "gluten-free"
-  ],
-  "difficulty": "Easy",
-  "time": "~50 min",
-  "servingsLabel": "Servings",
-  "baseServings": 4,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 80,
-   "protein": 1,
-   "carbs": 7,
-   "fat": 6
-  },
-  "desc": "Sweet onions roasted with butter and balsamic until golden and tender.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 2,
-    "unit": null,
-    "name": "sweet onions, large (yellow or vidalia)"
-   },
-   {
-    "id": "0002",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "butter, melted"
-   },
-   {
-    "id": "0003",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "balsamic vinegar"
-   },
-   {
-    "id": "0004",
-    "amount": 0.125,
-    "unit": "tsp",
-    "name": "salt, kosher"
-   },
-   {
-    "id": "0005",
-    "amount": 0.125,
-    "unit": "tsp",
-    "name": "pepper, fresh ground"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Preheat oven to 400 degrees.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Whisk melted butter and balsamic vinegar.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Cut onion into 1/2 inch slices.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Place onions in a greased 9x13 baking dish (glass or ceramic). Brush with butter mixture.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Pour water into the casserole dish. Season with salt and pepper.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Roast 40-50 minutes until golden and tender.",
-    "timer": 2400
-   }
-  ],
-  "notes": ""
  },
  {
   "id": "oreo-filling",
@@ -9137,6 +8955,72 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "peanut-butter-frosting",
+  "title": "Frosting (Peanut Butter)",
+  "source": "",
+  "courses": [
+   "Dessert"
+  ],
+  "tags": [
+   "frosting",
+   "vegetarian",
+   "no-bake",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "",
+  "servingsLabel": "Servings",
+  "baseServings": 14,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 235,
+   "protein": 3,
+   "carbs": 21,
+   "fat": 12
+  },
+  "desc": "Creamy peanut butter frosting made with powdered sugar, butter, and milk.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 2,
+    "unit": "cup",
+    "name": "powdered sugar"
+   },
+   {
+    "id": "0002",
+    "amount": 1,
+    "unit": "stick",
+    "name": "butter (softened, unsalted)"
+   },
+   {
+    "id": "0003",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "vanilla"
+   },
+   {
+    "id": "0004",
+    "amount": 1,
+    "unit": "cup",
+    "name": "creamy peanut butter"
+   },
+   {
+    "id": "0005",
+    "amount": 3,
+    "unit": "tbsp",
+    "name": "milk"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Beat the powdered sugar, softened butter, vanilla, and peanut butter together until smooth, adding milk to reach a spreadable consistency.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
   "id": "pineapple-roasted",
   "title": "Pineapple (Roasted)",
   "source": "",
@@ -9229,6 +9113,184 @@ window.RECIPES = [
    }
   ],
   "notes": ""
+ },
+ {
+  "id": "pizza",
+  "title": "Hot Honey Italian Sausage Pizza",
+  "source": "",
+  "courses": [
+   "Dinner"
+  ],
+  "tags": [
+   "pork",
+   "sausage",
+   "italian",
+   "baked",
+   "pizza",
+   "overnight"
+  ],
+  "difficulty": "Hard",
+  "time": "Overnight + ~45 min active",
+  "servingsLabel": "Pizzas",
+  "baseServings": 2,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 1240,
+   "protein": 60,
+   "carbs": 120,
+   "fat": 58
+  },
+  "desc": "King Arthur '00' Neapolitan dough topped with a quick seasoned tomato sauce, mozzarella and parmesan, Italian sausage, and a finishing drizzle of hot honey. Makes two 10–12\" pies.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 2,
+    "unit": "cup",
+    "name": "King Arthur '00' pizza flour"
+   },
+   {
+    "id": "0002",
+    "amount": 0.125,
+    "unit": "tsp",
+    "name": "instant or active dry yeast"
+   },
+   {
+    "id": "0003",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "granulated sugar"
+   },
+   {
+    "id": "0004",
+    "amount": 1.25,
+    "unit": "tsp",
+    "name": "table salt"
+   },
+   {
+    "id": "0005",
+    "amount": 0.75,
+    "unit": "cup",
+    "name": "lukewarm water (105–115°F)"
+   },
+   {
+    "id": "0006",
+    "amount": 1,
+    "unit": "cup",
+    "name": "tomato sauce"
+   },
+   {
+    "id": "0007",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "garlic powder"
+   },
+   {
+    "id": "0008",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "onion powder"
+   },
+   {
+    "id": "0009",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "salt (for the sauce)"
+   },
+   {
+    "id": "0010",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "black pepper"
+   },
+   {
+    "id": "0011",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "Italian seasoning"
+   },
+   {
+    "id": "0012",
+    "amount": 2,
+    "unit": "cup",
+    "name": "shredded mozzarella"
+   },
+   {
+    "id": "0013",
+    "amount": 0.5,
+    "unit": "cup",
+    "name": "grated parmesan"
+   },
+   {
+    "id": "0014",
+    "amount": 0.5,
+    "unit": "lb",
+    "name": "Italian sausage, casings removed"
+   },
+   {
+    "id": "0015",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "hot honey, for drizzling"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Mix the dough (night before)",
+    "content": "The night before, whisk the {0001}, {0002}, {0003}, and {0004} in a medium bowl. Add the {0005} and stir until it comes together into a rough, shaggy dough.",
+    "timer": null
+   },
+   {
+    "title": "Rise overnight (12–24 hrs)",
+    "content": "Cover the bowl and let it rise at room temperature at least 12 hours and up to 24. It won't double — it'll just get a bit puffy.",
+    "timer": 43200
+   },
+   {
+    "title": "Preheat the oven + stone",
+    "content": "When you're ready to bake, set a baking steel or stone on a center rack and preheat the oven as hot as it goes (500–550°F) for at least 30 minutes. A fully preheated stone is what gives you a crisp bottom.",
+    "timer": 1800
+   },
+   {
+    "title": "Divide and shape into balls",
+    "content": "Divide the dough in half (about 200g each). On a well-floured surface, stretch-and-fold each piece: grab both ends, pull apart, fold back over itself, and repeat on all four sides. Then tuck the edges under into a smooth ball, seam-side down.",
+    "timer": null
+   },
+   {
+    "title": "Second rise (45–60 min)",
+    "content": "Set each ball seam-side down in a floured bowl, cover, and let rise 45–60 minutes while the oven heats.",
+    "timer": 2700
+   },
+   {
+    "title": "Make the sauce",
+    "content": "Stir together the {0006}, {0007}, {0008}, {0009}, {0010}, and {0011}. That's your pizza sauce — taste and adjust.",
+    "timer": null
+   },
+   {
+    "title": "Prep the sausage",
+    "content": "Pinch the {0014} into small, thin pieces (about ½ inch) so they cook through in the short, hot bake — or brown it in a skillet first if you'd rather be sure.",
+    "timer": null
+   },
+   {
+    "title": "Shape the crust",
+    "content": "Move one ball to a floured surface, seam-side down. Press the center with your fingertips, leaving the outer rim untouched (that's what puffs into the crust). Using your knuckles and gravity, stretch it into a 10–12\" round — if it fights you, rest it 5–10 minutes and try again. Transfer to a well-floured peel or a sheet of parchment.",
+    "timer": null
+   },
+   {
+    "title": "Sauce and top",
+    "content": "Spread a thin layer of sauce over the crust, leaving a border. Scatter on the {0012} and {0013}, then top with the sausage pieces.",
+    "timer": null
+   },
+   {
+    "title": "Bake hot and fast",
+    "content": "Slide the pizza onto the hot stone and bake 6–8 minutes, until the crust is golden and the cheese is bubbling. For extra char, finish under the top broiler 2–3 minutes — but only with at least 8\" between the stone and the broiler, and watch it closely.",
+    "timer": 480
+   },
+   {
+    "title": "Finish with hot honey",
+    "content": "Pull it out and immediately drizzle with {0015}. Cool a minute, then slice and serve. Reshape and top the second ball while the stone comes back up to temp, and repeat.",
+    "timer": null
+   }
+  ],
+  "notes": "Makes two 10–12\" pizzas — this is King Arthur's '00' dough straight off the bag, with your sauce, sausage, and hot-honey build. For best results, weigh the dough: 232g flour and 170g water.\n\nShort on time? Use the bag's faster method: bump the yeast to ½ tsp, rest the mixed dough 20–30 minutes (with one round of stretch-and-folds), then rise at room temperature about 8 hours instead of overnight.\n\nSalt note: 1¼ tsp in 2 cups of flour runs a touch salty — dial it back toward 1 tsp if you prefer. No pizza stone? A preheated upside-down baking sheet or cast iron skillet works; just give it the full 30-minute preheat. Hot honey: store-bought is easy, or warm honey with a pinch of chili flakes and let it steep."
  },
  {
   "id": "pizza-crust-ny-style",
@@ -9571,97 +9633,6 @@ window.RECIPES = [
   "notes": ""
  },
  {
-  "id": "baked-potato",
-  "title": "Potato (Baked)",
-  "source": "",
-  "courses": [
-   "Side"
-  ],
-  "tags": [
-   "potato",
-   "vegetarian",
-   "baked",
-   "vegan",
-   "gluten-free",
-   "dairy-free"
-  ],
-  "difficulty": "Easy",
-  "time": "~45-60 min",
-  "servingsLabel": "Servings",
-  "baseServings": 4,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 300,
-   "protein": 7,
-   "carbs": 60,
-   "fat": 4
-  },
-  "desc": "Oven-baked russet potato rubbed with oil and Kosher salt for a crisp, fluffy result.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": null,
-    "unit": null,
-    "name": "Idaho russet potato"
-   },
-   {
-    "id": "0002",
-    "amount": null,
-    "unit": null,
-    "name": "high heat olive oil"
-   },
-   {
-    "id": "0003",
-    "amount": null,
-    "unit": null,
-    "name": "Kosher salt"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Wash potatoes and allow to dry completely.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Heat oven to 450°.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Poke 6-8 holes in each potato.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Drench in oil and rub all over.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Place on a plate and sprinkle Kosher salt very liberally all over.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Place on a baking sheet and cook until internal temp reaches 205° (45-60 min).",
-    "timer": 2700
-   },
-   {
-    "title": "",
-    "content": "Remove excess salt.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Cut immediately in an 'X', then open and fluff.",
-    "timer": null
-   }
-  ],
-  "notes": ""
- },
- {
   "id": "potato-salad",
   "title": "Potato Salad",
   "source": "",
@@ -9765,349 +9736,6 @@ window.RECIPES = [
     "title": "",
     "content": "Pour the dressing over the potatoes, eggs, and onion and toss. Chill at least 3 hours.",
     "timer": 10800
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "garlic-red-potatoes",
-  "title": "Potatoes - Garlic Red",
-  "source": "",
-  "courses": [
-   "Side"
-  ],
-  "tags": [
-   "potato",
-   "vegetarian",
-   "baked",
-   "gluten-free"
-  ],
-  "difficulty": "Easy",
-  "time": "",
-  "servingsLabel": "Servings",
-  "baseServings": 10,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 435,
-   "protein": 5,
-   "carbs": 38,
-   "fat": 27
-  },
-  "desc": "Cubed red potatoes baked in garlic butter until tender.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 5,
-    "unit": "lb",
-    "name": "red potatoes"
-   },
-   {
-    "id": "0002",
-    "amount": 3,
-    "unit": "stick",
-    "name": "butter"
-   },
-   {
-    "id": "0003",
-    "amount": null,
-    "unit": null,
-    "name": "garlic powder (1 tbsp+)"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Melt butter, add garlic.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Wash potatoes, cut into cubes.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Place cubes in a 9x13\" pan. Pour melted butter and garlic over potatoes. Stir so all are covered.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Bake at 350ºF until tender.",
-    "timer": null
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "cheesy-potatoes-jan-kuba",
-  "title": "Potatoes (Cheesy, Jan Kuba)",
-  "source": "",
-  "courses": [
-   "Side"
-  ],
-  "tags": [
-   "vegetarian",
-   "potato",
-   "baked",
-   "casserole",
-   "comfort-food",
-   "potluck"
-  ],
-  "difficulty": "Medium",
-  "time": "~45 min - 1 hr",
-  "servingsLabel": "Servings",
-  "baseServings": 8,
-  "servingsEstimated": false,
-  "nutrition": {
-   "calories": 465,
-   "protein": 7,
-   "carbs": 35,
-   "fat": 30
-  },
-  "desc": "A creamy baked hashbrown casserole with two cream soups, sharp cheddar, and a crunchy cornflake topping.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 2,
-    "unit": "lb",
-    "name": "thawed frozen hashbrowns"
-   },
-   {
-    "id": "0002",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "salt"
-   },
-   {
-    "id": "0003",
-    "amount": 0.25,
-    "unit": "tsp",
-    "name": "pepper"
-   },
-   {
-    "id": "0004",
-    "amount": 1,
-    "unit": "can",
-    "name": "cream of mushroom soup"
-   },
-   {
-    "id": "0005",
-    "amount": 1,
-    "unit": "can",
-    "name": "cream of celery soup"
-   },
-   {
-    "id": "0006",
-    "amount": 2,
-    "unit": "cup",
-    "name": "sharp cheddar cheese, shredded"
-   },
-   {
-    "id": "0007",
-    "amount": 0.5,
-    "unit": "cup",
-    "name": "melted butter"
-   },
-   {
-    "id": "0008",
-    "amount": 0.5,
-    "unit": "cup",
-    "name": "white onion (chopped)"
-   },
-   {
-    "id": "0009",
-    "amount": 2,
-    "unit": "cup",
-    "name": "crushed cornflakes (topping)"
-   },
-   {
-    "id": "0010",
-    "amount": 0.25,
-    "unit": "cup",
-    "name": "melted butter (topping)"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "In a large mixing bowl, combine the hashbrowns, salt, pepper, cream of mushroom soup, cream of celery soup, cheddar cheese, melted butter, and white onion.",
-    "timer": null
-   },
-   {
-    "title": "Topping",
-    "content": "Mix together the crushed cornflakes and melted butter and sprinkle over the top.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Bake at 350º for 45 minutes to 1 hour.",
-    "timer": 2700
-   }
-  ],
-  "notes": ""
- },
- {
-  "id": "mashed-potatoes",
-  "title": "Potatoes (Mashed)",
-  "source": "",
-  "courses": [
-   "Side"
-  ],
-  "tags": [
-   "potato",
-   "vegetarian",
-   "freezer-friendly",
-   "comfort-food",
-   "gluten-free"
-  ],
-  "difficulty": "Easy",
-  "time": "",
-  "servingsLabel": "Servings",
-  "baseServings": 10,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 310,
-   "protein": 6,
-   "carbs": 40,
-   "fat": 12
-  },
-  "desc": "Creamy Yukon gold mashed potatoes with butter and cream cheese.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 5,
-    "unit": "lb",
-    "name": "Yukon gold potatoes, peeled & diced"
-   },
-   {
-    "id": "0002",
-    "amount": null,
-    "unit": null,
-    "name": "2% or whole milk"
-   },
-   {
-    "id": "0003",
-    "amount": 6,
-    "unit": "tbsp",
-    "name": "butter"
-   },
-   {
-    "id": "0004",
-    "amount": 4,
-    "unit": "oz",
-    "name": "cream cheese"
-   },
-   {
-    "id": "0005",
-    "amount": null,
-    "unit": null,
-    "name": "salt"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Place potatoes in a pot, cover with water an inch or 2 above the potatoes, add a bit of Land O'Lakes butter or margarine (reduces the overspill) and salt.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Bring to a boil, then reduce to a simmer.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Simmer until cooked through (tender when pierced with a knife), about 12 minutes.",
-    "timer": 720
-   },
-   {
-    "title": "",
-    "content": "When done, drain in a colander.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Add butter and cream cheese to a large bowl, then add the potatoes and milk.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Mash together until smooth (use a mixer); can leave chunks.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Season with salt and pepper to taste.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Freeze extra in freezer-safe baggies, remove all air, and label.",
-    "timer": null
-   }
-  ],
-  "notes": "Freeze extra in freezer-safe baggies with all air removed, labeled."
- },
- {
-  "id": "nanas-seasoned-pretzels",
-  "title": "Pretzels (Nana's Seasoned)",
-  "source": "",
-  "courses": [
-   "Snack"
-  ],
-  "tags": [
-   "snack",
-   "vegetarian",
-   "no-bake",
-   "party"
-  ],
-  "difficulty": "Easy",
-  "time": "~2 hr",
-  "servingsLabel": "Servings",
-  "baseServings": 12,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 270,
-   "protein": 3,
-   "carbs": 30,
-   "fat": 14
-  },
-  "desc": "Tiny twist pretzels tossed with ranch mix and buttery oil until the seasoning is fully absorbed.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 1,
-    "unit": "pkg",
-    "name": "tiny unsalted twist pretzels"
-   },
-   {
-    "id": "0002",
-    "amount": 1,
-    "unit": "pkg",
-    "name": "Ranch dressing mix"
-   },
-   {
-    "id": "0003",
-    "amount": 0.75,
-    "unit": "cup",
-    "name": "Orville Redenbacher buttery oil topping"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "In a large bowl, cover pretzels with dressing mix.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Dribble oil over all and mix with a large spoon.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Mix every 15 minutes for at least 2 hours to absorb the oil.",
-    "timer": 7200
    }
   ],
   "notes": ""
@@ -10379,6 +10007,90 @@ window.RECIPES = [
     "title": "",
     "content": "To freeze: place 2 pieces in freezer zip lock bags.",
     "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
+  "id": "red-pickled-onions",
+  "title": "Onions (Red Pickled)",
+  "source": "",
+  "courses": [
+   "Side"
+  ],
+  "tags": [
+   "vegetarian",
+   "make-ahead",
+   "overnight",
+   "vegan",
+   "gluten-free",
+   "dairy-free"
+  ],
+  "difficulty": "Easy",
+  "time": "Overnight + ~15 min",
+  "servingsLabel": "Servings",
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 35,
+   "protein": 0,
+   "carbs": 8,
+   "fat": 0
+  },
+  "desc": "Quick-pickled red onions in a sweet-tangy cider vinegar brine.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 1,
+    "unit": "cup",
+    "name": "apple cider vinegar"
+   },
+   {
+    "id": "0002",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "water"
+   },
+   {
+    "id": "0003",
+    "amount": 0.25,
+    "unit": "cup",
+    "name": "sugar"
+   },
+   {
+    "id": "0004",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0005",
+    "amount": 2,
+    "unit": null,
+    "name": "medium red onions"
+   },
+   {
+    "id": "0006",
+    "amount": null,
+    "unit": null,
+    "name": "garlic (sliced), optional"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Bring water to a boil. Add water, vinegar, sugar, and salt. Stir until the sugar is dissolved. Let sit off heat for 10 minutes.",
+    "timer": 600
+   },
+   {
+    "title": "",
+    "content": "Place thinly sliced red onions in a glass mason jar. Pour the liquid mixture over, add garlic (optional).",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Place in the refrigerator. Let marinate at least overnight.",
+    "timer": 43200
    }
   ],
   "notes": ""
@@ -10844,6 +10556,97 @@ window.RECIPES = [
     "title": "Finish",
     "content": "Remove from oven, place in a bowl and add sweet chili sauce to your liking.",
     "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
+  "id": "roasted-onions",
+  "title": "Onions (Roasted)",
+  "source": "",
+  "courses": [
+   "Basics"
+  ],
+  "tags": [
+   "vegetarian",
+   "roasted",
+   "baked",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "~50 min",
+  "servingsLabel": "Servings",
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 80,
+   "protein": 1,
+   "carbs": 7,
+   "fat": 6
+  },
+  "desc": "Sweet onions roasted with butter and balsamic until golden and tender.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 2,
+    "unit": null,
+    "name": "sweet onions, large (yellow or vidalia)"
+   },
+   {
+    "id": "0002",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "butter, melted"
+   },
+   {
+    "id": "0003",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "balsamic vinegar"
+   },
+   {
+    "id": "0004",
+    "amount": 0.125,
+    "unit": "tsp",
+    "name": "salt, kosher"
+   },
+   {
+    "id": "0005",
+    "amount": 0.125,
+    "unit": "tsp",
+    "name": "pepper, fresh ground"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Preheat oven to 400 degrees.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Whisk melted butter and balsamic vinegar.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Cut onion into 1/2 inch slices.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Place onions in a greased 9x13 baking dish (glass or ceramic). Brush with butter mixture.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Pour water into the casserole dish. Season with salt and pepper.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Roast 40-50 minutes until golden and tender.",
+    "timer": 2400
    }
   ],
   "notes": ""
@@ -11419,6 +11222,86 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "shredded-chicken",
+  "title": "Chicken (Shredded)",
+  "source": "",
+  "courses": [
+   "Dinner",
+   "Basics"
+  ],
+  "tags": [
+   "chicken",
+   "stovetop",
+   "slow-cooker",
+   "freezer-friendly",
+   "make-ahead",
+   "gluten-free",
+   "dairy-free"
+  ],
+  "difficulty": "Easy",
+  "time": "~30 min",
+  "servingsLabel": "Servings",
+  "baseServings": 12,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 210,
+   "protein": 20,
+   "carbs": 2,
+   "fat": 13
+  },
+  "desc": "Simply simmered chicken thighs shredded and moistened with reduced cooking broth.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 3,
+    "unit": "lb",
+    "name": "chicken thighs (skinless & boneless)"
+   },
+   {
+    "id": "0002",
+    "amount": 1,
+    "unit": null,
+    "name": "onion, medium (peeled and sliced)"
+   },
+   {
+    "id": "0003",
+    "amount": 4,
+    "unit": "clove",
+    "name": "garlic"
+   },
+   {
+    "id": "0004",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0005",
+    "amount": 0.5,
+    "unit": "tsp",
+    "name": "ground black pepper"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "In a heavy-bottomed saucepan combine all ingredients. Add just enough water to cover the chicken. Turn heat to high. Bring to a boil. Remove any scum or foam that floats to the top. Adjust heat to a gentle simmer. Cook for 30 minutes or until chicken is very tender and 175 degrees.",
+    "timer": 1800
+   },
+   {
+    "title": "",
+    "content": "Transfer to cutting board, use 2 forks to shred the chicken.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "After removing chicken, boil the liquid until it has reduced to 1/3rd. Spoon about 1 cup over the shredded chicken. Eat within 2-3 days.",
+    "timer": null
+   }
+  ],
+  "notes": "Chicken & broth will keep in fridge up to 3 days or frozen for 1 month.\n\nCan be cooked in slow cooker on LOW for 4-6 hours."
+ },
+ {
   "id": "shrimp-dip",
   "title": "Shrimp Dip",
   "source": "",
@@ -11482,6 +11365,59 @@ window.RECIPES = [
    }
   ],
   "notes": ""
+ },
+ {
+  "id": "smash-burger",
+  "title": "Burger (Smash)",
+  "source": "",
+  "courses": [
+   "Dinner"
+  ],
+  "tags": [
+   "beef",
+   "burger",
+   "stovetop",
+   "gluten-free",
+   "dairy-free"
+  ],
+  "difficulty": "Easy",
+  "time": "~5 min",
+  "servingsLabel": "Patties",
+  "baseServings": 6,
+  "servingsEstimated": false,
+  "nutrition": {
+   "calories": 195,
+   "protein": 13,
+   "carbs": 0,
+   "fat": 15
+  },
+  "desc": "Thin, crispy-edged smash burgers cooked on a hot cast iron or stainless skillet.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 1,
+    "unit": "lb",
+    "name": "ground beef 80/20 (1-1.5 lbs)"
+   }
+  ],
+  "steps": [
+   {
+    "title": "Form balls",
+    "content": "Make 6 balls with 1 lb 80/20 ground beef. Refrigerate; keep cold before moving to skillet. Cut squares of parchment to place on top of the balls when heating.",
+    "timer": null
+   },
+   {
+    "title": "Smash",
+    "content": "Heat skillet to medium-high. Place a ball on the skillet, set parchment on top, and smash to desired thickness with a spatula (smash the sides more than the middle).",
+    "timer": null
+   },
+   {
+    "title": "Cook",
+    "content": "Cook 2 minutes. Turn, salt and pepper, and cook 1 minute more. Remove from skillet.",
+    "timer": 120
+   }
+  ],
+  "notes": "Use a cast iron skillet or stainless steel frying pan."
  },
  {
   "id": "snickerdoodles",
@@ -12157,150 +12093,6 @@ window.RECIPES = [
   "notes": ""
  },
  {
-  "id": "fried-rice",
-  "title": "Steak Fried Rice",
-  "source": "",
-  "courses": [
-   "Dinner"
-  ],
-  "tags": [
-   "beef",
-   "rice",
-   "asian",
-   "stir-fry",
-   "one-pan"
-  ],
-  "difficulty": "Medium",
-  "time": "~25 min + marinate",
-  "servingsLabel": "Servings",
-  "baseServings": 3,
-  "servingsEstimated": false,
-  "nutrition": {
-   "calories": 510,
-   "protein": 23,
-   "carbs": 53,
-   "fat": 17
-  },
-  "desc": "A fast one-pan dinner: seared marinated sirloin, day-old jasmine rice, and veggies in a savory soy-oyster sauce.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 0.5,
-    "unit": "lb",
-    "name": "sirloin steak"
-   },
-   {
-    "id": "0002",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "soy sauce"
-   },
-   {
-    "id": "0003",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "oyster sauce"
-   },
-   {
-    "id": "0004",
-    "amount": 2,
-    "unit": "tsp",
-    "name": "sesame oil"
-   },
-   {
-    "id": "0005",
-    "amount": 0.5,
-    "unit": "tsp",
-    "name": "white or black pepper"
-   },
-   {
-    "id": "0006",
-    "amount": 1,
-    "unit": "tbsp",
-    "name": "garlic, minced"
-   },
-   {
-    "id": "0007",
-    "amount": 3,
-    "unit": "tbsp",
-    "name": "onion, diced"
-   },
-   {
-    "id": "0008",
-    "amount": 3,
-    "unit": "cup",
-    "name": "cooked jasmine rice (preferably day-old)"
-   },
-   {
-    "id": "0009",
-    "amount": 1,
-    "unit": "cup",
-    "name": "frozen mixed vegetables (peas, corn, carrots)"
-   },
-   {
-    "id": "0010",
-    "amount": 1,
-    "unit": null,
-    "name": "large egg"
-   },
-   {
-    "id": "0011",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "butter, for stir-frying"
-   },
-   {
-    "id": "0012",
-    "amount": 2,
-    "unit": null,
-    "name": "scallions, sliced (for garnish)"
-   }
-  ],
-  "steps": [
-   {
-    "title": "Make the sauce",
-    "content": "Stir together the {0002}, {0003}, {0004}, and {0005} in a small bowl.",
-    "timer": null
-   },
-   {
-    "title": "Marinate the steak",
-    "content": "Cube the {0001} into 1-inch pieces; toss with half the sauce and set the rest aside. Marinate about 30 minutes if you have time.",
-    "timer": 1800
-   },
-   {
-    "title": "Prep your station",
-    "content": "Mince the {0006}, dice the {0007}, and fluff the {0008} to break up clumps. Have everything within arm's reach — stir-frying moves fast.",
-    "timer": null
-   },
-   {
-    "title": "Sear the steak",
-    "content": "Melt half the {0011} in a wok or large skillet over high heat. Sear the steak in a single layer 2–4 minutes, just shy of done (it goes back in later). Remove and set aside. Butter browns fast on high heat — keep it moving and lower the heat if it darkens too quickly.",
-    "timer": 240
-   },
-   {
-    "title": "Fry aromatics and rice",
-    "content": "Add the rest of the {0011}, then the {0006} and {0007}; stir 30–60 seconds until the onion is slightly golden. Add the {0008} and stir-fry 1–2 minutes.",
-    "timer": 120
-   },
-   {
-    "title": "Bring it together",
-    "content": "Add the {0009}, the reserved sauce, and the steak. Stir-fry about a minute to combine and heat through.",
-    "timer": 60
-   },
-   {
-    "title": "Scramble in the egg",
-    "content": "Push the rice aside, crack the {0010} into the gap, scramble it lightly, then pile the rice back over it for a few seconds before stirring it through. Cook about a minute more.",
-    "timer": 60
-   },
-   {
-    "title": "Garnish and serve",
-    "content": "Pull it off the heat promptly — don't overcook. Garnish with {0012} and serve hot.",
-    "timer": null
-   }
-  ],
-  "notes": "Day-old cold rice is the secret — it's drier and fries up with the right texture instead of going mushy. No leftovers? Cook a fresh batch, spread it out to cool and dry, or just fry it a little longer in the pan.\n\nCut the steak across the grain so it stays tender, and keep the pan hot and uncrowded (cook in two batches if you double it). The butter replaces the usual neutral oil and adds hibachi-style richness. Swap in chicken, shrimp, or tofu; add sriracha for heat."
- },
- {
   "id": "stew",
   "title": "Stew",
   "source": "",
@@ -12872,6 +12664,87 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "sweet-cooked-carrots",
+  "title": "Carrots (Sweet Cooked)",
+  "source": "",
+  "courses": [
+   "Side"
+  ],
+  "tags": [
+   "vegetarian",
+   "stovetop",
+   "gluten-free"
+  ],
+  "difficulty": "Easy",
+  "time": "",
+  "servingsLabel": "Servings",
+  "baseServings": 8,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 135,
+   "protein": 1,
+   "carbs": 22,
+   "fat": 4
+  },
+  "desc": "Tender baby carrots glazed in a brown sugar, butter, and Dijon mustard sauce.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 2,
+    "unit": "lb",
+    "name": "baby carrots"
+   },
+   {
+    "id": "0002",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "salt"
+   },
+   {
+    "id": "0003",
+    "amount": 0.5,
+    "unit": "cup",
+    "name": "packed light brown sugar"
+   },
+   {
+    "id": "0004",
+    "amount": 3,
+    "unit": "tbsp",
+    "name": "butter"
+   },
+   {
+    "id": "0005",
+    "amount": 2,
+    "unit": "tbsp",
+    "name": "Dijon mustard"
+   },
+   {
+    "id": "0006",
+    "amount": 0.25,
+    "unit": "tsp",
+    "name": "white pepper"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Put carrots in a saucepan, sprinkle with salt, and cover with water. Bring to a boil, cover with a lid, and simmer on low until tender. Drain.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "In the saucepan put the remaining ingredients, stir, and add the carrots.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Stir over low heat until well coated.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
   "id": "taco-shell-crispy-tortillas",
   "title": "Taco Shell Crispy Tortillas",
   "source": "",
@@ -13157,6 +13030,215 @@ window.RECIPES = [
   "notes": ""
  },
  {
+  "id": "vegetarian-chili",
+  "title": "Chili (Vegetarian)",
+  "source": "",
+  "courses": [
+   "Soup",
+   "Dinner"
+  ],
+  "tags": [
+   "vegetarian",
+   "beans",
+   "chili",
+   "soup",
+   "slow-cooker",
+   "crock-pot",
+   "comfort-food"
+  ],
+  "difficulty": "Easy",
+  "time": "~2 hr",
+  "servingsLabel": "Servings",
+  "baseServings": 6,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 245,
+   "protein": 14,
+   "carbs": 35,
+   "fat": 4
+  },
+  "desc": "A hearty meatless chili made with Morning Star crumbles, beans, and vegetables in the crock pot.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": null,
+    "unit": null,
+    "name": "Morning Star Crumbles"
+   },
+   {
+    "id": "0002",
+    "amount": 1,
+    "unit": "can",
+    "name": "chili beans in sauce"
+   },
+   {
+    "id": "0003",
+    "amount": 1,
+    "unit": "can",
+    "name": "red kidney beans"
+   },
+   {
+    "id": "0004",
+    "amount": 14,
+    "unit": "oz",
+    "name": "diced fire roasted tomatoes"
+   },
+   {
+    "id": "0005",
+    "amount": 0.5,
+    "unit": null,
+    "name": "red onion (chopped)"
+   },
+   {
+    "id": "0006",
+    "amount": 1,
+    "unit": null,
+    "name": "carrot (chopped)"
+   },
+   {
+    "id": "0007",
+    "amount": 1,
+    "unit": null,
+    "name": "zucchini (chopped)"
+   },
+   {
+    "id": "0008",
+    "amount": 0.5,
+    "unit": "cup",
+    "name": "edamame"
+   },
+   {
+    "id": "0009",
+    "amount": 0.5,
+    "unit": "cup",
+    "name": "corn"
+   },
+   {
+    "id": "0010",
+    "amount": 1,
+    "unit": "pkg",
+    "name": "chili mix"
+   },
+   {
+    "id": "0011",
+    "amount": null,
+    "unit": null,
+    "name": "garlic powder"
+   },
+   {
+    "id": "0012",
+    "amount": null,
+    "unit": null,
+    "name": "chili powder"
+   },
+   {
+    "id": "0013",
+    "amount": 1,
+    "unit": "tsp",
+    "name": "sugar"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Combine all ingredients and cook in a crock pot for about 2 hours on low.",
+    "timer": 7200
+   },
+   {
+    "title": "",
+    "content": "Add sour cream or sharp cheddar cheese to individual bowls.",
+    "timer": null
+   }
+  ],
+  "notes": ""
+ },
+ {
+  "id": "vegetarian-meatballs",
+  "title": "Meatballs (Vegetarian)",
+  "source": "",
+  "courses": [
+   "Dinner"
+  ],
+  "tags": [
+   "vegetarian",
+   "baked"
+  ],
+  "difficulty": "Easy",
+  "time": "~15 min",
+  "servingsLabel": "Servings",
+  "baseServings": 4,
+  "servingsEstimated": true,
+  "nutrition": {
+   "calories": 140,
+   "protein": 13,
+   "carbs": 7,
+   "fat": 7
+  },
+  "desc": "Meatless meatballs made with Morning Star crumbles, baked until set.",
+  "ingredients": [
+   {
+    "id": "0001",
+    "amount": 1,
+    "unit": "pkg",
+    "name": "Morning Star Crumbles"
+   },
+   {
+    "id": "0002",
+    "amount": 1,
+    "unit": null,
+    "name": "egg"
+   },
+   {
+    "id": "0003",
+    "amount": 0.5,
+    "unit": null,
+    "name": "medium sweet onion (yellow), small diced"
+   },
+   {
+    "id": "0004",
+    "amount": 1,
+    "unit": "tbsp",
+    "name": "Worcestershire sauce"
+   },
+   {
+    "id": "0005",
+    "amount": null,
+    "unit": null,
+    "name": "oregano"
+   },
+   {
+    "id": "0006",
+    "amount": null,
+    "unit": null,
+    "name": "salt & pepper"
+   },
+   {
+    "id": "0007",
+    "amount": 0.125,
+    "unit": "cup",
+    "name": "half and half"
+   }
+  ],
+  "steps": [
+   {
+    "title": "",
+    "content": "Place crumbles in the microwave for 2 minutes (until thawed). Small dice the yellow onion.",
+    "timer": 120
+   },
+   {
+    "title": "",
+    "content": "Add all ingredients to a bowl and combine. Form into balls with a scoop and place on a parchment-lined cookie sheet.",
+    "timer": null
+   },
+   {
+    "title": "",
+    "content": "Bake at 350F for about 15 minutes.",
+    "timer": 900
+   }
+  ],
+  "notes": ""
+ },
+ {
   "id": "wassail",
   "title": "Wassail (Apple Cider)",
   "source": "",
@@ -13244,92 +13326,6 @@ window.RECIPES = [
    }
   ],
   "notes": ""
- },
- {
-  "id": "cream-cheese-wontons",
-  "title": "Wontons (Cream Cheese)",
-  "source": "",
-  "courses": [
-   "Appetizer"
-  ],
-  "tags": [
-   "vegetarian",
-   "baked",
-   "asian",
-   "party"
-  ],
-  "difficulty": "Medium",
-  "time": "",
-  "servingsLabel": "Servings",
-  "baseServings": 12,
-  "servingsEstimated": true,
-  "nutrition": {
-   "calories": 150,
-   "protein": 3,
-   "carbs": 17,
-   "fat": 7
-  },
-  "desc": "Baked wonton cups filled with a sweet and spicy cream cheese mixture.",
-  "ingredients": [
-   {
-    "id": "0001",
-    "amount": 8,
-    "unit": "oz",
-    "name": "cream cheese, softened"
-   },
-   {
-    "id": "0002",
-    "amount": 4,
-    "unit": null,
-    "name": "green onions, sliced very thin (most white)"
-   },
-   {
-    "id": "0003",
-    "amount": 1,
-    "unit": "tsp",
-    "name": "Sriracha and sweet chili sauce (1+ tsp)"
-   },
-   {
-    "id": "0004",
-    "amount": 2,
-    "unit": "tbsp",
-    "name": "powdered sugar (or to taste)"
-   },
-   {
-    "id": "0005",
-    "amount": 1,
-    "unit": "pkg",
-    "name": "wonton wrappers (square or round)"
-   }
-  ],
-  "steps": [
-   {
-    "title": "",
-    "content": "Preheat oven to 350-400°.",
-    "timer": null
-   },
-   {
-    "title": "",
-    "content": "Mix all ingredients well in a bowl, except the wrappers.",
-    "timer": null
-   },
-   {
-    "title": "Bake cups",
-    "content": "Spray a mini muffin pan, place a wonton wrapper in each, and spray with butter spray. Bake until edges are brown, then remove from oven.",
-    "timer": null
-   },
-   {
-    "title": "Fill",
-    "content": "Put about a teaspoon of the mixture in the center of each wrapper.",
-    "timer": null
-   },
-   {
-    "title": "Warm",
-    "content": "Heat again for 2-3 minutes until the center mix is warm. Serve with favorite dipping sauce.",
-    "timer": 180
-   }
-  ],
-  "notes": "Freeze on parchment uncooked for 2 hrs, then transfer to a freezer bag."
  },
  {
   "id": "yum-yum-sauce",
